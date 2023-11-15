@@ -1,5 +1,5 @@
 //
-//  NewRecipeView.swift
+//  NewShoppingListView.swift
 //  Capstone
 //
 //  Created by Nicolle on 14/11/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewRecipeView: View {
+struct NewShoppingListView: View {
     @State var recipeName: String = ""
     @State var quantity: String = "0g"
     @State var portion: String = "1"
@@ -51,8 +51,8 @@ struct NewRecipeView: View {
     }
 }
 
-struct NewRecipeView_Previews: PreviewProvider {
+struct NewShoppingListView_Previews: PreviewProvider {
     static var previews: some View {
-        NewRecipeView()
+        NewShoppingListView()
     }
 }

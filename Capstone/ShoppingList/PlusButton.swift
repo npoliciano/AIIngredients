@@ -1,5 +1,5 @@
 //
-//  NewRecipeButtonView.swift
+//  PlusButton.swift
 //  Capstone
 //
 //  Created by Nicolle on 14/11/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewRecipeButtonView: View {
+struct PlusButton: View {
     let action: () -> Void
     
     var body: some View {
@@ -21,8 +21,8 @@ struct NewRecipeButtonView: View {
     }
 }
 
-struct NewRecipeButtonView_Previews: PreviewProvider {
+struct PlusButton_Previews: PreviewProvider {
     static var previews: some View {
-        NewRecipeButtonView(action: {})
+        PlusButton(action: {})
     }
 }

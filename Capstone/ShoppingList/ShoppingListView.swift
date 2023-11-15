@@ -1,5 +1,5 @@
 //
-//  RecipeListView.swift
+//  ShoppingListView.swift
 //  Capstone
 //
 //  Created by Nicolle on 14/11/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipeListView: View {
+struct ShoppingListView: View {
     @State private var path = NavigationPath()
     
     var body: some View {
@@ -25,14 +25,14 @@ struct RecipeListView: View {
             .listStyle(.plain)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NewRecipeButtonView(action: {
+                    PlusButton(action: {
                         path.append(Destination.newRecipe)
                     })
                 }
             }
             .navigationDestination(for: Destination.self) { destination in
                 if destination == .newRecipe {
-                    NewRecipeView()
+                    NewShoppingListView()
                 }
             }
             .navigationTitle("Hello, Nicolle")
@@ -40,10 +40,8 @@ struct RecipeListView: View {
     }
 }
 
-struct RecipeListView_Previews: PreviewProvider {
+struct ShoppingListView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            RecipeListView()
-        }
+        ShoppingListView()
     }
 }
