@@ -54,7 +54,6 @@ struct NewShoppingListView: View {
                 isShowingPreview = false
             })
         }
-        .navigationBarTitle("Add a new Recipe")
     }
 }
 
