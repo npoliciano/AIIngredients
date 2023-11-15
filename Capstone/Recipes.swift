@@ -8,13 +8,13 @@
 import Foundation
 
 struct Recipes: Identifiable {
-  let id = UUID()
-  
-  let name: String
-  let items: [Items]
+    let id = UUID()
+    
+    let name: String
+    let items: [Items]
 }
 
 struct Items {
-  let name: String
-  let quantity: String
+    let name: String
+    let quantity: String
 }
