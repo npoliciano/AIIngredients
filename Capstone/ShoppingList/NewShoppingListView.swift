@@ -13,6 +13,10 @@ struct NewShoppingListView: View {
     @State var portion: String = "1"
     
     @State var isShowingPreview = false
+    @State var isShowingError = false
+    @State var isLoading = false
+    
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
@@ -33,25 +37,45 @@ struct NewShoppingListView: View {
                     Text("Portion")
                 }
             }
-            Button("Generate") {
-                isShowingPreview = true
+            Button(action: {
+                isLoading = true
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    isLoading = false
+                    if recipeName.isEmpty {
+                        isShowingError = true
+                    } else {
+                        isShowingPreview = true
+                    }
+                }
+            }) {
+                if isLoading {
+                    ProgressView()
+                        .controlSize(.large)
+                } else {
+                    Text("Generate")
+                        .font(.headline)
+                        .bold()
+                        .foregroundColor(Color.white)
+                        .frame(width: 100)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(16)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.white, lineWidth: 2)
+                        )
+                }
             }
-            .font(.headline)
-            .bold()
-            .foregroundColor(Color.white)
-            .frame(width: 100)
-            .padding()
-            .background(Color.blue)
-            .cornerRadius(16)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.white, lineWidth: 2)
-            )
+            .alert(isPresented: $isShowingError) {
+                Alert(title: Text("Error"), message: Text("An error occurred."),
+                      dismissButton: .default(Text("OK")))
+            }
             Spacer()
         }
         .sheet(isPresented: $isShowingPreview) {
             ShoppingListPreviewView(onOk: {
-                isShowingPreview = false
+                dismiss()
             })
         }
     }
