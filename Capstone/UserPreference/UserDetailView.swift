@@ -11,7 +11,8 @@ struct UserDetailView: View {
     @State var glutenPreference = false
     @State var lactosePreference = false
     @State var sugarPreference = false
-    @State var veggiePreference = false
+    @State var veganPreference = false
+    @State var vegeterianPreference = false
     @State var name: String = ""
     let onStart: () -> Void
     
@@ -29,7 +30,9 @@ struct UserDetailView: View {
                     
                     Toggle("Sugar", isOn: $sugarPreference)
                     
-                    Toggle("Veggie", isOn: $veggiePreference)
+                    Toggle("Vegan", isOn: $veganPreference)
+                    
+                    Toggle("Vegeterian", isOn: $vegeterianPreference)
                 }
             }
             .toolbar {
