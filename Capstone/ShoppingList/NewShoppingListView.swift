@@ -12,6 +12,8 @@ struct NewShoppingListView: View {
     @State var quantity: String = "0g"
     @State var portion: String = "1"
     
+    @State var isShowingPreview = false
+    
     var body: some View {
         VStack {
             Form {
@@ -31,8 +33,8 @@ struct NewShoppingListView: View {
                     Text("Portion")
                 }
             }
-            Button("ADD") {
-                print("Button")
+            Button("Generate") {
+                isShowingPreview = true
             }
             .font(.headline)
             .bold()
@@ -46,6 +48,11 @@ struct NewShoppingListView: View {
                     .stroke(Color.white, lineWidth: 2)
             )
             Spacer()
+        }
+        .sheet(isPresented: $isShowingPreview) {
+            ShoppingListPreviewView(onOk: {
+                isShowingPreview = false
+            })
         }
         .navigationBarTitle("Add a new Recipe")
     }
