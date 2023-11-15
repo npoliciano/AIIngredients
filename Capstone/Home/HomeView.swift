@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     var body: some View {
         TabView {
-            ShoppingListView()
+            ShoppingListView(items: [
+                    "Item 1",
+                    "Item 2",
+                    "Item 3",
+                    "Item 4",
+                    "Item 5",
+                    "Item 6"
+            ])
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }

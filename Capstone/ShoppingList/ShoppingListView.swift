@@ -10,19 +10,25 @@ import SwiftUI
 struct ShoppingListView: View {
     @State private var path = NavigationPath()
     
+    var items: [String]
+    
     var body: some View {
         NavigationStack(path: $path) {
-            List {
-                HStack {
-                    Image(systemName: "square")
-                    Text("A List Item")
-                }
-                HStack {
-                    Image(systemName: "square")
-                    Text("A List Item")
+            Group {
+                if items.isEmpty {
+                    EmptyListView(onTap: {
+                        path.append(Destination.newRecipe)
+                    })
+                } else {
+                    List(items, id: \.self) { item in
+                        HStack {
+                            Image(systemName: "square")
+                            Text(item)
+                        }
+                    }
+                    .listStyle(.plain)
                 }
             }
-            .listStyle(.plain)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     PlusButton(action: {
@@ -44,6 +50,6 @@ struct ShoppingListView: View {
 
 struct ShoppingListView_Previews: PreviewProvider {
     static var previews: some View {
-        ShoppingListView()
+        ShoppingListView(items: [])
     }
 }
