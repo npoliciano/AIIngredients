@@ -11,12 +11,14 @@ struct ContentView: View {
     @State private var path = NavigationPath()
     @State private var isShowingUserName = false
     @State private var isShowingHome = false
-    @State private var onboardingStatus: OnboardingStatus = .pendingWalkthrough
+    
+    @AppStorage("onboardingStatus") var onboardingStatus: OnboardingStatus?
     
     var body: some View {
         switch onboardingStatus {
-        case .pendingWalkthrough:
+        case .none:
             OnboardingView(onStart: {
+                onboardingStatus = .pendingName
                 isShowingUserName = true
             })
             .fullScreenCover(isPresented: $isShowingUserName) {
@@ -37,6 +39,7 @@ struct ContentView: View {
     
     private var userDetailView: some View {
         UserDetailView(onStart: {
+            onboardingStatus = .complete
             isShowingHome = true
         })
         .fullScreenCover(isPresented: $isShowingHome) {
@@ -47,6 +50,7 @@ struct ContentView: View {
     private var userNameView: some View {
         NavigationStack(path: $path) {
             UserNameView(onStart: {
+                onboardingStatus = .pendingPreferences
                 path.append(Destination.userDetail)
             })
             .navigationDestination(for: Destination.self) { destination in
@@ -61,8 +65,7 @@ enum Destination: Hashable {
     case newRecipe
 }
 
-enum OnboardingStatus {
-    case pendingWalkthrough
+enum OnboardingStatus: String {
     case pendingName
     case pendingPreferences
     case complete
