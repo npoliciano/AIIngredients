@@ -28,7 +28,7 @@ struct ContentView: View {
             userNameView
         case .pendingPreferences:
             NavigationStack {
-                userDetailView
+                userPreferencesView
             }
         case .complete:
             HomeView()
@@ -37,8 +37,8 @@ struct ContentView: View {
     
     // MARK: Screens
     
-    private var userDetailView: some View {
-        UserDetailView(onStart: {
+    private var userPreferencesView: some View {
+        UserPreferencesView(onStart: {
             onboardingStatus = .complete
             isShowingHome = true
         })
@@ -51,17 +51,18 @@ struct ContentView: View {
         NavigationStack(path: $path) {
             UserNameView(onStart: {
                 onboardingStatus = .pendingPreferences
-                path.append(Destination.userDetail)
+                path.append(Destination.userPreferences)
             })
+            .navigationBarTitle("Enter your name")
             .navigationDestination(for: Destination.self) { destination in
-                userDetailView
+                UserPreferencesView(onStart: {})
             }
         }
     }
 }
 
 enum Destination: Hashable {
-    case userDetail
+    case userPreferences
     case newRecipe
 }
 

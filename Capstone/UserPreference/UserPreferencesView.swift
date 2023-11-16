@@ -1,28 +1,22 @@
 //
-//  UserDetailView.swift
+//  UserPreferencesView.swift
 //  Capstone
 //
-//  Created by Nicolle on 14/11/23.
+//  Created by Nicolle on 15/11/23.
 //
 
 import SwiftUI
 
-struct UserDetailView: View {
+struct UserPreferencesView: View {
+    let onStart: () -> Void
     @State private var glutenFree: Bool = false
     @State private var lactoseFree: Bool = false
     @State private var sugarFree: Bool = false
     @State private var vegan: Bool = false
     @State private var vegetarian: Bool = false
-    @State private var userName: String = ""
-    let onStart: () -> Void
     
     var body: some View {
-        
-        VStack() {
-            Text(userName)
-                .font(.largeTitle)
-                .padding()
-            
+        VStack {
             Form {
                 Section("Restrictions") {
                     Toggle("Gluten", isOn: $glutenFree)
@@ -36,12 +30,28 @@ struct UserDetailView: View {
                     Toggle("Vegeterian", isOn: $vegetarian)
                 }
             }
+            
+            Button {
+                onStart()
+            } label: {
+                Text("Next")
+                    .font(.headline)
+                    .bold()
+                    .foregroundColor(Color.white)
+                    .frame(width: 100)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(16)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.white, lineWidth: 2))
+            }
         }
     }
 }
 
-struct UserDetailView_Previews: PreviewProvider {
+struct UserPreferencesView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(onStart: {})
+        UserPreferencesView(onStart: {})
     }
 }

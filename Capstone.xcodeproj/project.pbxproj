@@ -18,6 +18,7 @@
 		A45EA23D2B0441A70097B863 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA23C2B0441A70097B863 /* OnboardingView.swift */; };
 		A45EA23F2B0460C60097B863 /* ShoppingListPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA23E2B0460C60097B863 /* ShoppingListPreviewView.swift */; };
 		A45EA2412B0516210097B863 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2402B0516210097B863 /* EmptyListView.swift */; };
+		A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2422B0550390097B863 /* UserPreferencesView.swift */; };
 		A49FC95D2B03C1E700A50F0E /* CapstoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */; };
 		A49FC95F2B03C1E700A50F0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC95E2B03C1E700A50F0E /* ContentView.swift */; };
 		A49FC9612B03C1E800A50F0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A49FC9602B03C1E800A50F0E /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		A45EA23C2B0441A70097B863 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A45EA23E2B0460C60097B863 /* ShoppingListPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListPreviewView.swift; sourceTree = "<group>"; };
 		A45EA2402B0516210097B863 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
+		A45EA2422B0550390097B863 /* UserPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesView.swift; sourceTree = "<group>"; };
 		A49FC9592B03C1E700A50F0E /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneApp.swift; sourceTree = "<group>"; };
 		A49FC95E2B03C1E700A50F0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				A44EC5652B03CCC6007CCB5B /* UserNameView.swift */,
+				A45EA2422B0550390097B863 /* UserPreferencesView.swift */,
 				A45EA22A2B03D7E20097B863 /* UserDetailView.swift */,
 			);
 			path = UserPreference;
@@ -334,6 +337,7 @@
 				A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */,
 				A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */,
 				A44EC5622B03C527007CCB5B /* PlusButton.swift in Sources */,
+				A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */,
 				A45EA23D2B0441A70097B863 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
