@@ -127,9 +127,12 @@ struct BuildYourMealView: View {
         }
         .ignoresSafeArea(.all)
         .sheet(item: $viewModel.generatedList) { list in
-            ShoppingListReviewView(onOk: {
-                dismiss()
-            })
+            ShoppingListReviewView(
+                generatedList: list,
+                onOk: {
+                    dismiss()
+                }
+            )
         }
         .alert(
             viewModel.error?.title ?? "",

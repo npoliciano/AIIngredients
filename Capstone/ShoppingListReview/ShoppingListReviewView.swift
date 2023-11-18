@@ -8,15 +8,8 @@
 import SwiftUI
 
 struct ShoppingListReviewView: View {
-    var onOk: () -> Void
-    
-    @State private var mealName: String = "Ceasar Salad"
-    @State private var items: [Item] = [
-        Item(name: "Letuce", quantity: "as needed"),
-        Item(name: "Cheese", quantity: "20 g"),
-        Item(name: "Milk", quantity: "200 ml"),
-        Item(name: "Ceasar Sauce", quantity: "30 g")
-    ]
+    let generatedList: GeneratedList
+    let onOk: () -> Void
     
     var body: some View {
         VStack {
@@ -31,14 +24,14 @@ struct ShoppingListReviewView: View {
                         .padding(.bottom)
                     
                     VStack(alignment: .leading, spacing: 20) {
-                        Label(mealName, systemImage: "cart")
+                        Label(generatedList.name, systemImage: "cart")
                             .fontWeight(.medium)
                             .foregroundStyle(.secondary)
                         
                         Divider()
                         
                         LazyVStack(spacing: 16) {
-                            ForEach(items) { item in
+                            ForEach(generatedList.items) { item in
                                 HStack {
                                     Text(item.name)
                                         .font(.subheadline)
@@ -82,6 +75,16 @@ struct ShoppingListReviewView: View {
 
 struct ShoppingListReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ShoppingListReviewView(onOk: { })
+        ShoppingListReviewView(
+            generatedList: GeneratedList(
+                name: "Ceasar Salad",
+                items: [
+                    Item(name: "Letuce", quantity: "as needed"),
+                    Item(name: "Cheese", quantity: "20 g"),
+                    Item(name: "Milk", quantity: "200 ml"),
+                    Item(name: "Ceasar Sauce", quantity: "30 g")
+                ]),
+            onOk: { }
+        )
     }
 }
