@@ -17,7 +17,7 @@ struct ShoppingListView: View {
             Group {
                 if items.isEmpty {
                     EmptyListView(onTap: {
-                        path.append(Destination.newRecipe)
+                        path.append(BuildYourMealDestination())
                     })
                 } else {
                     List(items, id: \.self) { item in
@@ -32,20 +32,20 @@ struct ShoppingListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     PlusButton(action: {
-                        path.append(Destination.newRecipe)
+                        path.append(BuildYourMealDestination())
                     })
                 }
             }
-            .navigationDestination(for: Destination.self) { destination in
-                if destination == .newRecipe {
-                    BuildYourMealView()
-                        .toolbar(.hidden, for: .tabBar)
-                }
+            .navigationDestination(for: BuildYourMealDestination.self) { _ in
+                BuildYourMealView()
+                    .toolbar(.hidden, for: .tabBar)
             }
             .navigationTitle("Hello, Nicolle")
         }
     }
 }
+
+struct BuildYourMealDestination: Hashable { }
 
 struct ShoppingListView_Previews: PreviewProvider {
     static var previews: some View {

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var path = NavigationPath()
-    @State private var isShowingUserName = false
-    @State private var isShowingHome = false
+    @State private var isUserNamePresented = false
+    @State private var isHomePresented = false
     
     @AppStorage("onboardingStatus") var onboardingStatus: OnboardingStatus?
     
@@ -19,9 +19,9 @@ struct ContentView: View {
         case .none:
             OnboardingView(onStart: {
                 onboardingStatus = .pendingName
-                isShowingUserName = true
+                isUserNamePresented = true
             })
-            .fullScreenCover(isPresented: $isShowingUserName) {
+            .fullScreenCover(isPresented: $isUserNamePresented) {
                 userNameView
             }
         case .pendingName:
@@ -40,9 +40,9 @@ struct ContentView: View {
     private var userPreferencesView: some View {
         UserPreferencesView(onStart: {
             onboardingStatus = .complete
-            isShowingHome = true
+            isHomePresented = true
         })
-        .fullScreenCover(isPresented: $isShowingHome) {
+        .fullScreenCover(isPresented: $isHomePresented) {
             HomeView()
         }
     }
@@ -51,20 +51,17 @@ struct ContentView: View {
         NavigationStack(path: $path) {
             UserNameView(onStart: {
                 onboardingStatus = .pendingPreferences
-                path.append(Destination.userPreferences)
+                path.append(UserPreferencesDestination())
             })
             .navigationBarTitle("Enter your name")
-            .navigationDestination(for: Destination.self) { destination in
+            .navigationDestination(for: UserPreferencesDestination.self) { _ in
                 UserPreferencesView(onStart: {})
             }
         }
     }
 }
 
-enum Destination: Hashable {
-    case userPreferences
-    case newRecipe
-}
+struct UserPreferencesDestination: Hashable { }
 
 enum OnboardingStatus: String {
     case pendingName

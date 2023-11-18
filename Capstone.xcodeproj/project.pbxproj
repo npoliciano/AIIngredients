@@ -201,9 +201,9 @@
 		A4C29B202B084AB40040A41A /* BuildYourMeal */ = {
 			isa = PBXGroup;
 			children = (
-				A45EA2342B03FEF90097B863 /* GeneratedList.swift */,
-				A4C29B212B084ACF0040A41A /* BuildYourMealViewModel.swift */,
 				A4E013452B07350D00D272A8 /* BuildYourMealView.swift */,
+				A4C29B212B084ACF0040A41A /* BuildYourMealViewModel.swift */,
+				A45EA2342B03FEF90097B863 /* GeneratedList.swift */,
 			);
 			path = BuildYourMeal;
 			sourceTree = "<group>";
