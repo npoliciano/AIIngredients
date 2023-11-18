@@ -14,7 +14,9 @@ struct GeneratedList: Identifiable, Equatable {
     let items: [Item]
 }
 
-struct Item: Equatable {
+struct Item: Identifiable, Equatable {
+    let id = UUID()
+    
     let name: String
     let quantity: String
 }

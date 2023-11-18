@@ -16,7 +16,7 @@ final class ListGeneratorDummy: ListGenerator {
             Item(name: "Lettuce", quantity: "as needed"),
             Item(name: "Cheese", quantity: "20g"),
             Item(name: "Tomato", quantity: "1 unit"),
-            Item(name: "Ceasar Sauce", quantity: "10g"),
+            Item(name: "Yogurt Sauce", quantity: "10g"),
         ])
         
         completion(.success(list))
@@ -53,7 +53,7 @@ struct BuildYourMealView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Build Your Meal")
                         .font(.largeTitle)
-                        .fontWeight(.heavy)
+                        .fontWeight(.bold)
                     
                     Text("Get ready to cook with ease!")
                         .font(.title3)
