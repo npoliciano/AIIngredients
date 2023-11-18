@@ -7,14 +7,12 @@
 
 import Foundation
 
-struct Recipes: Identifiable {
-    let id = UUID()
-    
+struct GeneratedList: Equatable {
     let name: String
-    let items: [Items]
+    let items: [Item]
 }
 
-struct Items {
+struct Item: Equatable {
     let name: String
     let quantity: String
 }

@@ -7,14 +7,17 @@
 
 import SwiftUI
 
+final class ListGeneratorDummy: ListGenerator {
+    func generate(
+        from input: ListGeneratorInput,
+        completion: @escaping (Result<GeneratedList, Error>) -> Void
+    ) {
+        // do nothing
+    }
+}
+
 struct BuildYourMealView: View {
-    @State var meal = ""
-    @State var portion = ""
-    @State var quantity = 1
-    @State var selectedPortionType = ""
-    
-    @State var isLoading = false
-    @State var isShowingError = false
+    @StateObject private var viewModel = BuildYourMealViewModel(generator: ListGeneratorDummy())
     
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
@@ -29,7 +32,6 @@ struct BuildYourMealView: View {
                     .resizable()
                     .scaledToFill()
                     .frame(width: geometry.size.width, height: getHeightForHeaderImage(geometry))
-                    .background(Color(red: 246/255, green: 243/255, blue: 239/255))
                     .clipped()
                     .offset(x: 0, y: getOffsetForHeaderImage(geometry))
             }
@@ -54,7 +56,7 @@ struct BuildYourMealView: View {
                         Text("Meal")
                             .font(.footnote)
                             .fontWeight(.medium)
-                        TextField("E.g. greek salad, fried rice...", text: $meal)
+                        TextField("E.g. greek salad, fried rice...", text: $viewModel.meal)
                     }
                     
                     VStack(alignment: .leading) {
@@ -62,16 +64,12 @@ struct BuildYourMealView: View {
                             .font(.footnote)
                             .fontWeight(.medium)
                         HStack {
-                            TextField("E.g. 3 units, 0.5 kg, 70 ml ...", text: $portion)
+                            TextField("E.g. 3 units, 0.5 kg, 70 ml...", text: $viewModel.portion)
                                 .keyboardType(.decimalPad)
-                            Picker("Unit", selection: $selectedPortionType) {
-                                Text("g")
-                                Text("kg")
-                                Text("pieces")
-                                Text("units")
-                                Text("ml")
-                                Text("litres")
-                                Text("unespecified")
+                            Picker("Unit", selection: $viewModel.selectedPortionType) {
+                                ForEach(viewModel.measurements, id: \.self) {
+                                    Text($0)
+                                }
                             }
                         }
                     }
@@ -80,7 +78,7 @@ struct BuildYourMealView: View {
                         Text("Quantity per week")
                             .font(.footnote)
                             .fontWeight(.medium)
-                        Stepper("\(quantity)", value: $quantity, in: 0 ... Int.max)
+                        Stepper("\(viewModel.quantity)", value: $viewModel.quantity, in: viewModel.quantityRange)
                             .foregroundColor(.secondary)
                     }
                 }
@@ -88,10 +86,10 @@ struct BuildYourMealView: View {
                 Spacer()
                 
                 Button {
-                    
+                    viewModel.onTap()
                 } label: {
                     Group {
-                        if isLoading {
+                        if viewModel.isLoading {
                             ProgressView()
                                 .tint(.white)
                                 .progressViewStyle(.circular)
@@ -111,14 +109,23 @@ struct BuildYourMealView: View {
                 }
                 
             }
+            .disabled(viewModel.isLoading)
             .padding(.horizontal)
             .padding(.vertical, 16)
         }
         .ignoresSafeArea(.all)
-        .alert(isPresented: $isShowingError) {
-            Alert(title: Text("Error"), message: Text("An error occurred."),
-                  dismissButton: .default(Text("OK")))
-        }
+        .alert(
+            viewModel.error?.title ?? "",
+            isPresented: $viewModel.isErrorPresented,
+            presenting: viewModel.error,
+            actions: { error in
+                Button("Got it") {
+                    viewModel.error = nil
+                }
+            }, message: { error in
+                Text(error.message)
+            }
+        )
     }
     
     // MARK: Parallax Header Calculations
