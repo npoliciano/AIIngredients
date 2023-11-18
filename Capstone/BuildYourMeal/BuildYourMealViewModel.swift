@@ -53,22 +53,23 @@ final class BuildYourMealViewModel: ObservableObject {
     }
     
     func onTap() {
-        if meal.isEmpty, portion.isEmpty {
+        switch (meal.isEmpty, portion.isEmpty) {
+        case (true, true):
             error = Error(
                 title: "Required Fields Missing",
                 message: "Please enter the \"Meal\" and \"Portion size\" details. Both fields are required to proceed."
             )
-        } else if meal.isEmpty {
+        case (true, _):
             error = Error(
                 title: "Required Field Missing",
                 message: "Please enter the \"Meal\" details. This field is required to proceed."
             )
-        } else if portion.isEmpty {
+        case (_, true):
             error = Error(
                 title: "Required Field Missing",
                 message: "Please enter the \"Portion size\" details. This field is required to proceed."
             )
-        } else {
+        default:
             let input = ListGeneratorInput(
                 meal: meal,
                 portion: portion,
