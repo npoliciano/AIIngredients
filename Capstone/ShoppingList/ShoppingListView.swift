@@ -38,8 +38,7 @@ struct ShoppingListView: View {
             }
             .navigationDestination(for: Destination.self) { destination in
                 if destination == .newRecipe {
-                    NewShoppingListView()
-                        .navigationBarTitle("Add a new Recipe")
+                    BuildYourMealView()
                         .toolbar(.hidden, for: .tabBar)
                 }
             }

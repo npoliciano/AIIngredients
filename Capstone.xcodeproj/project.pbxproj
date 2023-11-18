@@ -11,7 +11,6 @@
 		A44EC5642B03C594007CCB5B /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44EC5632B03C594007CCB5B /* OnboardingPageView.swift */; };
 		A44EC5662B03CCC6007CCB5B /* UserNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44EC5652B03CCC6007CCB5B /* UserNameView.swift */; };
 		A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22A2B03D7E20097B863 /* UserDetailView.swift */; };
-		A45EA22D2B03D8470097B863 /* NewShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22C2B03D8470097B863 /* NewShoppingListView.swift */; };
 		A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22E2B03E8840097B863 /* ShoppingListView.swift */; };
 		A45EA2352B03FEF90097B863 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2342B03FEF90097B863 /* Recipes.swift */; };
 		A45EA23B2B043ED30097B863 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA23A2B043ED30097B863 /* HomeView.swift */; };
@@ -26,6 +25,7 @@
 		A49FC96E2B03C1E800A50F0E /* CapstoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC96D2B03C1E800A50F0E /* CapstoneTests.swift */; };
 		A49FC9782B03C1E800A50F0E /* CapstoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC9772B03C1E800A50F0E /* CapstoneUITests.swift */; };
 		A49FC97A2B03C1E800A50F0E /* CapstoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC9792B03C1E800A50F0E /* CapstoneUITestsLaunchTests.swift */; };
+		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,6 @@
 		A44EC5632B03C594007CCB5B /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		A44EC5652B03CCC6007CCB5B /* UserNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameView.swift; sourceTree = "<group>"; };
 		A45EA22A2B03D7E20097B863 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
-		A45EA22C2B03D8470097B863 /* NewShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewShoppingListView.swift; sourceTree = "<group>"; };
 		A45EA22E2B03E8840097B863 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		A45EA2342B03FEF90097B863 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		A45EA23A2B043ED30097B863 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		A49FC9732B03C1E800A50F0E /* CapstoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49FC9772B03C1E800A50F0E /* CapstoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneUITests.swift; sourceTree = "<group>"; };
 		A49FC9792B03C1E800A50F0E /* CapstoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +109,9 @@
 			children = (
 				A45EA22E2B03E8840097B863 /* ShoppingListView.swift */,
 				A44EC5612B03C527007CCB5B /* PlusButton.swift */,
-				A45EA22C2B03D8470097B863 /* NewShoppingListView.swift */,
 				A45EA23E2B0460C60097B863 /* ShoppingListPreviewView.swift */,
 				A45EA2402B0516210097B863 /* EmptyListView.swift */,
+				A4E013452B07350D00D272A8 /* BuildYourMealView.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -332,10 +332,10 @@
 				A45EA23B2B043ED30097B863 /* HomeView.swift in Sources */,
 				A45EA2412B0516210097B863 /* EmptyListView.swift in Sources */,
 				A49FC95D2B03C1E700A50F0E /* CapstoneApp.swift in Sources */,
-				A45EA22D2B03D8470097B863 /* NewShoppingListView.swift in Sources */,
 				A45EA2352B03FEF90097B863 /* Recipes.swift in Sources */,
 				A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */,
 				A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */,
+				A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */,
 				A44EC5622B03C527007CCB5B /* PlusButton.swift in Sources */,
 				A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */,
 				A45EA23D2B0441A70097B863 /* OnboardingView.swift in Sources */,
