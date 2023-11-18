@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ShoppingListPreviewView: View {
+struct ShoppingListReviewView: View {
     var onOk: () -> Void
     
     var body: some View {
@@ -21,8 +21,8 @@ struct ShoppingListPreviewView: View {
     }
 }
 
-struct ShoppingListPreviewView_Previews: PreviewProvider {
+struct ShoppingListReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ShoppingListPreviewView(onOk: { })
+        ShoppingListReviewView(onOk: { })
     }
 }

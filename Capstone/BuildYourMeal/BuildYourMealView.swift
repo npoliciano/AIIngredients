@@ -12,14 +12,26 @@ final class ListGeneratorDummy: ListGenerator {
         from input: ListGeneratorInput,
         completion: @escaping (Result<GeneratedList, Error>) -> Void
     ) {
-        // do nothing
+        let list = GeneratedList(name: "Greek Salad", items: [
+            Item(name: "Lettuce", quantity: "as needed"),
+            Item(name: "Cheese", quantity: "20g"),
+            Item(name: "Tomato", quantity: "1 unit"),
+            Item(name: "Ceasar Sauce", quantity: "10g"),
+        ])
+        
+        completion(.success(list))
     }
 }
 
 struct BuildYourMealView: View {
-    @StateObject private var viewModel = BuildYourMealViewModel(generator: ListGeneratorDummy())
+    @StateObject
+    private var viewModel = BuildYourMealViewModel(generator: ListGeneratorDummy())
     
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.verticalSizeClass)
+    private var verticalSizeClass
+    
+    @Environment(\.dismiss)
+    private var dismiss
     
     var headerHeight: CGFloat {
         verticalSizeClass == .regular ? 300 : 100
@@ -114,6 +126,11 @@ struct BuildYourMealView: View {
             .padding(.vertical, 16)
         }
         .ignoresSafeArea(.all)
+        .sheet(item: $viewModel.generatedList) { list in
+            ShoppingListReviewView(onOk: {
+                dismiss()
+            })
+        }
         .alert(
             viewModel.error?.title ?? "",
             isPresented: $viewModel.isErrorPresented,

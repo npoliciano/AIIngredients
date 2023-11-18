@@ -15,7 +15,7 @@
 		A45EA2352B03FEF90097B863 /* GeneratedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2342B03FEF90097B863 /* GeneratedList.swift */; };
 		A45EA23B2B043ED30097B863 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA23A2B043ED30097B863 /* HomeView.swift */; };
 		A45EA23D2B0441A70097B863 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA23C2B0441A70097B863 /* OnboardingView.swift */; };
-		A45EA23F2B0460C60097B863 /* ShoppingListPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA23E2B0460C60097B863 /* ShoppingListPreviewView.swift */; };
+		A45EA23F2B0460C60097B863 /* ShoppingListReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA23E2B0460C60097B863 /* ShoppingListReviewView.swift */; };
 		A45EA2412B0516210097B863 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2402B0516210097B863 /* EmptyListView.swift */; };
 		A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2422B0550390097B863 /* UserPreferencesView.swift */; };
 		A49FC95D2B03C1E700A50F0E /* CapstoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */; };
@@ -55,7 +55,7 @@
 		A45EA2342B03FEF90097B863 /* GeneratedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedList.swift; sourceTree = "<group>"; };
 		A45EA23A2B043ED30097B863 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A45EA23C2B0441A70097B863 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		A45EA23E2B0460C60097B863 /* ShoppingListPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListPreviewView.swift; sourceTree = "<group>"; };
+		A45EA23E2B0460C60097B863 /* ShoppingListReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListReviewView.swift; sourceTree = "<group>"; };
 		A45EA2402B0516210097B863 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		A45EA2422B0550390097B863 /* UserPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesView.swift; sourceTree = "<group>"; };
 		A49FC9592B03C1E700A50F0E /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A45C14BE2B0928AE001F7529 /* ShoppingListReview */ = {
+			isa = PBXGroup;
+			children = (
+				A45EA23E2B0460C60097B863 /* ShoppingListReviewView.swift */,
+			);
+			path = ShoppingListReview;
+			sourceTree = "<group>";
+		};
 		A45EA2362B043DEA0097B863 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,7 +120,6 @@
 			children = (
 				A45EA22E2B03E8840097B863 /* ShoppingListView.swift */,
 				A44EC5612B03C527007CCB5B /* PlusButton.swift */,
-				A45EA23E2B0460C60097B863 /* ShoppingListPreviewView.swift */,
 				A45EA2402B0516210097B863 /* EmptyListView.swift */,
 			);
 			path = ShoppingList;
@@ -166,6 +173,7 @@
 				A45EA2382B043E590097B863 /* UserPreference */,
 				A45EA2372B043E080097B863 /* ShoppingList */,
 				A4C29B202B084AB40040A41A /* BuildYourMeal */,
+				A45C14BE2B0928AE001F7529 /* ShoppingListReview */,
 				A49FC9602B03C1E800A50F0E /* Assets.xcassets */,
 				A49FC9622B03C1E800A50F0E /* Preview Content */,
 			);
@@ -339,7 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A49FC95F2B03C1E700A50F0E /* ContentView.swift in Sources */,
-				A45EA23F2B0460C60097B863 /* ShoppingListPreviewView.swift in Sources */,
+				A45EA23F2B0460C60097B863 /* ShoppingListReviewView.swift in Sources */,
 				A44EC5642B03C594007CCB5B /* OnboardingPageView.swift in Sources */,
 				A44EC5662B03CCC6007CCB5B /* UserNameView.swift in Sources */,
 				A45EA23B2B043ED30097B863 /* HomeView.swift in Sources */,

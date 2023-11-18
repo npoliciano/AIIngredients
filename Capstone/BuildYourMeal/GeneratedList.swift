@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct GeneratedList: Equatable {
+struct GeneratedList: Identifiable, Equatable {
+    let id = UUID()
+    
     let name: String
     let items: [Item]
 }
