@@ -25,7 +25,18 @@ final class ListGeneratorDummy: ListGenerator {
 
 struct BuildYourMealView: View {
     @StateObject
-    private var viewModel = BuildYourMealViewModel(generator: ListGeneratorDummy())
+    private var viewModel = BuildYourMealViewModel(
+        generator: OpenAIListGenerator(
+            httpClient: URLSessionHTTPClient(authorizationKey: ""),
+            restrictions: Restrictions(
+                glutenFree: true,
+                lactoseFree: true,
+                sugarFree: true,
+                vegan: true,
+                vegetarian: true
+            )
+        )
+    )
     
     @Environment(\.verticalSizeClass)
     private var verticalSizeClass

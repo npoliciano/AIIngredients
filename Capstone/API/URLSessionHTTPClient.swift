@@ -28,7 +28,7 @@ final class URLSessionHTTPClient: HTTPClient {
         ]
         
         let (data, response) = try await urlSession.data(for: urlRequest)
-        
+
         guard let response = response as? HTTPURLResponse,
               (200 ... 299).contains(response.statusCode)  else {
             throw HTTPStatusError()

@@ -100,7 +100,7 @@ final class BuildYourMealViewModel: ObservableObject {
     }
 }
 
-struct ListGeneratorInput: Equatable {
+struct ListGeneratorInput: Encodable, Equatable {
     let meal: String
     let portion: String
     let measurement: String
