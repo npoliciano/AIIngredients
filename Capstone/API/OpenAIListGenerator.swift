@@ -36,19 +36,20 @@ final class OpenAIListGenerator: ListGenerator {
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(OpenAIResponse.self, from: data)
                 
-                guard let message = response.choices.first?.message.content.utf8 else {
-                    completion(.failure(""))
-                    return
+                try await MainActor.run {
+                    guard let content = response.choices.first?.message.content.utf8,
+                          let generatedList = try decoder.decode(ShoppingList.self, from: Data(content)).shoppingList.first else {
+                        completion(.failure(""))
+                        return
+                    }
+                    
+                    completion(.success(generatedList))
+                    
                 }
-                
-                guard let generatedList = try decoder.decode(ShoppingList.self, from: Data(message)).shoppingList.first else {
-                    completion(.failure(""))
-                    return
-                }
-                
-                completion(.success(generatedList))
             } catch {
-                completion(.failure(error))
+                await MainActor.run {
+                    completion(.failure(error))
+                }
             }
         }
     }

@@ -12,7 +12,7 @@ import XCTest
 final class PromptTests: XCTestCase {
     func testCreatePrompt() {
         // Arrange
-        let input = ListGeneratorInput(meal: "Ceasar Salad", portion: "50", measurement: "g", quantity: 5)
+        let input = ListGeneratorInput(meal: "Ceasar Salad", portion: "50", measurement: .g, quantity: 5)
         let restrictions = Restrictions(
             glutenFree: true,
             lactoseFree: false,
@@ -39,7 +39,7 @@ final class PromptTests: XCTestCase {
         
         ```json
         {
-          "recipes": [
+          "shoppingList": [
             {
               "name": String,
               "items": [
@@ -58,7 +58,7 @@ final class PromptTests: XCTestCase {
     
     func testCreatePromptWhenMeasurementIsUnespecified() {
         // Arrange
-        let input = ListGeneratorInput(meal: "Ceasar Salad", portion: "50", measurement: "unespecified", quantity: 5)
+        let input = ListGeneratorInput(meal: "Ceasar Salad", portion: "50", measurement: .unespecified, quantity: 5)
         let restrictions = Restrictions(
             glutenFree: false,
             lactoseFree: true,
@@ -85,7 +85,7 @@ final class PromptTests: XCTestCase {
         
         ```json
         {
-          "recipes": [
+          "shoppingList": [
             {
               "name": String,
               "items": [

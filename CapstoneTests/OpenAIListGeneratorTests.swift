@@ -96,7 +96,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     }
     
     private var input: ListGeneratorInput {
-        ListGeneratorInput(meal: "some meal", portion: "some portion", measurement: "some measurement", quantity: 2)
+        ListGeneratorInput(meal: "some meal", portion: "some portion", measurement: Measurements.litres, quantity: 2)
     }
     
     private var expectedBodyData: Data {

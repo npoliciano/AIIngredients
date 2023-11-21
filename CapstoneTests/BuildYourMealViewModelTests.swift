@@ -16,7 +16,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Arrange & Act
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
-        let preSelectedPortionType = "g"
+        let preSelectedPortionType = Measurements.g
         
         // Assert
         XCTAssertEqual(sut.meal, "")
@@ -31,12 +31,12 @@ final class BuildYourMealViewModelTests: XCTestCase {
         
         XCTAssertEqual(sut.measurements, [
             preSelectedPortionType,
-            "kg",
-            "pieces",
-            "units",
-            "ml",
-            "litres",
-            "unespecified"
+            .kg,
+            .pieces,
+            .units,
+            .ml,
+            .litres,
+            .unespecified
         ])
     }
     
@@ -104,7 +104,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         sut.meal = "Some meal"
         sut.portion = "Some portion"
         sut.quantity = 3
-        sut.selectedPortionType = "kg"
+        sut.selectedPortionType = Measurements.kg
         
         // Act
         sut.onTap()
@@ -113,7 +113,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         let expectedInput = ListGeneratorInput(
             meal: "Some meal",
             portion: "Some portion",
-            measurement: "kg",
+            measurement: .kg,
             quantity: 3
         )
         XCTAssertEqual(generator.receivedInput, expectedInput)

@@ -7,22 +7,6 @@
 
 import SwiftUI
 
-final class ListGeneratorDummy: ListGenerator {
-    func generate(
-        from input: ListGeneratorInput,
-        completion: @escaping (Result<GeneratedList, Error>) -> Void
-    ) {
-        let list = GeneratedList(name: "Greek Salad", items: [
-            Item(name: "Lettuce", quantity: "as needed"),
-            Item(name: "Cheese", quantity: "20g"),
-            Item(name: "Tomato", quantity: "1 unit"),
-            Item(name: "Yogurt Sauce", quantity: "10g"),
-        ])
-        
-        completion(.success(list))
-    }
-}
-
 struct BuildYourMealView: View {
     @StateObject
     private var viewModel = BuildYourMealViewModel(
@@ -91,7 +75,7 @@ struct BuildYourMealView: View {
                                 .keyboardType(.decimalPad)
                             Picker("Unit", selection: $viewModel.selectedPortionType) {
                                 ForEach(viewModel.measurements, id: \.self) {
-                                    Text($0)
+                                    Text($0.rawValue)
                                 }
                             }
                         }

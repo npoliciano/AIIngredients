@@ -43,7 +43,7 @@ extension ListGeneratorInput {
         Restrictions: \(restrictions.prompt)
         
         List of meals:
-        - \(portion)\(measurement == "unespecified" ? "" : measurement) \(meal)
+        - \(portion)\(measurement == Measurements.unespecified ? "" : measurement.rawValue) \(meal)
         
         The output JSON should follow the following format:
         

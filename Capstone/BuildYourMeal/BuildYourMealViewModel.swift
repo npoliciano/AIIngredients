@@ -22,7 +22,7 @@ final class BuildYourMealViewModel: ObservableObject {
     
     @Published var meal = ""
     @Published var portion = ""
-    @Published var selectedPortionType = "g"
+    @Published var selectedPortionType = Measurements.g
     @Published var quantity = 1
     
     @Published var isLoading = false
@@ -30,15 +30,7 @@ final class BuildYourMealViewModel: ObservableObject {
     @Published var generatedList: GeneratedList?
     
     let quantityRange = 1 ... Int.max
-    let measurements = [
-        "g",
-        "kg",
-        "pieces",
-        "units",
-        "ml",
-        "litres",
-        "unespecified"
-    ]
+    let measurements = Measurements.allCases
     
     var error: Error? {
         didSet {
@@ -103,6 +95,16 @@ final class BuildYourMealViewModel: ObservableObject {
 struct ListGeneratorInput: Encodable, Equatable {
     let meal: String
     let portion: String
-    let measurement: String
+    let measurement: Measurements
     let quantity: Int
+}
+
+enum Measurements: String, CaseIterable, Encodable {
+    case g
+    case kg
+    case pieces
+    case units
+    case ml
+    case litres
+    case unespecified
 }
