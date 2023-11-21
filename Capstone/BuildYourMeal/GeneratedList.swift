@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GeneratedList: Decodable, Identifiable, Equatable {
+struct GeneratedList: Codable, Identifiable, Equatable {
     let id = UUID()
     
     let name: String
@@ -19,7 +19,7 @@ struct GeneratedList: Decodable, Identifiable, Equatable {
     }
 }
 
-struct Item: Decodable, Identifiable, Equatable {
+struct Item: Codable, Identifiable, Equatable {
     let id = UUID()
     
     let name: String

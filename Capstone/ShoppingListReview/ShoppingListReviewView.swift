@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ShoppingListReviewView: View {
-    let generatedList: GeneratedList
-    let onOk: () -> Void
+    @StateObject var viewModel: ShoppingListReviewViewModel
+    let onConfirm: () -> Void
+    
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
@@ -18,20 +20,21 @@ struct ShoppingListReviewView: View {
                     Text("Review Your Shopping List")
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .padding(.top)
                     
                     Text("Satisfied with your ingredients? If there's anything amiss, go ahead and customize the list to your taste!")
                         .foregroundColor(.secondary)
                         .padding(.bottom)
                     
                     VStack(alignment: .leading, spacing: 20) {
-                        Label(generatedList.name, systemImage: "cart")
+                        Label(viewModel.name, systemImage: "cart")
                             .fontWeight(.medium)
                             .foregroundStyle(.secondary)
                         
                         Divider()
                         
                         LazyVStack(spacing: 16) {
-                            ForEach(generatedList.items) { item in
+                            ForEach(viewModel.items) { item in
                                 HStack {
                                     Text(item.name)
                                         .font(.subheadline)
@@ -45,11 +48,13 @@ struct ShoppingListReviewView: View {
                     }
                     .padding(4)
                 }
+                .padding()
             }
             
             VStack(spacing: 16) {
                 Button {
-                    onOk()
+                    viewModel.onConfirm()
+                    onConfirm()
                 } label: {
                     Text("Confirm Selection")
                         .foregroundColor(Color.white)
@@ -64,27 +69,39 @@ struct ShoppingListReviewView: View {
                 }
                 
                 Button("Make Changes") {
-                    onOk()
+                    dismiss()
                 }
-                .padding(.bottom)
             }
+            .padding()
         }
-        .padding()
     }
 }
 
 struct ShoppingListReviewView_Previews: PreviewProvider {
     static var previews: some View {
         ShoppingListReviewView(
-            generatedList: GeneratedList(
+            viewModel: ShoppingListReviewViewModel(list: GeneratedList(
                 name: "Ceasar Salad",
                 items: [
                     Item(name: "Letuce", quantity: "as needed"),
                     Item(name: "Cheese", quantity: "20 g"),
                     Item(name: "Milk", quantity: "200 ml"),
+                    Item(name: "Ceasar Sauce", quantity: "30 g"),
+                    Item(name: "Letuce", quantity: "as needed"),
+                    Item(name: "Cheese", quantity: "20 g"),
+                    Item(name: "Milk", quantity: "200 ml"),
+                    Item(name: "Ceasar Sauce", quantity: "30 g"),
+                    Item(name: "Letuce", quantity: "as needed"),
+                    Item(name: "Cheese", quantity: "20 g"),
+                    Item(name: "Milk", quantity: "200 ml"),
+                    Item(name: "Ceasar Sauce", quantity: "30 g"),
+                    Item(name: "Letuce", quantity: "as needed"),
+                    Item(name: "Cheese", quantity: "20 g"),
+                    Item(name: "Milk", quantity: "200 ml"),
                     Item(name: "Ceasar Sauce", quantity: "30 g")
-                ]),
-            onOk: { }
+                ])
+            ),
+            onConfirm: {}
         )
     }
 }

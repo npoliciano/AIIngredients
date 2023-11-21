@@ -17,6 +17,7 @@
 		A45C14C92B0AC439001F7529 /* OpenAIListGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14C82B0AC439001F7529 /* OpenAIListGenerator.swift */; };
 		A45C14CC2B0AC451001F7529 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CB2B0AC451001F7529 /* Prompt.swift */; };
 		A45C14CE2B0AC4DA001F7529 /* Restrictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CD2B0AC4DA001F7529 /* Restrictions.swift */; };
+		A45C14D02B0D23EE001F7529 /* ShoppingListReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CF2B0D23EE001F7529 /* ShoppingListReviewViewModel.swift */; };
 		A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22A2B03D7E20097B863 /* UserDetailView.swift */; };
 		A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22E2B03E8840097B863 /* ShoppingListView.swift */; };
 		A45EA2352B03FEF90097B863 /* GeneratedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2342B03FEF90097B863 /* GeneratedList.swift */; };
@@ -64,6 +65,7 @@
 		A45C14C82B0AC439001F7529 /* OpenAIListGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIListGenerator.swift; sourceTree = "<group>"; };
 		A45C14CB2B0AC451001F7529 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
 		A45C14CD2B0AC4DA001F7529 /* Restrictions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restrictions.swift; sourceTree = "<group>"; };
+		A45C14CF2B0D23EE001F7529 /* ShoppingListReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListReviewViewModel.swift; sourceTree = "<group>"; };
 		A45EA22A2B03D7E20097B863 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		A45EA22E2B03E8840097B863 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		A45EA2342B03FEF90097B863 /* GeneratedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedList.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				A45EA23E2B0460C60097B863 /* ShoppingListReviewView.swift */,
+				A45C14CF2B0D23EE001F7529 /* ShoppingListReviewViewModel.swift */,
 			);
 			path = ShoppingListReview;
 			sourceTree = "<group>";
@@ -123,8 +126,8 @@
 		A45C14BF2B095218001F7529 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				A45C14C02B09524A001F7529 /* URLSessionHTTPClient.swift */,
 				A45C14C82B0AC439001F7529 /* OpenAIListGenerator.swift */,
+				A45C14C02B09524A001F7529 /* URLSessionHTTPClient.swift */,
 				A45C14CB2B0AC451001F7529 /* Prompt.swift */,
 			);
 			path = API;
@@ -219,8 +222,8 @@
 			children = (
 				A4C29B232B085F1A0040A41A /* Capstone.xctestplan */,
 				A49FC96D2B03C1E800A50F0E /* BuildYourMealViewModelTests.swift */,
-				A45C14C22B09570F001F7529 /* URLSessionHTTPClientTests.swift */,
 				A45C14C42B0AA695001F7529 /* OpenAIListGeneratorTests.swift */,
+				A45C14C22B09570F001F7529 /* URLSessionHTTPClientTests.swift */,
 				A45C14C62B0ABAE7001F7529 /* OpenAIPromptTests.swift */,
 			);
 			path = CapstoneTests;
@@ -393,6 +396,7 @@
 				A44EC5622B03C527007CCB5B /* PlusButton.swift in Sources */,
 				A45C14C92B0AC439001F7529 /* OpenAIListGenerator.swift in Sources */,
 				A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */,
+				A45C14D02B0D23EE001F7529 /* ShoppingListReviewViewModel.swift in Sources */,
 				A45EA23D2B0441A70097B863 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

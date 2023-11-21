@@ -123,8 +123,8 @@ struct BuildYourMealView: View {
         .ignoresSafeArea(.all)
         .sheet(item: $viewModel.generatedList) { list in
             ShoppingListReviewView(
-                generatedList: list,
-                onOk: {
+                viewModel: ShoppingListReviewViewModel(list: list),
+                onConfirm: {
                     dismiss()
                 }
             )
