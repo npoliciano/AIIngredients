@@ -18,6 +18,7 @@
 		A45C14CC2B0AC451001F7529 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CB2B0AC451001F7529 /* Prompt.swift */; };
 		A45C14CE2B0AC4DA001F7529 /* Restrictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CD2B0AC4DA001F7529 /* Restrictions.swift */; };
 		A45C14D02B0D23EE001F7529 /* ShoppingListReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CF2B0D23EE001F7529 /* ShoppingListReviewViewModel.swift */; };
+		A45C14D42B0D51F3001F7529 /* ShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14D32B0D51F3001F7529 /* ShoppingListViewModel.swift */; };
 		A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22A2B03D7E20097B863 /* UserDetailView.swift */; };
 		A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22E2B03E8840097B863 /* ShoppingListView.swift */; };
 		A45EA2352B03FEF90097B863 /* GeneratedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2342B03FEF90097B863 /* GeneratedList.swift */; };
@@ -66,6 +67,7 @@
 		A45C14CB2B0AC451001F7529 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
 		A45C14CD2B0AC4DA001F7529 /* Restrictions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restrictions.swift; sourceTree = "<group>"; };
 		A45C14CF2B0D23EE001F7529 /* ShoppingListReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListReviewViewModel.swift; sourceTree = "<group>"; };
+		A45C14D32B0D51F3001F7529 /* ShoppingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModel.swift; sourceTree = "<group>"; };
 		A45EA22A2B03D7E20097B863 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		A45EA22E2B03E8840097B863 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		A45EA2342B03FEF90097B863 /* GeneratedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedList.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				A45EA22E2B03E8840097B863 /* ShoppingListView.swift */,
+				A45C14D32B0D51F3001F7529 /* ShoppingListViewModel.swift */,
 				A44EC5612B03C527007CCB5B /* PlusButton.swift */,
 				A45EA2402B0516210097B863 /* EmptyListView.swift */,
 			);
@@ -382,6 +385,7 @@
 				A45EA23F2B0460C60097B863 /* ShoppingListReviewView.swift in Sources */,
 				A44EC5642B03C594007CCB5B /* OnboardingPageView.swift in Sources */,
 				A44EC5662B03CCC6007CCB5B /* UserNameView.swift in Sources */,
+				A45C14D42B0D51F3001F7529 /* ShoppingListViewModel.swift in Sources */,
 				A45C14CE2B0AC4DA001F7529 /* Restrictions.swift in Sources */,
 				A45EA23B2B043ED30097B863 /* HomeView.swift in Sources */,
 				A45EA2412B0516210097B863 /* EmptyListView.swift in Sources */,

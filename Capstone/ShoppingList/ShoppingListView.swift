@@ -10,21 +10,29 @@ import SwiftUI
 struct ShoppingListView: View {
     @State private var path = NavigationPath()
     
-    var items: [String]
+    @StateObject var viewModel = ShoppingListViewModel()
     
     var body: some View {
         NavigationStack(path: $path) {
             Group {
-                if items.isEmpty {
+                if viewModel.shoppingList.isEmpty {
                     EmptyListView(onTap: {
                         path.append(BuildYourMealDestination())
                     })
                 } else {
-                    List(items, id: \.self) { item in
-                        HStack {
-                            Image(systemName: "square")
-                            Text(item)
+                    List(viewModel.shoppingList) { list in
+                        Section(header: Text(list.name)) {
+                            ForEach(list.items) { item in
+                                HStack {
+                                    Image(systemName: "square")
+                                    Text(item.name)
+                                }
+                                .padding(.vertical, 4)
+                                .listRowSeparator(.hidden)
+                            }
                         }
+                        .padding(.bottom, 4)
+                        .listSectionSeparator(.hidden)
                     }
                     .listStyle(.plain)
                 }
@@ -49,6 +57,6 @@ struct BuildYourMealDestination: Hashable { }
 
 struct ShoppingListView_Previews: PreviewProvider {
     static var previews: some View {
-        ShoppingListView(items: [])
+        ShoppingListView()
     }
 }

@@ -32,6 +32,7 @@ final class ShoppingListReviewViewModel: ObservableObject {
         allLists.append(list)
         if let encoded = try? JSONEncoder().encode(allLists) {
             UserDefaults.standard.set(encoded, forKey: userDefaultsKey)
+            NotificationCenter.default.post(name: Notification.Name("onUpdateShoppingList"), object: nil)
         }
     }
     
