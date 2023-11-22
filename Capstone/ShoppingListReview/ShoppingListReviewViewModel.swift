@@ -9,7 +9,6 @@ import Foundation
 
 final class ShoppingListReviewViewModel: ObservableObject {
     private let list: GeneratedList
-    private let userDefaultsKey = "shoppingLists"
     
     var name: String {
         list.name
@@ -28,19 +27,12 @@ final class ShoppingListReviewViewModel: ObservableObject {
     }
     
     private func saveList() {
-        var allLists = loadLists()
+        var allLists = UserDefaults.standard.shoppingLists
         allLists.append(list)
-        if let encoded = try? JSONEncoder().encode(allLists) {
-            UserDefaults.standard.set(encoded, forKey: userDefaultsKey)
-            NotificationCenter.default.post(name: Notification.Name("onUpdateShoppingList"), object: nil)
-        }
-    }
-    
-    private func loadLists() -> [GeneratedList] {
-        if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-           let savedLists = try? JSONDecoder().decode([GeneratedList].self, from: data) {
-            return savedLists
-        }
-        return []
+        UserDefaults.standard.shoppingLists = allLists
+        NotificationCenter.default.post(
+            name: Notification.Name("onUpdateShoppingList"),
+            object: nil
+        )
     }
 }

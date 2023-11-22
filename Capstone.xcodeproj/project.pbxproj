@@ -16,9 +16,11 @@
 		A45C14C72B0ABAE7001F7529 /* OpenAIPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14C62B0ABAE7001F7529 /* OpenAIPromptTests.swift */; };
 		A45C14C92B0AC439001F7529 /* OpenAIListGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14C82B0AC439001F7529 /* OpenAIListGenerator.swift */; };
 		A45C14CC2B0AC451001F7529 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CB2B0AC451001F7529 /* Prompt.swift */; };
-		A45C14CE2B0AC4DA001F7529 /* Restrictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CD2B0AC4DA001F7529 /* Restrictions.swift */; };
+		A45C14CE2B0AC4DA001F7529 /* DietaryPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CD2B0AC4DA001F7529 /* DietaryPreferences.swift */; };
 		A45C14D02B0D23EE001F7529 /* ShoppingListReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14CF2B0D23EE001F7529 /* ShoppingListReviewViewModel.swift */; };
 		A45C14D42B0D51F3001F7529 /* ShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14D32B0D51F3001F7529 /* ShoppingListViewModel.swift */; };
+		A45C14D62B0D8F51001F7529 /* UserPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14D52B0D8F51001F7529 /* UserPreferencesViewModel.swift */; };
+		A45C14D92B0D97A1001F7529 /* UserDefaultExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14D82B0D97A1001F7529 /* UserDefaultExtensions.swift */; };
 		A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22A2B03D7E20097B863 /* UserDetailView.swift */; };
 		A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22E2B03E8840097B863 /* ShoppingListView.swift */; };
 		A45EA2352B03FEF90097B863 /* GeneratedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2342B03FEF90097B863 /* GeneratedList.swift */; };
@@ -65,9 +67,11 @@
 		A45C14C62B0ABAE7001F7529 /* OpenAIPromptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIPromptTests.swift; sourceTree = "<group>"; };
 		A45C14C82B0AC439001F7529 /* OpenAIListGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIListGenerator.swift; sourceTree = "<group>"; };
 		A45C14CB2B0AC451001F7529 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
-		A45C14CD2B0AC4DA001F7529 /* Restrictions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restrictions.swift; sourceTree = "<group>"; };
+		A45C14CD2B0AC4DA001F7529 /* DietaryPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietaryPreferences.swift; sourceTree = "<group>"; };
 		A45C14CF2B0D23EE001F7529 /* ShoppingListReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListReviewViewModel.swift; sourceTree = "<group>"; };
 		A45C14D32B0D51F3001F7529 /* ShoppingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModel.swift; sourceTree = "<group>"; };
+		A45C14D52B0D8F51001F7529 /* UserPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesViewModel.swift; sourceTree = "<group>"; };
+		A45C14D82B0D97A1001F7529 /* UserDefaultExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultExtensions.swift; sourceTree = "<group>"; };
 		A45EA22A2B03D7E20097B863 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		A45EA22E2B03E8840097B863 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		A45EA2342B03FEF90097B863 /* GeneratedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedList.swift; sourceTree = "<group>"; };
@@ -135,6 +139,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		A45C14D72B0D978B001F7529 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A45C14D82B0D97A1001F7529 /* UserDefaultExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A45EA2362B043DEA0097B863 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,8 +172,9 @@
 			children = (
 				A44EC5652B03CCC6007CCB5B /* UserNameView.swift */,
 				A45EA2422B0550390097B863 /* UserPreferencesView.swift */,
+				A45C14D52B0D8F51001F7529 /* UserPreferencesViewModel.swift */,
+				A45C14CD2B0AC4DA001F7529 /* DietaryPreferences.swift */,
 				A45EA22A2B03D7E20097B863 /* UserDetailView.swift */,
-				A45C14CD2B0AC4DA001F7529 /* Restrictions.swift */,
 			);
 			path = UserPreference;
 			sourceTree = "<group>";
@@ -197,6 +210,7 @@
 		A49FC95B2B03C1E700A50F0E /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				A45C14D72B0D978B001F7529 /* Extensions */,
 				A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */,
 				A49FC95E2B03C1E700A50F0E /* ContentView.swift */,
 				A45EA2392B043EB90097B863 /* Home */,
@@ -386,17 +400,19 @@
 				A44EC5642B03C594007CCB5B /* OnboardingPageView.swift in Sources */,
 				A44EC5662B03CCC6007CCB5B /* UserNameView.swift in Sources */,
 				A45C14D42B0D51F3001F7529 /* ShoppingListViewModel.swift in Sources */,
-				A45C14CE2B0AC4DA001F7529 /* Restrictions.swift in Sources */,
+				A45C14CE2B0AC4DA001F7529 /* DietaryPreferences.swift in Sources */,
 				A45EA23B2B043ED30097B863 /* HomeView.swift in Sources */,
 				A45EA2412B0516210097B863 /* EmptyListView.swift in Sources */,
 				A49FC95D2B03C1E700A50F0E /* CapstoneApp.swift in Sources */,
 				A45C14CC2B0AC451001F7529 /* Prompt.swift in Sources */,
+				A45C14D92B0D97A1001F7529 /* UserDefaultExtensions.swift in Sources */,
 				A45EA2352B03FEF90097B863 /* GeneratedList.swift in Sources */,
 				A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */,
 				A4C29B222B084ACF0040A41A /* BuildYourMealViewModel.swift in Sources */,
 				A45C14C12B09524A001F7529 /* URLSessionHTTPClient.swift in Sources */,
 				A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */,
 				A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */,
+				A45C14D62B0D8F51001F7529 /* UserPreferencesViewModel.swift in Sources */,
 				A44EC5622B03C527007CCB5B /* PlusButton.swift in Sources */,
 				A45C14C92B0AC439001F7529 /* OpenAIListGenerator.swift in Sources */,
 				A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */,

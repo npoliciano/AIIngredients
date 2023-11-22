@@ -9,13 +9,11 @@ import XCTest
 
 @testable import Capstone
 
-
-
 final class OpenAIListGeneratorTests: XCTestCase {
     func testInitDoesNotPerformAnyRequest() {
         // Arrange & Act
         let client = HTTPClientSpy()
-        _ = OpenAIListGenerator(httpClient: client, restrictions: restrictions)
+        _ = OpenAIListGenerator(httpClient: client)
         
         // Assert
         XCTAssertFalse(client.postCalled)
@@ -24,7 +22,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     func testProvidesValidURLAndBody() throws {
         // Arrange & Act
         let client = HTTPClientSpy()
-        let sut = OpenAIListGenerator(httpClient: client, restrictions: restrictions)
+        let sut = OpenAIListGenerator(httpClient: client)
         
         // used because the Task completes after this test method returns
         let expectation = expectation(description: "wait for response")
@@ -45,7 +43,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     func testCompleteWithErrorOnFailurePost() throws {
         // Arrange
         let client = HTTPClientSpy()
-        let sut = OpenAIListGenerator(httpClient: client, restrictions: restrictions)
+        let sut = OpenAIListGenerator(httpClient: client)
         client.errorToBeThrown = ErrorDummy()
         
         // used because the Task completes after this test method returns
@@ -68,7 +66,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     func testFailsToDecode() throws {
         // Arrange
         let client = HTTPClientSpy()
-        let sut = OpenAIListGenerator(httpClient: client, restrictions: restrictions)
+        let sut = OpenAIListGenerator(httpClient: client)
         let invalidData = Data()
         client.dataToBeReturned = invalidData
         
@@ -91,8 +89,8 @@ final class OpenAIListGeneratorTests: XCTestCase {
     
     // MARK: Helpers
     
-    private var restrictions: Restrictions {
-        Restrictions(glutenFree: true, lactoseFree: false, sugarFree: true, vegan: false, vegetarian: true)
+    private var preferences: DietaryPreferences {
+        DietaryPreferences(glutenFree: true, lactoseFree: false, sugarFree: true, vegan: false, vegetarian: true)
     }
     
     private var input: ListGeneratorInput {
@@ -101,7 +99,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     
     private var expectedBodyData: Data {
         let requestBody = OpenAIRequestBody(messages: [
-            .init(content: input.prompt(restrictions: restrictions))
+            .init(content: input.prompt(preferences: preferences))
         ])
         return try! JSONEncoder().encode(requestBody)
     }

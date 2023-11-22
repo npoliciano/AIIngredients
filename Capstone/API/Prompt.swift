@@ -7,40 +7,40 @@
 
 import Foundation
 
-extension Restrictions {
+extension DietaryPreferences {
     var prompt: String {
-        var restrictions: [String] = []
+        var preferences: [String] = []
         
         if glutenFree {
-            restrictions.append("gluten free")
+            preferences.append("gluten free")
         }
         
         if lactoseFree {
-            restrictions.append("lactose free")
+            preferences.append("lactose free")
         }
         
         if sugarFree {
-            restrictions.append("sugar free")
+            preferences.append("sugar free")
         }
         
         if vegan {
-            restrictions.append("vegan")
+            preferences.append("vegan")
         }
         
         if vegetarian {
-            restrictions.append("vegetarian")
+            preferences.append("vegetarian")
         }
         
-        return restrictions.joined(separator: ", ")
+        return preferences.joined(separator: ", ")
     }
 }
 
 extension ListGeneratorInput {
-    func prompt(restrictions: Restrictions) -> String {
+    func prompt(preferences: DietaryPreferences) -> String {
         """
         Create a deterministic JSON format shopping list for my weekly diet based on the meals I've input. Include all the necessary ingredients to prepare the meals, suggesting as few composite ingredients as possible. For example, if I mention "white sauce lasagna," assume that I will prepare the white sauce and list the individual necessary ingredients. If any meal lacks specific details, make reasonable inferences based on the meal's name. Do not suggest buying pre-made recipes; all recipes must be prepared manually. Suggest natural ingredients and avoid processed ones whenever possible, with a strong focus on healthy homemade cooking. Specify the ingredients that make up each meal.
         
-        Restrictions: \(restrictions.prompt)
+        Dietary Preferences: \(preferences.prompt)
         
         List of meals:
         - \(portion)\(measurement == Measurements.unespecified ? "" : measurement.rawValue) \(meal)

@@ -8,31 +8,28 @@
 import SwiftUI
 
 struct UserPreferencesView: View {
-    let onStart: () -> Void
-    @State private var glutenFree: Bool = false
-    @State private var lactoseFree: Bool = false
-    @State private var sugarFree: Bool = false
-    @State private var vegan: Bool = false
-    @State private var vegetarian: Bool = false
+    let onTap: () -> Void
+    @StateObject var viewModel = UserPreferencesViewModel()
     
     var body: some View {
         VStack {
             Form {
-                Section("Restrictions") {
-                    Toggle("Gluten", isOn: $glutenFree)
+                Section("Dietary Preferences") {
+                    Toggle("Gluten Free", isOn: $viewModel.preferences.glutenFree)
                     
-                    Toggle("Lactose", isOn: $lactoseFree)
+                    Toggle("Lactose Free", isOn: $viewModel.preferences.lactoseFree)
                     
-                    Toggle("Sugar", isOn: $sugarFree)
+                    Toggle("Sugar Free", isOn: $viewModel.preferences.sugarFree)
                     
-                    Toggle("Vegan", isOn: $vegan)
+                    Toggle("Vegan", isOn: $viewModel.preferences.vegan)
                     
-                    Toggle("Vegeterian", isOn: $vegetarian)
+                    Toggle("Vegeterian", isOn: $viewModel.preferences.vegetarian)
                 }
             }
             
             Button {
-                onStart()
+                viewModel.onTap()
+                onTap()
             } label: {
                 Text("Next")
                     .font(.headline)
@@ -52,6 +49,6 @@ struct UserPreferencesView: View {
 
 struct UserPreferencesView_Previews: PreviewProvider {
     static var previews: some View {
-        UserPreferencesView(onStart: {})
+        UserPreferencesView(onTap: {})
     }
 }

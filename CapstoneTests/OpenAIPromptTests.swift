@@ -13,7 +13,7 @@ final class PromptTests: XCTestCase {
     func testCreatePrompt() {
         // Arrange
         let input = ListGeneratorInput(meal: "Ceasar Salad", portion: "50", measurement: .g, quantity: 5)
-        let restrictions = Restrictions(
+        let preferences = DietaryPreferences(
             glutenFree: true,
             lactoseFree: false,
             sugarFree: true,
@@ -22,7 +22,7 @@ final class PromptTests: XCTestCase {
         )
         
         // Act
-        let prompt = input.prompt(restrictions: restrictions)
+        let prompt = input.prompt(preferences: preferences)
         
         // Assert
         XCTAssertEqual(
@@ -30,7 +30,7 @@ final class PromptTests: XCTestCase {
         """
         Create a deterministic JSON format shopping list for my weekly diet based on the meals I've input. Include all the necessary ingredients to prepare the meals, suggesting as few composite ingredients as possible. For example, if I mention "white sauce lasagna," assume that I will prepare the white sauce and list the individual necessary ingredients. If any meal lacks specific details, make reasonable inferences based on the meal's name. Do not suggest buying pre-made recipes; all recipes must be prepared manually. Suggest natural ingredients and avoid processed ones whenever possible, with a strong focus on healthy homemade cooking. Specify the ingredients that make up each meal.
         
-        Restrictions: gluten free, sugar free, vegetarian
+        Dietary Preferences: gluten free, sugar free, vegetarian
         
         List of meals:
         - 50g Ceasar Salad
@@ -59,7 +59,7 @@ final class PromptTests: XCTestCase {
     func testCreatePromptWhenMeasurementIsUnespecified() {
         // Arrange
         let input = ListGeneratorInput(meal: "Ceasar Salad", portion: "50", measurement: .unespecified, quantity: 5)
-        let restrictions = Restrictions(
+        let preferences = DietaryPreferences(
             glutenFree: false,
             lactoseFree: true,
             sugarFree: false,
@@ -68,7 +68,7 @@ final class PromptTests: XCTestCase {
         )
         
         // Act
-        let prompt = input.prompt(restrictions: restrictions)
+        let prompt = input.prompt(preferences: preferences)
         
         // Assert
         XCTAssertEqual(
@@ -76,7 +76,7 @@ final class PromptTests: XCTestCase {
         """
         Create a deterministic JSON format shopping list for my weekly diet based on the meals I've input. Include all the necessary ingredients to prepare the meals, suggesting as few composite ingredients as possible. For example, if I mention "white sauce lasagna," assume that I will prepare the white sauce and list the individual necessary ingredients. If any meal lacks specific details, make reasonable inferences based on the meal's name. Do not suggest buying pre-made recipes; all recipes must be prepared manually. Suggest natural ingredients and avoid processed ones whenever possible, with a strong focus on healthy homemade cooking. Specify the ingredients that make up each meal.
         
-        Restrictions: lactose free, vegan
+        Dietary Preferences: lactose free, vegan
         
         List of meals:
         - 50 Ceasar Salad

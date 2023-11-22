@@ -24,7 +24,7 @@ struct UserDetailView: View {
                 .padding()
             
             Form {
-                Section("Restrictions") {
+                Section("DietaryPreferences") {
                     Toggle("Gluten", isOn: $glutenFree)
                     
                     Toggle("Lactose", isOn: $lactoseFree)

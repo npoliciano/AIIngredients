@@ -38,7 +38,7 @@ struct ContentView: View {
     // MARK: Screens
     
     private var userPreferencesView: some View {
-        UserPreferencesView(onStart: {
+        UserPreferencesView(onTap: {
             onboardingStatus = .complete
             isHomePresented = true
         })
@@ -55,7 +55,7 @@ struct ContentView: View {
             })
             .navigationBarTitle("Enter your name")
             .navigationDestination(for: UserPreferencesDestination.self) { _ in
-                UserPreferencesView(onStart: {})
+                UserPreferencesView(onTap: {})
             }
         }
     }

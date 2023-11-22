@@ -11,14 +11,7 @@ struct BuildYourMealView: View {
     @StateObject
     private var viewModel = BuildYourMealViewModel(
         generator: OpenAIListGenerator(
-            httpClient: URLSessionHTTPClient(authorizationKey: ""),
-            restrictions: Restrictions(
-                glutenFree: true,
-                lactoseFree: true,
-                sugarFree: true,
-                vegan: true,
-                vegetarian: true
-            )
+            httpClient: URLSessionHTTPClient(authorizationKey: "")
         )
     )
     

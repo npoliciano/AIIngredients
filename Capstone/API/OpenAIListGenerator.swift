@@ -10,12 +10,24 @@ import Foundation
 extension String: Error { }
 
 final class OpenAIListGenerator: ListGenerator {
+    private let userDefaultsKey = "dietaryPreferences"
     private let httpClient: HTTPClient
-    private let restrictions: Restrictions
     
-    init(httpClient: HTTPClient, restrictions: Restrictions) {
+    init(httpClient: HTTPClient) {
         self.httpClient = httpClient
-        self.restrictions = restrictions
+    }
+    
+    private func getPreferences() -> DietaryPreferences {
+        if let savedPreferences = UserDefaults.standard.dietaryPreferences {
+            return savedPreferences
+        }
+        return DietaryPreferences(
+            glutenFree: false,
+            lactoseFree: false,
+            sugarFree: false,
+            vegan: false,
+            vegetarian: false
+        )
     }
     
     func generate(
@@ -25,7 +37,7 @@ final class OpenAIListGenerator: ListGenerator {
         let url = URL(string: "https://api.openai.com/v1/chat/completions")!
         
         let requestBody = OpenAIRequestBody(messages: [
-            .init(content: input.prompt(restrictions: restrictions))
+            .init(content: input.prompt(preferences: getPreferences()))
         ])
         
         Task {
