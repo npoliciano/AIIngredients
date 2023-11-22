@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  OnboardingFlowView.swift
 //  Capstone
 //
 //  Created by Nicolle on 14/11/23.
@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct OnboardingFlowView: View {
     @State private var path = NavigationPath()
     @State private var isUserNamePresented = false
     @State private var isHomePresented = false
     
-    @AppStorage("onboardingStatus") var onboardingStatus: OnboardingStatus?
+    @StateObject var viewModel = OnboardingFlowViewModel()
     
     var body: some View {
-        switch onboardingStatus {
+        switch viewModel.onboardingStatus {
         case .none:
-            OnboardingView(onStart: {
-                onboardingStatus = .pendingName
+            FeaturesOnboardingView(onStart: {
+                viewModel.nextStep()
                 isUserNamePresented = true
             })
             .fullScreenCover(isPresented: $isUserNamePresented) {
@@ -39,7 +39,7 @@ struct ContentView: View {
     
     private var userPreferencesView: some View {
         UserPreferencesView(onTap: {
-            onboardingStatus = .complete
+            viewModel.nextStep()
             isHomePresented = true
         })
         .fullScreenCover(isPresented: $isHomePresented) {
@@ -50,7 +50,7 @@ struct ContentView: View {
     private var userNameView: some View {
         NavigationStack(path: $path) {
             UserNameView(onTap: {
-                onboardingStatus = .pendingPreferences
+                viewModel.nextStep()
                 path.append(UserPreferencesDestination())
             })
             .navigationBarTitle("Enter your name")
@@ -63,14 +63,8 @@ struct ContentView: View {
 
 struct UserPreferencesDestination: Hashable { }
 
-enum OnboardingStatus: String {
-    case pendingName
-    case pendingPreferences
-    case complete
-}
-
-struct ContentView_Previews: PreviewProvider {
+struct OnboardingFlowView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        OnboardingFlowView()
     }
 }

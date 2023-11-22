@@ -1,5 +1,5 @@
 //
-//  OnboardingPageView.swift
+//  FeaturesOnboardingPageView.swift
 //  Capstone
 //
 //  Created by Nicolle on 14/11/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OnboardingPageView: View {
+struct FeaturesOnboardingPageView: View {
     let image: String
     let featureTitle: String
     let featureDescription: String
@@ -45,8 +45,8 @@ struct OnboardingPageView: View {
     }
 }
 
-struct OnboardingPageView_Previews: PreviewProvider {
+struct FeaturesOnboardingPageView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingPageView(image: "Placeholder", featureTitle: "Feature A", featureDescription: "Enter your desired recipe, and watch as we provide you with a convenient weekly list of ingredients along with their quantities", onStart: {})
+        FeaturesOnboardingPageView(image: "Placeholder", featureTitle: "Feature A", featureDescription: "Enter your desired recipe, and watch as we provide you with a convenient weekly list of ingredients along with their quantities", onStart: {})
     }
 }

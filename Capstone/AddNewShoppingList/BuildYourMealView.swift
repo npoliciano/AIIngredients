@@ -11,7 +11,7 @@ struct BuildYourMealView: View {
     @StateObject
     private var viewModel = BuildYourMealViewModel(
         generator: OpenAIListGenerator(
-            httpClient: URLSessionHTTPClient(authorizationKey: "")
+            httpClient: URLSessionHTTPClient()
         )
     )
     
