@@ -8,6 +8,15 @@
 import Foundation
 
 extension UserDefaults {
+    var userName: String? {
+        get {
+            self.string(forKey: "userName")
+        }
+        set {
+            self.set(newValue, forKey: "userName")
+        }
+    }
+    
     var dietaryPreferences: DietaryPreferences? {
         get {
             if let data = self.data(forKey: "dietaryPreferences"),

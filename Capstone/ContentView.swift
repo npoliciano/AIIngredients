@@ -49,7 +49,7 @@ struct ContentView: View {
     
     private var userNameView: some View {
         NavigationStack(path: $path) {
-            UserNameView(onStart: {
+            UserNameView(onTap: {
                 onboardingStatus = .pendingPreferences
                 path.append(UserPreferencesDestination())
             })

@@ -21,6 +21,7 @@
 		A45C14D42B0D51F3001F7529 /* ShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14D32B0D51F3001F7529 /* ShoppingListViewModel.swift */; };
 		A45C14D62B0D8F51001F7529 /* UserPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14D52B0D8F51001F7529 /* UserPreferencesViewModel.swift */; };
 		A45C14D92B0D97A1001F7529 /* UserDefaultExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14D82B0D97A1001F7529 /* UserDefaultExtensions.swift */; };
+		A45C14DB2B0D9EEA001F7529 /* UserNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45C14DA2B0D9EEA001F7529 /* UserNameViewModel.swift */; };
 		A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22A2B03D7E20097B863 /* UserDetailView.swift */; };
 		A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA22E2B03E8840097B863 /* ShoppingListView.swift */; };
 		A45EA2352B03FEF90097B863 /* GeneratedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2342B03FEF90097B863 /* GeneratedList.swift */; };
@@ -72,6 +73,7 @@
 		A45C14D32B0D51F3001F7529 /* ShoppingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModel.swift; sourceTree = "<group>"; };
 		A45C14D52B0D8F51001F7529 /* UserPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesViewModel.swift; sourceTree = "<group>"; };
 		A45C14D82B0D97A1001F7529 /* UserDefaultExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultExtensions.swift; sourceTree = "<group>"; };
+		A45C14DA2B0D9EEA001F7529 /* UserNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameViewModel.swift; sourceTree = "<group>"; };
 		A45EA22A2B03D7E20097B863 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		A45EA22E2B03E8840097B863 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		A45EA2342B03FEF90097B863 /* GeneratedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedList.swift; sourceTree = "<group>"; };
@@ -147,6 +149,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A45C14DC2B0D9F06001F7529 /* UserName */ = {
+			isa = PBXGroup;
+			children = (
+				A44EC5652B03CCC6007CCB5B /* UserNameView.swift */,
+				A45C14DA2B0D9EEA001F7529 /* UserNameViewModel.swift */,
+			);
+			path = UserName;
+			sourceTree = "<group>";
+		};
 		A45EA2362B043DEA0097B863 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,7 +181,6 @@
 		A45EA2382B043E590097B863 /* UserPreference */ = {
 			isa = PBXGroup;
 			children = (
-				A44EC5652B03CCC6007CCB5B /* UserNameView.swift */,
 				A45EA2422B0550390097B863 /* UserPreferencesView.swift */,
 				A45C14D52B0D8F51001F7529 /* UserPreferencesViewModel.swift */,
 				A45C14CD2B0AC4DA001F7529 /* DietaryPreferences.swift */,
@@ -215,6 +225,7 @@
 				A49FC95E2B03C1E700A50F0E /* ContentView.swift */,
 				A45EA2392B043EB90097B863 /* Home */,
 				A45EA2362B043DEA0097B863 /* Onboarding */,
+				A45C14DC2B0D9F06001F7529 /* UserName */,
 				A45EA2382B043E590097B863 /* UserPreference */,
 				A45EA2372B043E080097B863 /* ShoppingList */,
 				A4C29B202B084AB40040A41A /* BuildYourMeal */,
@@ -409,6 +420,7 @@
 				A45EA2352B03FEF90097B863 /* GeneratedList.swift in Sources */,
 				A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */,
 				A4C29B222B084ACF0040A41A /* BuildYourMealViewModel.swift in Sources */,
+				A45C14DB2B0D9EEA001F7529 /* UserNameViewModel.swift in Sources */,
 				A45C14C12B09524A001F7529 /* URLSessionHTTPClient.swift in Sources */,
 				A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */,
 				A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */,

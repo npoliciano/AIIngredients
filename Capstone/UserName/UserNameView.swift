@@ -8,33 +8,35 @@
 import SwiftUI
 
 struct UserNameView: View {
-    @State var name: String = ""
-    let onStart: () -> Void
+    @StateObject var viewModel = UserNameViewModel()
+    let onTap: () -> Void
     
     var body: some View {
         VStack {
             Form {
                 Section {
-                    TextField("Name", text: $name)
+                    TextField("Name", text: $viewModel.userName)
                 } header: {
                     Text("Name")
                 }
             }
             Button {
-                onStart()
+                viewModel.onTap()
+                onTap()
             } label: {
-                Text("Get Started")
-                    .font(.headline)
-                    .bold()
+                Text("Next")
                     .foregroundColor(Color.white)
-                    .frame(width: 100)
                     .padding()
-                    .background(Color.blue)
                     .cornerRadius(16)
-                    .overlay(
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.white, lineWidth: 2))
+                            .fill(Color.accentColor)
+                    )
             }
+            .disabled(viewModel.userName.isEmpty)
+            .padding()
         }
     }
 }
@@ -42,6 +44,6 @@ struct UserNameView: View {
 
 struct UserNameView_Previews: PreviewProvider {
     static var previews: some View {
-        UserNameView(onStart: {})
+        UserNameView(viewModel: UserNameViewModel(), onTap: {})
     }
 }
