@@ -8,32 +8,27 @@
 import SwiftUI
 
 struct UserDetailView: View {
-    @State private var glutenFree: Bool = false
-    @State private var lactoseFree: Bool = false
-    @State private var sugarFree: Bool = false
-    @State private var vegan: Bool = false
-    @State private var vegetarian: Bool = false
-    @State private var userName: String = ""
+    @StateObject var viewModel = UserDetailViewModel()
     let onStart: () -> Void
     
     var body: some View {
         
         VStack() {
-            Text(userName)
+            Text(viewModel.userName)
                 .font(.largeTitle)
                 .padding()
             
             Form {
                 Section("DietaryPreferences") {
-                    Toggle("Gluten", isOn: $glutenFree)
+                    Toggle("Gluten", isOn: $viewModel.preferences.glutenFree)
                     
-                    Toggle("Lactose", isOn: $lactoseFree)
+                    Toggle("Lactose", isOn: $viewModel.preferences.lactoseFree)
                     
-                    Toggle("Sugar", isOn: $sugarFree)
+                    Toggle("Sugar", isOn: $viewModel.preferences.sugarFree)
                     
-                    Toggle("Vegan", isOn: $vegan)
+                    Toggle("Vegan", isOn: $viewModel.preferences.vegan)
                     
-                    Toggle("Vegeterian", isOn: $vegetarian)
+                    Toggle("Vegeterian", isOn: $viewModel.preferences.vegetarian)
                 }
             }
         }
