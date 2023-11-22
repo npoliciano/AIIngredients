@@ -122,7 +122,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         XCTAssertNil(sut.error)
     }
     
-    func testShowErrorWhenFailToGenerate() {
+    func testShowsGenericErrorWhenFailToGenerate() {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
@@ -141,8 +141,33 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Assert
         XCTAssertFalse(sut.isLoading)
         XCTAssertEqual(sut.error, Error(
-            title: "Oops!",
+            title: "Sorry!",
             message: "Something went wrong. Please, try again later."
+        ))
+    }
+    
+    func testShowsSpecificErrorWhenFailToGenerate() {
+        // Arrange
+        let generator = ListGeneratorSpy()
+        let sut = BuildYourMealViewModel(generator: generator)
+        sut.meal = "Some meal"
+        sut.portion = "Some portion"
+        let specificErrorMessage = "Some error"
+        
+        // Act
+        sut.onTap()
+        
+        // Assert
+        XCTAssertTrue(sut.isLoading)
+        
+        // Act: Simulate async list generation completion with failure
+        generator.completion?(.failure(specificErrorMessage))
+        
+        // Assert
+        XCTAssertFalse(sut.isLoading)
+        XCTAssertEqual(sut.error, Error(
+            title: "Sorry!",
+            message: specificErrorMessage
         ))
     }
     

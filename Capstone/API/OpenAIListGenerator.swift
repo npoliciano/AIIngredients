@@ -49,14 +49,13 @@ final class OpenAIListGenerator: ListGenerator {
                 let response = try decoder.decode(OpenAIResponse.self, from: data)
                 
                 try await MainActor.run {
-                    guard let content = response.choices.first?.message.content.utf8,
-                          let generatedList = try decoder.decode(ShoppingList.self, from: Data(content)).shoppingList.first else {
-                        completion(.failure(""))
+                    guard let content = response.choices.first?.message.content.utf8 else {
+                        completion(.failure("We encountered an issue generating the ingredients list. Please check the details of your request and try again"))
                         return
                     }
                     
+                    let generatedList = try decoder.decode(GeneratedList.self, from: Data(content))
                     completion(.success(generatedList))
-                    
                 }
             } catch {
                 await MainActor.run {
@@ -98,8 +97,4 @@ struct OpenAIResponse: Decodable {
     struct Message: Decodable {
         let content: String
     }
-}
-
-struct ShoppingList: Decodable {
-    let shoppingList: [GeneratedList]
 }

@@ -13,8 +13,8 @@ struct GeneratedList: Codable, Identifiable, Equatable {
     let name: String
     let items: [Item]
     
-    enum CodingKeys: CodingKey {
-        case name
+    enum CodingKeys: String, CodingKey {
+        case name = "mealName"
         case items
     }
 }

@@ -81,10 +81,15 @@ final class BuildYourMealViewModel: ObservableObject {
             switch result {
             case .success(let list):
                 self.generatedList = list
-            case .failure:
+            case .failure(let error):
+                var message = "Something went wrong. Please, try again later."
+                if let error = error as? String {
+                    message = error
+                }
+                
                 self.error = Error(
-                    title: "Oops!",
-                    message: "Something went wrong. Please, try again later."
+                    title: "Sorry!",
+                    message: message
                 )
             }
             self.isLoading = false

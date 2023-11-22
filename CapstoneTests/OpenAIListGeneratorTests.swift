@@ -21,6 +21,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     
     func testProvidesValidURLAndBody() throws {
         // Arrange & Act
+        UserDefaults.standard.dietaryPreferences = preferences
         let client = HTTPClientSpy()
         let sut = OpenAIListGenerator(httpClient: client)
         
@@ -85,6 +86,74 @@ final class OpenAIListGeneratorTests: XCTestCase {
         
         XCTAssertTrue(client.postCalled)
         XCTAssertThrowsError(try receivedResult?.get())
+    }
+    
+    func testFailsWhenThereIsNoChoice() throws {
+        // Arrange
+        let client = HTTPClientSpy()
+        let sut = OpenAIListGenerator(httpClient: client)
+        client.dataToBeReturned = Data("""
+        {
+            "choices": []
+        }
+        """.utf8)
+        
+        // used because the Task completes after this test method returns
+        let expectation = expectation(description: "wait for response")
+        
+        // Act
+        var receivedResult: Result<GeneratedList, Error>?
+        sut.generate(from: input) { result in
+            receivedResult = result
+            expectation.fulfill()
+        }
+        
+        // Assert
+        wait(for: [expectation])
+        
+        XCTAssertTrue(client.postCalled)
+        XCTAssertThrowsError(try receivedResult?.get()) { error in
+            XCTAssertEqual(error as? String, "We encountered an issue generating the ingredients list. Please check the details of your request and try again")
+        }
+    }
+    
+    func testReturnsGeneratedListSuccessfuly() throws {
+        // Arrange
+        let client = HTTPClientSpy()
+        let sut = OpenAIListGenerator(httpClient: client)
+        
+        client.dataToBeReturned = Data("""
+        {
+            "choices": [
+                {
+                    "message": {
+                        "content": "{\\"mealName\\":\\"Some meal\\",\\"items\\": [{\\"name\\":\\"Some ingredient\\",\\"quantity\\":\\"4g\\"}]}"
+                    }
+                }
+            ]
+        }
+        """.utf8)
+        
+        // used because the Task completes after this test method returns
+        let expectation = expectation(description: "wait for response")
+        
+        // Act
+        var receivedResult: Result<GeneratedList, Error>?
+        sut.generate(from: input) { result in
+            receivedResult = result
+            expectation.fulfill()
+        }
+        
+        // Assert
+        wait(for: [expectation])
+        
+        XCTAssertTrue(client.postCalled)
+        let generatedList = try receivedResult?.get()
+        
+        XCTAssertEqual(generatedList?.name, "Some meal")
+        XCTAssertEqual(generatedList?.items[0].name, "Some ingredient")
+        XCTAssertEqual(generatedList?.items[0].quantity, "4g")
+        XCTAssertEqual(generatedList?.items.count, 1)
     }
     
     // MARK: Helpers

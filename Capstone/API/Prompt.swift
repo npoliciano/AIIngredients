@@ -38,29 +38,18 @@ extension DietaryPreferences {
 extension ListGeneratorInput {
     func prompt(preferences: DietaryPreferences) -> String {
         """
-        Create a deterministic JSON format shopping list for my weekly diet based on the meals I've input. Include all the necessary ingredients to prepare the meals, suggesting as few composite ingredients as possible. For example, if I mention "white sauce lasagna," assume that I will prepare the white sauce and list the individual necessary ingredients. If any meal lacks specific details, make reasonable inferences based on the meal's name. Do not suggest buying pre-made recipes; all recipes must be prepared manually. Suggest natural ingredients and avoid processed ones whenever possible, with a strong focus on healthy homemade cooking. Specify the ingredients that make up each meal.
+        Create a deterministic JSON format shopping list for my weekly diet based on the meal I've input. Include all the necessary ingredients to prepare the meal, suggesting as few composite ingredients as possible. For example, if I mention "alfredo chicken lasagna," assume that I will prepare the alfredo sauce from scratch instead of buying it pre-made. Do not suggest buying pre-made products; all recipes must be prepared manually. Then, suggest natural ingredients for this meal and avoid processed ones whenever possible, with a strong focus on healthy homemade cooking. If the meal lacks specific details, make reasonable inferences based on the meal's name.
         
         Dietary Preferences: \(preferences.prompt)
         
-        List of meals:
+        The meal:
         - \(portion)\(measurement == Measurements.unespecified ? "" : measurement.rawValue) \(meal)
+        - \(quantity) per week
         
-        The output JSON should follow the following format:
+        The output JSON format:
         
         ```json
-        {
-          "shoppingList": [
-            {
-              "name": String,
-              "items": [
-                {
-                  "name": String,
-                  "quantity": String
-                }
-              ]
-            }
-          ]
-        }
+        { "mealName": String, "items": [{ "name": String, "quantity": String }]}
         ```
         """
     }
