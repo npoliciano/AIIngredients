@@ -11,8 +11,6 @@ final class ShoppingListViewModel: ObservableObject {
     @Published var shoppingList: [GeneratedList] = []
     var userName = UserDefaults.standard.userName ?? ""
     
-    private let userDefaultsKey = "shoppingLists"
-    
     init() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadLists), name: Notification.Name("onUpdateShoppingList"), object: nil)
         loadLists()
@@ -24,11 +22,6 @@ final class ShoppingListViewModel: ObservableObject {
     
     @objc
     private func loadLists() {
-        if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-           let savedLists = try? JSONDecoder().decode([GeneratedList].self, from: data) {
-            shoppingList = savedLists.reversed()
-        } else {
-            shoppingList = []
-        }
+        shoppingList = UserDefaults.standard.shoppingLists.reversed()
     }
 }

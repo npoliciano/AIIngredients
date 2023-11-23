@@ -9,6 +9,7 @@ import Foundation
 
 final class ShoppingListReviewViewModel: ObservableObject {
     private let list: GeneratedList
+    private let userDefaults: UserDefaults
     
     var name: String {
         list.name
@@ -18,8 +19,9 @@ final class ShoppingListReviewViewModel: ObservableObject {
         list.items
     }
     
-    init(list: GeneratedList) {
+    init(list: GeneratedList, userDefaults: UserDefaults = .standard) {
         self.list = list
+        self.userDefaults = userDefaults
     }
     
     func onConfirm() {
@@ -27,9 +29,9 @@ final class ShoppingListReviewViewModel: ObservableObject {
     }
     
     private func saveList() {
-        var allLists = UserDefaults.standard.shoppingLists
+        var allLists = userDefaults.shoppingLists
         allLists.append(list)
-        UserDefaults.standard.shoppingLists = allLists
+        userDefaults.shoppingLists = allLists
         NotificationCenter.default.post(
             name: Notification.Name("onUpdateShoppingList"),
             object: nil
