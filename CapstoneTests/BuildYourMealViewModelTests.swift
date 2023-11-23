@@ -10,7 +10,7 @@ import XCTest
 @testable import Capstone
 
 final class BuildYourMealViewModelTests: XCTestCase {
-    typealias Error = BuildYourMealViewModel.Error
+    typealias AlertError = BuildYourMealViewModel.AlertError
     
     func testInitWithDefaultValues() {
         // Arrange & Act
@@ -25,7 +25,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         XCTAssertEqual(sut.quantity, 1)
         XCTAssertEqual(sut.quantityRange, 1 ... Int.max)
         XCTAssertFalse(sut.isLoading)
-        XCTAssertNil(sut.error)
+        XCTAssertNil(sut.alertError)
         
         XCTAssertFalse(generator.generateCalled)
         
@@ -53,7 +53,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Assert
         XCTAssertFalse(sut.isLoading)
         XCTAssertFalse(generator.generateCalled)
-        XCTAssertEqual(sut.error, Error(
+        XCTAssertEqual(sut.alertError, AlertError(
             title: "Required Fields Missing",
             message: "Please enter the \"Meal\" and \"Portion size\" details. Both fields are required to proceed."
         ))
@@ -72,7 +72,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Assert
         XCTAssertFalse(sut.isLoading)
         XCTAssertFalse(generator.generateCalled)
-        XCTAssertEqual(sut.error, Error(
+        XCTAssertEqual(sut.alertError, AlertError(
             title: "Required Field Missing",
             message: "Please enter the \"Meal\" details. This field is required to proceed."
         ))
@@ -91,7 +91,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Assert
         XCTAssertFalse(sut.isLoading)
         XCTAssertFalse(generator.generateCalled)
-        XCTAssertEqual(sut.error, Error(
+        XCTAssertEqual(sut.alertError, AlertError(
             title: "Required Field Missing",
             message: "Please enter the \"Portion size\" details. This field is required to proceed."
         ))
@@ -119,7 +119,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         XCTAssertEqual(generator.receivedInput, expectedInput)
         XCTAssertTrue(generator.generateCalled)
         XCTAssertTrue(sut.isLoading)
-        XCTAssertNil(sut.error)
+        XCTAssertNil(sut.alertError)
     }
     
     func testShowsGenericErrorWhenFailToGenerate() {
@@ -140,19 +140,19 @@ final class BuildYourMealViewModelTests: XCTestCase {
         
         // Assert
         XCTAssertFalse(sut.isLoading)
-        XCTAssertEqual(sut.error, Error(
+        XCTAssertEqual(sut.alertError, AlertError(
             title: "Sorry!",
             message: "Something went wrong. Please, try again later."
         ))
     }
     
-    func testShowsSpecificErrorWhenFailToGenerate() {
+    func testShowsNetworkError() {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
         sut.meal = "Some meal"
         sut.portion = "Some portion"
-        let specificErrorMessage = "Some error"
+        let specificErrorMessage = AppError.network
         
         // Act
         sut.onTap()
@@ -165,9 +165,34 @@ final class BuildYourMealViewModelTests: XCTestCase {
         
         // Assert
         XCTAssertFalse(sut.isLoading)
-        XCTAssertEqual(sut.error, Error(
+        XCTAssertEqual(sut.alertError, AlertError(
             title: "Sorry!",
-            message: specificErrorMessage
+            message: "It seems like we're having trouble connecting. Please check your internet connection and try again"
+        ))
+    }
+    
+    func testShowsServerError() {
+        // Arrange
+        let generator = ListGeneratorSpy()
+        let sut = BuildYourMealViewModel(generator: generator)
+        sut.meal = "Some meal"
+        sut.portion = "Some portion"
+        let specificErrorMessage = AppError.server
+        
+        // Act
+        sut.onTap()
+        
+        // Assert
+        XCTAssertTrue(sut.isLoading)
+        
+        // Act: Simulate async list generation completion with failure
+        generator.completion?(.failure(specificErrorMessage))
+        
+        // Assert
+        XCTAssertFalse(sut.isLoading)
+        XCTAssertEqual(sut.alertError, AlertError(
+            title: "Sorry!",
+            message: "We encountered an issue generating the ingredients list. Please check the details of your request and try again"
         ))
     }
     

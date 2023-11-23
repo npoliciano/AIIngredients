@@ -1,6 +1,9 @@
 import Foundation
 
-struct HTTPStatusError: Error { }
+enum AppError: Error {
+    case server
+    case network
+}
 
 protocol HTTPClient {
     func post(from url: URL, body: Data) async throws -> Data
@@ -26,21 +29,19 @@ final class URLSessionHTTPClient: HTTPClient {
             "Authorization": "Bearer \(authorizationKey)",
             "Content-Type": "application/json"
         ]
-        
-        let (data, response) = try await urlSession.data(for: urlRequest)
-        
         do {
-            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
-            print(json)
+            let (data, response) = try await urlSession.data(for: urlRequest)
+            
+            guard let response = response as? HTTPURLResponse,
+                  (200 ... 299).contains(response.statusCode)  else {
+                throw AppError.server
+            }
+            
+            return data
+        } catch let error as AppError {
+            throw error
         } catch {
-            print("errorMsg")
+            throw AppError.network
         }
-        
-        guard let response = response as? HTTPURLResponse,
-              (200 ... 299).contains(response.statusCode)  else {
-            throw HTTPStatusError()
-        }
-        
-        return data
     }
 }

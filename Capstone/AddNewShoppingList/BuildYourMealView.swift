@@ -123,15 +123,15 @@ struct BuildYourMealView: View {
             )
         }
         .alert(
-            viewModel.error?.title ?? "",
+            viewModel.alertError?.title ?? "",
             isPresented: $viewModel.isErrorPresented,
-            presenting: viewModel.error,
-            actions: { error in
+            presenting: viewModel.alertError,
+            actions: { alertError in
                 Button("Got it") {
-                    viewModel.error = nil
+                    viewModel.alertError = nil
                 }
-            }, message: { error in
-                Text(error.message)
+            }, message: { alertError in
+                Text(alertError.message)
             }
         )
     }

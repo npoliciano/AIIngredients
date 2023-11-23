@@ -15,7 +15,7 @@ protocol ListGenerator {
 }
 
 final class BuildYourMealViewModel: ObservableObject {
-    struct Error: Swift.Error, Equatable {
+    struct AlertError: Equatable {
         let title: String
         let message: String
     }
@@ -32,9 +32,9 @@ final class BuildYourMealViewModel: ObservableObject {
     let quantityRange = 1 ... Int.max
     let measurements = Measurements.allCases
     
-    var error: Error? {
+    var alertError: AlertError? {
         didSet {
-            isErrorPresented = error != nil
+            isErrorPresented = alertError != nil
         }
     }
     
@@ -47,17 +47,17 @@ final class BuildYourMealViewModel: ObservableObject {
     func onTap() {
         switch (meal.isEmpty, portion.isEmpty) {
         case (true, true):
-            error = Error(
+            alertError = AlertError(
                 title: "Required Fields Missing",
                 message: "Please enter the \"Meal\" and \"Portion size\" details. Both fields are required to proceed."
             )
         case (true, _):
-            error = Error(
+            alertError = AlertError(
                 title: "Required Field Missing",
                 message: "Please enter the \"Meal\" details. This field is required to proceed."
             )
         case (_, true):
-            error = Error(
+            alertError = AlertError(
                 title: "Required Field Missing",
                 message: "Please enter the \"Portion size\" details. This field is required to proceed."
             )
@@ -82,12 +82,9 @@ final class BuildYourMealViewModel: ObservableObject {
             case .success(let list):
                 self.generatedList = list
             case .failure(let error):
-                var message = "Something went wrong. Please, try again later."
-                if let error = error as? String {
-                    message = error
-                }
+                let message = (error as? AppError)?.message ?? "Something went wrong. Please, try again later."
                 
-                self.error = Error(
+                self.alertError = AlertError(
                     title: "Sorry!",
                     message: message
                 )
@@ -112,4 +109,15 @@ enum Measurements: String, CaseIterable, Encodable {
     case ml
     case litres
     case unespecified
+}
+
+extension AppError {
+    var message: String {
+        switch self {
+        case .server:
+            return "We encountered an issue generating the ingredients list. Please check the details of your request and try again"
+        case .network:
+            return "It seems like we're having trouble connecting. Please check your internet connection and try again"
+        }
+    }
 }

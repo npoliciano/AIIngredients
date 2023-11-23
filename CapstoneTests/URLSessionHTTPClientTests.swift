@@ -63,10 +63,10 @@ final class URLSessionHTTPClientTests: XCTestCase {
             _ = try await sut.post(from: url, body: body)
             
             // Assert
-            XCTFail("Got data, expected HTTPError.statusNotSuccessful")
+            XCTFail("Got data, expected AppError.server")
         } catch {
             // Assert
-            XCTAssertTrue(error is HTTPStatusError)
+            XCTAssertEqual(error as? AppError, .server)
         }
         XCTAssertTrue(URLProtocolSpy.startLoadingCalled)
     }
@@ -81,10 +81,15 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let body = Data("some body".utf8)
         
         // Act
-        let data = try? await sut.post(from: url, body: body)
-        
-        // Assert
-        XCTAssertNil(data)
+        do {
+            _ = try await sut.post(from: url, body: body)
+            
+            // Assert
+            XCTFail("Got data, expected AppError.network")
+        } catch {
+            // Assert
+            XCTAssertEqual(error as? AppError, .network)
+        }
         XCTAssertTrue(URLProtocolSpy.startLoadingCalled)
     }
     

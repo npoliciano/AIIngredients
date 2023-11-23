@@ -41,11 +41,11 @@ final class OpenAIListGeneratorTests: XCTestCase {
         XCTAssertEqual(client.bodyReceived, expectedBodyData)
     }
     
-    func testCompleteWithErrorOnFailurePost() throws {
+    func testCompletesWithErrorWhenClientThrowsNetworkError() throws {
         // Arrange
         let client = HTTPClientSpy()
         let sut = OpenAIListGenerator(httpClient: client)
-        client.errorToBeThrown = ErrorDummy()
+        client.errorToBeThrown = AppError.network
         
         // used because the Task completes after this test method returns
         let expectation = expectation(description: "wait for response")
@@ -61,7 +61,34 @@ final class OpenAIListGeneratorTests: XCTestCase {
         wait(for: [expectation])
         
         XCTAssertTrue(client.postCalled)
-        XCTAssertThrowsError(try receivedResult?.get())
+        XCTAssertThrowsError(try receivedResult?.get()) { error in
+            XCTAssertEqual(error as? AppError, .network)
+        }
+    }
+    
+    func testCompletesWithErrorWhenClientThrowsServerError() throws {
+        // Arrange
+        let client = HTTPClientSpy()
+        let sut = OpenAIListGenerator(httpClient: client)
+        client.errorToBeThrown = AppError.server
+        
+        // used because the Task completes after this test method returns
+        let expectation = expectation(description: "wait for response")
+        
+        // Act
+        var receivedResult: Result<GeneratedList, Error>?
+        sut.generate(from: input) { result in
+            receivedResult = result
+            expectation.fulfill()
+        }
+        
+        // Assert
+        wait(for: [expectation])
+        
+        XCTAssertTrue(client.postCalled)
+        XCTAssertThrowsError(try receivedResult?.get()) { error in
+            XCTAssertEqual(error as? AppError, .server)
+        }
     }
     
     func testFailsToDecode() throws {
@@ -113,7 +140,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
         
         XCTAssertTrue(client.postCalled)
         XCTAssertThrowsError(try receivedResult?.get()) { error in
-            XCTAssertEqual(error as? String, "We encountered an issue generating the ingredients list. Please check the details of your request and try again")
+            XCTAssertEqual(error as? AppError, .server)
         }
     }
     
@@ -179,7 +206,7 @@ final class HTTPClientSpy: HTTPClient {
     private(set) var urlReceived: URL?
     private(set) var bodyReceived: Data?
     
-    var errorToBeThrown = ErrorDummy()
+    var errorToBeThrown: Error = ErrorDummy()
     var dataToBeReturned: Data?
     
     func post(from url: URL, body: Data) async throws -> Data {

@@ -39,7 +39,7 @@ final class OpenAIListGenerator: ListGenerator {
         let requestBody = OpenAIRequestBody(messages: [
             .init(content: input.prompt(preferences: getPreferences()))
         ])
-        
+
         Task {
             do {
                 let body = try JSONEncoder().encode(requestBody)
@@ -48,13 +48,14 @@ final class OpenAIListGenerator: ListGenerator {
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(OpenAIResponse.self, from: data)
                 
-                try await MainActor.run {
-                    guard let content = response.choices.first?.message.content.utf8 else {
-                        completion(.failure("We encountered an issue generating the ingredients list. Please check the details of your request and try again"))
-                        return
-                    }
-                    
-                    let generatedList = try decoder.decode(GeneratedList.self, from: Data(content))
+                
+                guard let content = response.choices.first?.message.content.utf8 else {
+                    throw AppError.server
+                }
+                
+                let generatedList = try decoder.decode(GeneratedList.self, from: Data(content))
+                
+                await MainActor.run {
                     completion(.success(generatedList))
                 }
             } catch {
