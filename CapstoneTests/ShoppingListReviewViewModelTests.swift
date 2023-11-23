@@ -12,8 +12,6 @@ import XCTest
 final class ShoppingListReviewViewModelTests: XCTestCase {
     let defaults = UserDefaults(suiteName: "tests")!
     
-    
-    
     func testInitDoesNotSaveTheList() {
         
         defaults.shoppingLists = []

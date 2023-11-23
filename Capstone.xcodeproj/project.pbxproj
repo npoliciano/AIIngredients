@@ -34,6 +34,7 @@
 		A45EA2412B0516210097B863 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2402B0516210097B863 /* EmptyListView.swift */; };
 		A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2422B0550390097B863 /* UserPreferencesView.swift */; };
 		A45FFE5E2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45FFE5D2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift */; };
+		A45FFE602B0FB237007FE7B3 /* ShoppingListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45FFE5F2B0FB237007FE7B3 /* ShoppingListViewModelTests.swift */; };
 		A49FC95D2B03C1E700A50F0E /* CapstoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */; };
 		A49FC95F2B03C1E700A50F0E /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC95E2B03C1E700A50F0E /* OnboardingFlowView.swift */; };
 		A49FC9612B03C1E800A50F0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A49FC9602B03C1E800A50F0E /* Assets.xcassets */; };
@@ -90,6 +91,7 @@
 		A45EA2402B0516210097B863 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		A45EA2422B0550390097B863 /* UserPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesView.swift; sourceTree = "<group>"; };
 		A45FFE5D2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListReviewViewModelTests.swift; sourceTree = "<group>"; };
+		A45FFE5F2B0FB237007FE7B3 /* ShoppingListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModelTests.swift; sourceTree = "<group>"; };
 		A49FC9592B03C1E700A50F0E /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneApp.swift; sourceTree = "<group>"; };
 		A49FC95E2B03C1E700A50F0E /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowView.swift; sourceTree = "<group>"; };
@@ -284,11 +286,12 @@
 			isa = PBXGroup;
 			children = (
 				A4C29B232B085F1A0040A41A /* Capstone.xctestplan */,
+				A45FFE5F2B0FB237007FE7B3 /* ShoppingListViewModelTests.swift */,
 				A49FC96D2B03C1E800A50F0E /* BuildYourMealViewModelTests.swift */,
+				A45FFE5D2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift */,
 				A45C14C42B0AA695001F7529 /* OpenAIListGeneratorTests.swift */,
 				A45C14C22B09570F001F7529 /* URLSessionHTTPClientTests.swift */,
 				A45C14C62B0ABAE7001F7529 /* OpenAIPromptTests.swift */,
-				A45FFE5D2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift */,
 			);
 			path = CapstoneTests;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				A45FFE5E2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift in Sources */,
 				A49FC96E2B03C1E800A50F0E /* BuildYourMealViewModelTests.swift in Sources */,
 				A45C14C32B09570F001F7529 /* URLSessionHTTPClientTests.swift in Sources */,
+				A45FFE602B0FB237007FE7B3 /* ShoppingListViewModelTests.swift in Sources */,
 				A45C14C72B0ABAE7001F7529 /* OpenAIPromptTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

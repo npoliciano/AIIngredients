@@ -9,9 +9,12 @@ import Foundation
 
 final class ShoppingListViewModel: ObservableObject {
     @Published var shoppingList: [GeneratedList] = []
-    var userName = UserDefaults.standard.userName ?? ""
+    var userName: String
+    private let userDefaults: UserDefaults
     
-    init() {
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
+        userName = userDefaults.userName ?? ""
         NotificationCenter.default.addObserver(self, selector: #selector(loadLists), name: Notification.Name("onUpdateShoppingList"), object: nil)
         loadLists()
     }
