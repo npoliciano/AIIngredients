@@ -11,14 +11,18 @@ struct HomeView: View {
     
     var body: some View {
         TabView {
-            ShoppingListView()
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
-            UserDetailView(onStart: {})
-                .tabItem {
-                    Label("User", systemImage: "person.circle.fill")
-                }
+            Group {
+                ShoppingListView()
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
+                UserDetailView(onStart: {})
+                    .tabItem {
+                        Label("User", systemImage: "person.circle.fill")
+                    }
+            }
+            .toolbarBackground(Color(uiColor: .systemBackground), for: .tabBar)
+            .toolbarBackground(.visible, for: .tabBar)
         }
     }
 }

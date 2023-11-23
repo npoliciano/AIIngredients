@@ -9,6 +9,7 @@ import Foundation
 
 final class ShoppingListViewModel: ObservableObject {
     @Published var shoppingList: [GeneratedList] = []
+    var userName = UserDefaults.standard.userName ?? ""
     
     private let userDefaultsKey = "shoppingLists"
     
@@ -25,7 +26,7 @@ final class ShoppingListViewModel: ObservableObject {
     private func loadLists() {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
            let savedLists = try? JSONDecoder().decode([GeneratedList].self, from: data) {
-            shoppingList = savedLists
+            shoppingList = savedLists.reversed()
         } else {
             shoppingList = []
         }

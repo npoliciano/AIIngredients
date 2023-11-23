@@ -1,5 +1,5 @@
 //
-//  PlusButton.swift
+//  ImageButton.swift
 //  Capstone
 //
 //  Created by Nicolle on 14/11/23.
@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-struct PlusButton: View {
+struct ImageButton: View {
+    let systemName: String
     let action: () -> Void
     
     var body: some View {
         Button {
             action()
         } label: {
-            Image(systemName: "plus.circle")
+            Image(systemName: systemName)
                 .font(.title3)
                 .bold()
         }
@@ -23,6 +24,6 @@ struct PlusButton: View {
 
 struct PlusButton_Previews: PreviewProvider {
     static var previews: some View {
-        PlusButton(action: {})
+        ImageButton(systemName: "plus.circle", action: {})
     }
 }

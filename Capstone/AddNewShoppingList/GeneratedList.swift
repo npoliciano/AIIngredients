@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct GeneratedList: Codable, Identifiable, Equatable {
+struct GeneratedList: Codable, Identifiable, Hashable, Equatable {
     let id = UUID()
     
     let name: String
-    let items: [Item]
+    var items: [Item]
     
     enum CodingKeys: String, CodingKey {
         case name = "mealName"
@@ -19,10 +19,10 @@ struct GeneratedList: Codable, Identifiable, Equatable {
     }
 }
 
-struct Item: Codable, Identifiable, Equatable {
+struct Item: Codable, Identifiable, Hashable, Equatable {
     let id = UUID()
     
-    let name: String
+    var name: String
     let quantity: String
     
     enum CodingKeys: CodingKey {

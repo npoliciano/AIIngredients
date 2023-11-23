@@ -9,51 +9,108 @@ import SwiftUI
 
 struct ShoppingListView: View {
     @State private var path = NavigationPath()
+    @State private var expanded = 1
     
     @StateObject var viewModel = ShoppingListViewModel()
+    
+    var isExpanded: Bool {
+        expanded == 0
+    }
     
     var body: some View {
         NavigationStack(path: $path) {
             Group {
                 if viewModel.shoppingList.isEmpty {
                     EmptyListView(onTap: {
-                        path.append(BuildYourMealDestination())
+                        path.append(ShoppingListDestination.buildYourMeal)
                     })
                 } else {
-                    List(viewModel.shoppingList) { list in
-                        Section(header: Text(list.name)) {
-                            ForEach(list.items) { item in
-                                HStack {
-                                    Image(systemName: "square")
-                                    Text(item.name)
-                                }
-                                .padding(.vertical, 4)
-                                .listRowSeparator(.hidden)
-                            }
+                    VStack {
+                        Picker("", selection: $expanded) {
+                            Text("Expanded").tag(0)
+                            Text("Collapsed").tag(1)
                         }
-                        .padding(.bottom, 4)
-                        .listSectionSeparator(.hidden)
+                        .pickerStyle(.segmented)
+                        .padding()
+                        
+                        List(viewModel.shoppingList) { list in
+                            Section {
+                                ForEach(Array(list.items.enumerated()), id: \.offset) { index, item in
+                                    if index < 3 || isExpanded {
+                                        HStack {
+                                            Image(systemName: "square")
+                                                .opacity(0.3)
+                                            Text(item.name)
+                                                .font(.subheadline)
+                                            Spacer()
+                                            Text(item.quantity)
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary)
+                                        }
+                                        .padding(.vertical, 4)
+                                        .padding(.bottom, 4)
+                                    }
+                                }
+                                
+                                if list.items.count > 3, !isExpanded {
+                                    VStack(alignment: .leading) {
+                                        Divider()
+                                        Button {
+                                            path.append(ShoppingListDestination.detail(list))
+                                        } label: {
+                                            HStack(spacing: 4) {
+                                                Text("See all")
+                                                    .font(.callout)
+                                                    
+                                                Image(systemName: "chevron.right")
+                                                    .imageScale(.small)
+                                            }
+                                            .foregroundStyle(Color.accentColor)
+                                        }
+                                        .padding(.top, 4)
+                                        
+                                    }
+                                    .padding(.bottom, 9)
+                                }
+                            } header: {
+                                Text(list.name)
+                                    .font(.headline)
+                                    .foregroundStyle(.primary)
+                            }
+                            .listRowSeparator(.hidden)
+                            .listSectionSeparator(.hidden)
+                        }
+                        .listStyle(.plain)
                     }
-                    .listStyle(.plain)
                 }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    PlusButton(action: {
-                        path.append(BuildYourMealDestination())
+                    ImageButton(systemName: "plus.circle", action: {
+                        path.append(ShoppingListDestination.buildYourMeal)
                     })
                 }
             }
-            .navigationDestination(for: BuildYourMealDestination.self) { _ in
-                BuildYourMealView()
-                    .toolbar(.hidden, for: .tabBar)
+            .navigationDestination(for: ShoppingListDestination.self) { destination in
+                Group {
+                    switch destination {
+                    case .buildYourMeal:
+                        BuildYourMealView()
+                    case .detail(let list):
+                        DetailView(list: list)
+                    }
+                }
+                .toolbar(.hidden, for: .tabBar)
             }
-            .navigationTitle("Hello, Nicolle")
+            .navigationTitle("Hello, \(viewModel.userName)")
         }
     }
 }
 
-struct BuildYourMealDestination: Hashable { }
+enum ShoppingListDestination: Hashable {
+    case buildYourMeal
+    case detail(GeneratedList)
+}
 
 struct ShoppingListView_Previews: PreviewProvider {
     static var previews: some View {
