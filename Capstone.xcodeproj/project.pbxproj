@@ -50,6 +50,7 @@
 		A4D7C0D32B106117006BC2FB /* OnboardingFlowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0D22B106117006BC2FB /* OnboardingFlowViewModelTests.swift */; };
 		A4D7C0D52B106720006BC2FB /* UserPreferencesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0D42B106720006BC2FB /* UserPreferencesViewModelTests.swift */; };
 		A4D7C0D72B106A7D006BC2FB /* UserNameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0D62B106A7D006BC2FB /* UserNameViewModelTests.swift */; };
+		A4D7C0D92B106E43006BC2FB /* UserDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0D82B106E43006BC2FB /* UserDetailViewModelTests.swift */; };
 		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +119,7 @@
 		A4D7C0D22B106117006BC2FB /* OnboardingFlowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowViewModelTests.swift; sourceTree = "<group>"; };
 		A4D7C0D42B106720006BC2FB /* UserPreferencesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesViewModelTests.swift; sourceTree = "<group>"; };
 		A4D7C0D62B106A7D006BC2FB /* UserNameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameViewModelTests.swift; sourceTree = "<group>"; };
+		A4D7C0D82B106E43006BC2FB /* UserDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModelTests.swift; sourceTree = "<group>"; };
 		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -318,6 +320,7 @@
 				A45FFE5F2B0FB237007FE7B3 /* ShoppingListViewModelTests.swift */,
 				A49FC96D2B03C1E800A50F0E /* BuildYourMealViewModelTests.swift */,
 				A45FFE5D2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift */,
+				A4D7C0D82B106E43006BC2FB /* UserDetailViewModelTests.swift */,
 				A45C14C42B0AA695001F7529 /* OpenAIListGeneratorTests.swift */,
 				A45C14C22B09570F001F7529 /* URLSessionHTTPClientTests.swift */,
 				A45C14C62B0ABAE7001F7529 /* OpenAIPromptTests.swift */,
@@ -516,6 +519,7 @@
 				A49FC96E2B03C1E800A50F0E /* BuildYourMealViewModelTests.swift in Sources */,
 				A4D7C0D72B106A7D006BC2FB /* UserNameViewModelTests.swift in Sources */,
 				A45C14C32B09570F001F7529 /* URLSessionHTTPClientTests.swift in Sources */,
+				A4D7C0D92B106E43006BC2FB /* UserDetailViewModelTests.swift in Sources */,
 				A45FFE602B0FB237007FE7B3 /* ShoppingListViewModelTests.swift in Sources */,
 				A45FFE692B10506F007FE7B3 /* Item+Fixture.swift in Sources */,
 				A4D7C0D32B106117006BC2FB /* OnboardingFlowViewModelTests.swift in Sources */,
