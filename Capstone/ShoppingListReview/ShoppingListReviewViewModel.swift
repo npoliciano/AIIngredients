@@ -32,8 +32,9 @@ final class ShoppingListReviewViewModel: ObservableObject {
         var allLists = userDefaults.shoppingLists
         allLists.append(list)
         userDefaults.shoppingLists = allLists
+        
         NotificationCenter.default.post(
-            name: Notification.Name("onUpdateShoppingList"),
+            name: .onUpdateShoppingList,
             object: nil
         )
     }

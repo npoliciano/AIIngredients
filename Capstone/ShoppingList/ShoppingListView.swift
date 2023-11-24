@@ -20,7 +20,7 @@ struct ShoppingListView: View {
     var body: some View {
         NavigationStack(path: $path) {
             Group {
-                if viewModel.shoppingList.isEmpty {
+                if viewModel.shoppingLists.isEmpty {
                     EmptyListView(onTap: {
                         path.append(ShoppingListDestination.buildYourMeal)
                     })
@@ -33,7 +33,7 @@ struct ShoppingListView: View {
                         .pickerStyle(.segmented)
                         .padding()
                         
-                        List(viewModel.shoppingList) { list in
+                        List(viewModel.shoppingLists) { list in
                             Section {
                                 ForEach(Array(list.items.enumerated()), id: \.offset) { index, item in
                                     if index < 3 || isExpanded {

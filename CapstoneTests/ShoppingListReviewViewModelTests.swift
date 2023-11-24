@@ -22,7 +22,7 @@ final class ShoppingListReviewViewModelTests: XCTestCase {
     func testInitDoesNotSaveTheList() {
         defaults.shoppingLists = []
         _ = ShoppingListReviewViewModel(
-            list: GeneratedList(name: "some name", items: []),
+            list: GeneratedList.fixture(),
             userDefaults: defaults
         )
         
@@ -30,11 +30,11 @@ final class ShoppingListReviewViewModelTests: XCTestCase {
     }
     
     func testAppendNewListOnConfirm() {
-        let existingList = GeneratedList(name: "some meal name", items: [Item(name: "some name", quantity: "some quantity")])
+        let existingList = GeneratedList.fixture()
         defaults.shoppingLists = [
             existingList
         ]
-        let newList = GeneratedList(name: "some meal name 2", items: [Item(name: "some name 2", quantity: "some quantity 2")])
+        let newList = GeneratedList.fixture()
         
         let sut = ShoppingListReviewViewModel(
             list: newList,

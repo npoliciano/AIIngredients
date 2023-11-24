@@ -1,5 +1,5 @@
 //
-//  UserDefaultExtensions.swift
+//  UserDefault+Extensions.swift
 //  Capstone
 //
 //  Created by Nicolle on 21/11/23.

@@ -28,7 +28,7 @@ final class DetailViewModel: ObservableObject {
         
         userDefaults.shoppingLists = allLists
         NotificationCenter.default.post(
-            name: Notification.Name("onUpdateShoppingList"),
+            name: .onUpdateShoppingList,
             object: nil
         )
     }

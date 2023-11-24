@@ -8,14 +8,19 @@
 import Foundation
 
 final class ShoppingListViewModel: ObservableObject {
-    @Published var shoppingList: [GeneratedList] = []
+    @Published var shoppingLists: [GeneratedList] = []
     var userName: String
     private let userDefaults: UserDefaults
     
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
         userName = userDefaults.userName
-        NotificationCenter.default.addObserver(self, selector: #selector(loadLists), name: Notification.Name("onUpdateShoppingList"), object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadLists),
+            name: .onUpdateShoppingList,
+            object: nil
+        )
         loadLists()
     }
     
@@ -25,6 +30,6 @@ final class ShoppingListViewModel: ObservableObject {
     
     @objc
     private func loadLists() {
-        shoppingList = userDefaults.shoppingLists.reversed()
+        shoppingLists = userDefaults.shoppingLists.reversed()
     }
 }
