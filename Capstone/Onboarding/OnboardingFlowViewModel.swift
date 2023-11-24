@@ -8,12 +8,19 @@
 import Foundation
 
 final class OnboardingFlowViewModel: ObservableObject {
-    @Published var onboardingStatus = UserDefaults.standard.onboardingStatus {
+    @Published var onboardingStatus: OnboardingStatus? {
         didSet {
-            UserDefaults.standard.onboardingStatus = onboardingStatus
+            userDefaults.onboardingStatus = onboardingStatus
         }
     }
     
+    private let userDefaults: UserDefaults
+    
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
+        onboardingStatus = userDefaults.onboardingStatus
+    }
+        
     func nextStep() {
         switch onboardingStatus {
         case .none:

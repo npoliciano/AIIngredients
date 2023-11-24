@@ -21,7 +21,7 @@ final class ShoppingListReviewViewModelTests: XCTestCase {
     
     func testInitDoesNotSaveTheList() {
         defaults.shoppingLists = []
-        var item = Item.fixture()
+        let item = Item.fixture()
         let sut = ShoppingListReviewViewModel(
             list: GeneratedList.fixture(name: "some name", items: [item]),
             userDefaults: defaults
