@@ -21,5 +21,5 @@ final class UserDetailViewModel: ObservableObject {
         }
     }
     
-    @Published var userName = UserDefaults.standard.userName ?? ""
+    @Published var userName = UserDefaults.standard.userName
 }

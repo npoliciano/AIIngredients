@@ -14,7 +14,7 @@ final class ShoppingListViewModel: ObservableObject {
     
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
-        userName = userDefaults.userName ?? ""
+        userName = userDefaults.userName
         NotificationCenter.default.addObserver(self, selector: #selector(loadLists), name: Notification.Name("onUpdateShoppingList"), object: nil)
         loadLists()
     }
@@ -25,6 +25,6 @@ final class ShoppingListViewModel: ObservableObject {
     
     @objc
     private func loadLists() {
-        shoppingList = UserDefaults.standard.shoppingLists.reversed()
+        shoppingList = userDefaults.shoppingLists.reversed()
     }
 }

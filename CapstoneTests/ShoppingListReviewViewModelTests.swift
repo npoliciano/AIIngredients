@@ -10,10 +10,16 @@ import XCTest
 @testable import Capstone
 
 final class ShoppingListReviewViewModelTests: XCTestCase {
-    let defaults = UserDefaults(suiteName: "tests")!
+    var defaults: UserDefaults!
+    
+    override func setUp() {
+        super.setUp()
+        
+        defaults = UserDefaults(suiteName: #file)
+        defaults.removePersistentDomain(forName: #file)
+    }
     
     func testInitDoesNotSaveTheList() {
-        
         defaults.shoppingLists = []
         _ = ShoppingListReviewViewModel(
             list: GeneratedList(name: "some name", items: []),
@@ -37,18 +43,6 @@ final class ShoppingListReviewViewModelTests: XCTestCase {
         
         sut.onConfirm()
         
-        XCTAssertEqual(defaults.shoppingLists[0].name, existingList.name)
-        XCTAssertEqual(defaults.shoppingLists[0].items[0].name, existingList.items[0].name)
-        XCTAssertEqual(defaults.shoppingLists[0].items[0].quantity, existingList.items[0].quantity)
-        XCTAssertEqual(defaults.shoppingLists[0].items.count, 1)
-        
-        XCTAssertEqual(defaults.shoppingLists[1].name, newList.name)
-        XCTAssertEqual(defaults.shoppingLists[1].items[0].name, newList.items[0].name)
-        XCTAssertEqual(defaults.shoppingLists[1].items[0].quantity, newList.items[0].quantity)
-        XCTAssertEqual(defaults.shoppingLists[1].items.count, 1)
-        
-        XCTAssertEqual(defaults.shoppingLists.count, 2)
+        XCTAssertEqual(defaults.shoppingLists, [existingList, newList])
     }
-    
-    
 }

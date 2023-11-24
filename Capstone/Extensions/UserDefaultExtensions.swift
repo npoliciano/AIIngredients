@@ -22,9 +22,9 @@ extension UserDefaults {
         }
     }
     
-    var userName: String? {
+    var userName: String {
         get {
-            self.string(forKey: "userName")
+            self.string(forKey: "userName") ?? ""
         }
         set {
             self.set(newValue, forKey: "userName")
