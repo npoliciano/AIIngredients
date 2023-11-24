@@ -21,27 +21,35 @@ final class ShoppingListReviewViewModelTests: XCTestCase {
     
     func testInitDoesNotSaveTheList() {
         defaults.shoppingLists = []
-        _ = ShoppingListReviewViewModel(
-            list: GeneratedList.fixture(),
+        var item = Item.fixture()
+        let sut = ShoppingListReviewViewModel(
+            list: GeneratedList.fixture(name: "some name", items: [item]),
             userDefaults: defaults
         )
         
         XCTAssertTrue(defaults.shoppingLists.isEmpty)
+        XCTAssertEqual(sut.name, "some name")
+        XCTAssertEqual(sut.items, [item])
     }
     
     func testAppendNewListOnConfirm() {
         let existingList = GeneratedList.fixture()
-        defaults.shoppingLists = [
-            existingList
-        ]
+        defaults.shoppingLists = [existingList]
         let newList = GeneratedList.fixture()
         
         let sut = ShoppingListReviewViewModel(
             list: newList,
             userDefaults: defaults
         )
+        expectation(
+            forNotification: .onUpdateShoppingList,
+            object: nil,
+            handler: { _ in true }
+        )
         
         sut.onConfirm()
+        
+        waitForExpectations(timeout: 1, handler: nil)
         
         XCTAssertEqual(defaults.shoppingLists, [existingList, newList])
     }
