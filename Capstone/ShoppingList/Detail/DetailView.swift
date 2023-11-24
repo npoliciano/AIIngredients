@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct DetailView: View {
-    @State var list: GeneratedList
+    @StateObject var viewModel: DetailViewModel
     
     @FocusState var focusedItem: Item?
     @State private var isEditing = false
     
     var body: some View {
         List {
-            Section(header: Text(list.name)) {
-                ForEach($list.items) { $item in
+            Section(header: Text(viewModel.list.name)) {
+                ForEach($viewModel.list.items) { $item in
                     ZStack(alignment: .topLeading) {
                         TextField("", text: $item.name)
                             .opacity(isEditing ? 1 : 0)
@@ -43,6 +43,7 @@ struct DetailView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 if isEditing {
                     Button("Done") {
+                        viewModel.updateList()
                         withAnimation {
                             isEditing = false
                         }
@@ -51,7 +52,7 @@ struct DetailView: View {
                     ImageButton(systemName: "pencil", action: {
                         withAnimation {
                             isEditing = true
-                            focusedItem = list.items.first
+                            focusedItem = viewModel.list.items.first
                         }
                     })
                 }
@@ -63,11 +64,7 @@ struct DetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            DetailView(list: GeneratedList(name: "Alfredo chicken", items: [
-                Item(name: "Chicken breast", quantity: "200 g"),
-                Item(name: "Salt", quantity: "to taste"),
-                Item(name: "Alfredo sauce", quantity: "200 ml")
-            ]))
+            DetailView(viewModel: DetailViewModel(list: GeneratedList(name: "some name", items: [Item(name: "some item", quantity: "some quantity")])))
         }
     }
 }

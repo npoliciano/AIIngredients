@@ -8,25 +8,31 @@
 import Foundation
 
 struct GeneratedList: Codable, Identifiable, Hashable, Equatable {
-    let id = UUID()
-    
+    let id: UUID
     let name: String
     var items: [Item]
     
+    init(id: UUID = UUID(), name: String, items: [Item]) {
+        self.id = id
+        self.name = name
+        self.items = items
+    }
+    
     enum CodingKeys: String, CodingKey {
+        case id
         case name = "mealName"
         case items
     }
 }
 
 struct Item: Codable, Identifiable, Hashable, Equatable {
-    let id = UUID()
-    
+    let id: UUID
     var name: String
-    let quantity: String
+    var quantity: String
     
-    enum CodingKeys: CodingKey {
-        case name
-        case quantity
+    init(id: UUID = UUID(), name: String, quantity: String) {
+        self.id = id
+        self.name = name
+        self.quantity = quantity
     }
 }

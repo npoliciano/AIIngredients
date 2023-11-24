@@ -35,6 +35,7 @@
 		A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EA2422B0550390097B863 /* UserPreferencesView.swift */; };
 		A45FFE5E2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45FFE5D2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift */; };
 		A45FFE602B0FB237007FE7B3 /* ShoppingListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45FFE5F2B0FB237007FE7B3 /* ShoppingListViewModelTests.swift */; };
+		A45FFE622B10007B007FE7B3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45FFE612B10007B007FE7B3 /* DetailViewModel.swift */; };
 		A49FC95D2B03C1E700A50F0E /* CapstoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */; };
 		A49FC95F2B03C1E700A50F0E /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC95E2B03C1E700A50F0E /* OnboardingFlowView.swift */; };
 		A49FC9612B03C1E800A50F0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A49FC9602B03C1E800A50F0E /* Assets.xcassets */; };
@@ -92,6 +93,7 @@
 		A45EA2422B0550390097B863 /* UserPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesView.swift; sourceTree = "<group>"; };
 		A45FFE5D2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListReviewViewModelTests.swift; sourceTree = "<group>"; };
 		A45FFE5F2B0FB237007FE7B3 /* ShoppingListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModelTests.swift; sourceTree = "<group>"; };
+		A45FFE612B10007B007FE7B3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		A49FC9592B03C1E700A50F0E /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneApp.swift; sourceTree = "<group>"; };
 		A49FC95E2B03C1E700A50F0E /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				A45C14EB2B0EF2F7001F7529 /* DetailView.swift */,
+				A45FFE612B10007B007FE7B3 /* DetailViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				A45C14D62B0D8F51001F7529 /* UserPreferencesViewModel.swift in Sources */,
 				A44EC5622B03C527007CCB5B /* ImageButton.swift in Sources */,
 				A45C14C92B0AC439001F7529 /* OpenAIListGenerator.swift in Sources */,
+				A45FFE622B10007B007FE7B3 /* DetailViewModel.swift in Sources */,
 				A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */,
 				A45C14DF2B0DA55E001F7529 /* UserDetailViewModel.swift in Sources */,
 				A45C14D02B0D23EE001F7529 /* ShoppingListReviewViewModel.swift in Sources */,

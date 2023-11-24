@@ -97,7 +97,7 @@ struct ShoppingListView: View {
                     case .buildYourMeal:
                         BuildYourMealView()
                     case .detail(let list):
-                        DetailView(list: list)
+                        DetailView(viewModel: DetailViewModel(list: list))
                     }
                 }
                 .toolbar(.hidden, for: .tabBar)
