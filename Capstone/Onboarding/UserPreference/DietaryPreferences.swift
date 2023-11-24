@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DietaryPreferences: Codable {
+struct DietaryPreferences: Codable, Equatable {
     var glutenFree: Bool
     var lactoseFree: Bool
     var sugarFree: Bool

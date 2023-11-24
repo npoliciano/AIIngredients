@@ -48,6 +48,7 @@
 		A49FC97A2B03C1E800A50F0E /* CapstoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FC9792B03C1E800A50F0E /* CapstoneUITestsLaunchTests.swift */; };
 		A4C29B222B084ACF0040A41A /* BuildYourMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C29B212B084ACF0040A41A /* BuildYourMealViewModel.swift */; };
 		A4D7C0D32B106117006BC2FB /* OnboardingFlowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0D22B106117006BC2FB /* OnboardingFlowViewModelTests.swift */; };
+		A4D7C0D52B106720006BC2FB /* UserPreferencesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0D42B106720006BC2FB /* UserPreferencesViewModelTests.swift */; };
 		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,7 @@
 		A4C29B212B084ACF0040A41A /* BuildYourMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealViewModel.swift; sourceTree = "<group>"; };
 		A4C29B232B085F1A0040A41A /* Capstone.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Capstone.xctestplan; sourceTree = "<group>"; };
 		A4D7C0D22B106117006BC2FB /* OnboardingFlowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowViewModelTests.swift; sourceTree = "<group>"; };
+		A4D7C0D42B106720006BC2FB /* UserPreferencesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesViewModelTests.swift; sourceTree = "<group>"; };
 		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -308,13 +310,14 @@
 			children = (
 				A45FFE652B104F21007FE7B3 /* Fixtures */,
 				A4C29B232B085F1A0040A41A /* Capstone.xctestplan */,
+				A4D7C0D22B106117006BC2FB /* OnboardingFlowViewModelTests.swift */,
+				A4D7C0D42B106720006BC2FB /* UserPreferencesViewModelTests.swift */,
 				A45FFE5F2B0FB237007FE7B3 /* ShoppingListViewModelTests.swift */,
 				A49FC96D2B03C1E800A50F0E /* BuildYourMealViewModelTests.swift */,
 				A45FFE5D2B0F95D2007FE7B3 /* ShoppingListReviewViewModelTests.swift */,
 				A45C14C42B0AA695001F7529 /* OpenAIListGeneratorTests.swift */,
 				A45C14C22B09570F001F7529 /* URLSessionHTTPClientTests.swift */,
 				A45C14C62B0ABAE7001F7529 /* OpenAIPromptTests.swift */,
-				A4D7C0D22B106117006BC2FB /* OnboardingFlowViewModelTests.swift */,
 			);
 			path = CapstoneTests;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				A45FFE602B0FB237007FE7B3 /* ShoppingListViewModelTests.swift in Sources */,
 				A45FFE692B10506F007FE7B3 /* Item+Fixture.swift in Sources */,
 				A4D7C0D32B106117006BC2FB /* OnboardingFlowViewModelTests.swift in Sources */,
+				A4D7C0D52B106720006BC2FB /* UserPreferencesViewModelTests.swift in Sources */,
 				A45C14C72B0ABAE7001F7529 /* OpenAIPromptTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
