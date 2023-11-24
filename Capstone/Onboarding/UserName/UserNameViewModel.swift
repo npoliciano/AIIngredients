@@ -10,9 +10,15 @@ import Foundation
 final class UserNameViewModel: ObservableObject {
     @Published var userName: String = ""
     
+    private let userDefaults: UserDefaults
+    
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
+    }
+    
     func onTap() {
         if !userName.isEmpty {
-            UserDefaults.standard.userName = userName
+            userDefaults.userName = userName
         }
     }
 }
