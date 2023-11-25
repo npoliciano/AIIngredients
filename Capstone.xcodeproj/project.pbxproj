@@ -54,6 +54,7 @@
 		A4D7C0DC2B11AE3D006BC2FB /* IngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0DB2B11AE3D006BC2FB /* IngredientView.swift */; };
 		A4D7C0E02B11B0CC006BC2FB /* SelectableIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0DF2B11B0CC006BC2FB /* SelectableIngredientView.swift */; };
 		A4D7C0E22B11B509006BC2FB /* EditableSelectableIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E12B11B509006BC2FB /* EditableSelectableIngredientView.swift */; };
+		A4D7C0E42B126B6C006BC2FB /* MealJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E32B126B6C006BC2FB /* MealJSON.swift */; };
 		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +127,7 @@
 		A4D7C0DB2B11AE3D006BC2FB /* IngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientView.swift; sourceTree = "<group>"; };
 		A4D7C0DF2B11B0CC006BC2FB /* SelectableIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableIngredientView.swift; sourceTree = "<group>"; };
 		A4D7C0E12B11B509006BC2FB /* EditableSelectableIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSelectableIngredientView.swift; sourceTree = "<group>"; };
+		A4D7C0E32B126B6C006BC2FB /* MealJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealJSON.swift; sourceTree = "<group>"; };
 		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +171,7 @@
 				A45C14C82B0AC439001F7529 /* OpenAIListGenerator.swift */,
 				A45C14C02B09524A001F7529 /* URLSessionHTTPClient.swift */,
 				A45C14CB2B0AC451001F7529 /* Prompt.swift */,
+				A4D7C0E32B126B6C006BC2FB /* MealJSON.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				A45EA2352B03FEF90097B863 /* Meal.swift in Sources */,
 				A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */,
 				A4C29B222B084ACF0040A41A /* BuildYourMealViewModel.swift in Sources */,
+				A4D7C0E42B126B6C006BC2FB /* MealJSON.swift in Sources */,
 				A45C14E32B0DAD01001F7529 /* OnboardingFlowViewModel.swift in Sources */,
 				A45C14DB2B0D9EEA001F7529 /* UserNameViewModel.swift in Sources */,
 				A45C14C12B09524A001F7529 /* URLSessionHTTPClient.swift in Sources */,

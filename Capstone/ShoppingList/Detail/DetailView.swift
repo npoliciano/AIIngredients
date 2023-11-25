@@ -86,7 +86,12 @@ struct EditableMealName: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            DetailView(viewModel: DetailViewModel(meal: Meal(name: "some name", ingredients: [Ingredient(name: "some ingredient", quantity: "some quantity")])))
+            DetailView(viewModel: DetailViewModel(meal: Meal(
+                name: "some name",
+                ingredients: [
+                    Ingredient(name: "some ingredient", quantity: "some quantity")
+                ]
+            )))
         }
     }
 }

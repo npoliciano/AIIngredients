@@ -53,10 +53,13 @@ final class OpenAIListGenerator: ListGenerator {
                     throw AppError.server
                 }
                 
-                let generatedList = try decoder.decode(Meal.self, from: Data(content))
+                let mealJSON = try decoder.decode(MealJSON.self, from: Data(content))
+                
+                // Map MealJSON to Meal
+                let newMeal = Meal(json: mealJSON)
                 
                 await MainActor.run {
-                    completion(.success(generatedList))
+                    completion(.success(newMeal))
                 }
             } catch {
                 await MainActor.run {

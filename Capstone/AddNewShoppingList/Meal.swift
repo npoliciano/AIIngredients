@@ -17,12 +17,6 @@ struct Meal: Codable, Identifiable, Hashable, Equatable {
         self.name = name
         self.ingredients = ingredients
     }
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name = "mealName"
-        case ingredients
-    }
 }
 
 struct Ingredient: Codable, Identifiable, Hashable, Equatable {

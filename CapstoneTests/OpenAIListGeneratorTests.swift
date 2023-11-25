@@ -154,7 +154,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
             "choices": [
                 {
                     "message": {
-                        "content": "{\\"id\\":\\"\(UUID().uuidString)\\",\\"mealName\\":\\"Some meal\\",\\"ingredients\\": [{\\"id\\":\\"\(UUID().uuidString)\\",\\"name\\":\\"Some ingredient\\",\\"quantity\\":\\"4g\\"}]}"
+                        "content": "{\\"mealName\\":\\"Some meal\\",\\"ingredients\\": [{\\"name\\":\\"Some ingredient\\",\\"quantity\\":\\"4g\\"}]}"
                     }
                 }
             ]

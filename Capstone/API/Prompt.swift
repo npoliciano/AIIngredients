@@ -49,13 +49,12 @@ extension ListGeneratorInput {
         The output JSON format:
         
         ```json
-        { "id": String, "mealName": String, "ingredients": [{ "id": UUID, "name": String, "quantity": String }]}
+        { "mealName": String, "ingredients": [{"name": String, "quantity": String }]}
         ```
-        Where the `id` is a UUID string
         
         This is a an example of how the json will look like:
         ```json
-        { "id": "297f3ae7-0ae5-4030-b46d-93b9e3280823", "mealName": "Cheesecake", "ingredients": [{ "id": "5f4f359a-4fc8-4c24-b1f5-62f62c2e3a9d", "name": "Cream Cheese", "quantity": "250g" }]}
+        { "mealName": "Cheesecake", "ingredients": [{ "name": "Cream Cheese", "quantity": "250g" }]}
         ```
         """
     }
