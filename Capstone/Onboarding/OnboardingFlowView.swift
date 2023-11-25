@@ -42,6 +42,7 @@ struct OnboardingFlowView: View {
             viewModel.nextStep()
             isHomePresented = true
         })
+        .navigationBarTitle("Dietary Preferences")
         .fullScreenCover(isPresented: $isHomePresented) {
             HomeView()
         }

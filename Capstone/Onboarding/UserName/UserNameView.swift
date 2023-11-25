@@ -13,11 +13,10 @@ struct UserNameView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Who are you?")
-                .font(.title3)
-            
-            Text("We're excited to have you on board. Let's personalize your experience. Please enter your name below.")
-                .foregroundStyle(.secondary)
+            HeaderView(
+                title: "Who are you?",
+                headline: "We're excited to have you on board. Let's personalize your experience. Please enter your name below."
+            )
 
             LabeledTextField(
                 label: "First name",

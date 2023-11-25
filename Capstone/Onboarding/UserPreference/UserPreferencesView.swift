@@ -12,9 +12,18 @@ struct UserPreferencesView: View {
     @StateObject var viewModel = UserPreferencesViewModel()
     
     var body: some View {
-        VStack {
-            Form {
-                Section("Dietary Preferences") {
+        VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 24) {
+                HeaderView(
+                    title: "Tailor Your Experience to Your Taste!",
+                    headline: "Let us know what suits your diet, and we'll customize your experience accordingly. Please select any dietary preferences that apply to you from the options below."
+                )
+                
+                VStack(alignment: .leading) {
+                    Text("Preferences")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    
                     Toggle("Gluten Free", isOn: $viewModel.preferences.glutenFree)
                     
                     Toggle("Lactose Free", isOn: $viewModel.preferences.lactoseFree)
@@ -27,23 +36,14 @@ struct UserPreferencesView: View {
                 }
             }
             
-            Button {
+            Spacer()
+            
+            PrimaryButton(title: "Next", onTap: {
                 viewModel.onTap()
                 onTap()
-            } label: {
-                Text("Next")
-                    .font(.headline)
-                    .bold()
-                    .foregroundColor(Color.white)
-                    .frame(width: 100)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(16)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.white, lineWidth: 2))
-            }
+            })
         }
+        .padding()
     }
 }
 

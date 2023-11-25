@@ -43,10 +43,10 @@ struct BuildYourMealView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     
-                    Text("Get ready to cook with ease!")
-                        .font(.title3)
-                    Text("Type in the recipe you wish to prepare, specify the quantity and portion size")
-                        .foregroundStyle(.secondary)
+                    HeaderView(
+                        title: "Get ready to cook with ease!",
+                        headline: "Type in the recipe you wish to prepare, specify the quantity and portion size"
+                    )
                 }
                 
                 Divider()
