@@ -38,14 +38,10 @@ struct ShoppingListView: View {
                                 ForEach(Array(list.items.enumerated()), id: \.offset) { index, item in
                                     if index < 3 || isExpanded {
                                         HStack {
-                                            Image(systemName: "square")
-                                                .opacity(0.3)
-                                            Text(item.name)
-                                                .font(.subheadline)
-                                            Spacer()
-                                            Text(item.quantity)
-                                                .font(.subheadline)
-                                                .foregroundStyle(.secondary)
+                                            SelectableIngredientView(
+                                                name: item.name,
+                                                quantity: item.quantity
+                                            )
                                         }
                                         .padding(.vertical, 4)
                                         .padding(.bottom, 4)

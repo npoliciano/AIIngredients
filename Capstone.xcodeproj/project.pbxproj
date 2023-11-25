@@ -51,6 +51,9 @@
 		A4D7C0D52B106720006BC2FB /* UserPreferencesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0D42B106720006BC2FB /* UserPreferencesViewModelTests.swift */; };
 		A4D7C0D72B106A7D006BC2FB /* UserNameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0D62B106A7D006BC2FB /* UserNameViewModelTests.swift */; };
 		A4D7C0D92B106E43006BC2FB /* UserDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0D82B106E43006BC2FB /* UserDetailViewModelTests.swift */; };
+		A4D7C0DC2B11AE3D006BC2FB /* IngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0DB2B11AE3D006BC2FB /* IngredientView.swift */; };
+		A4D7C0E02B11B0CC006BC2FB /* SelectableIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0DF2B11B0CC006BC2FB /* SelectableIngredientView.swift */; };
+		A4D7C0E22B11B509006BC2FB /* EditableSelectableIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E12B11B509006BC2FB /* EditableSelectableIngredientView.swift */; };
 		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +123,9 @@
 		A4D7C0D42B106720006BC2FB /* UserPreferencesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesViewModelTests.swift; sourceTree = "<group>"; };
 		A4D7C0D62B106A7D006BC2FB /* UserNameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameViewModelTests.swift; sourceTree = "<group>"; };
 		A4D7C0D82B106E43006BC2FB /* UserDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModelTests.swift; sourceTree = "<group>"; };
+		A4D7C0DB2B11AE3D006BC2FB /* IngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientView.swift; sourceTree = "<group>"; };
+		A4D7C0DF2B11B0CC006BC2FB /* SelectableIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableIngredientView.swift; sourceTree = "<group>"; };
+		A4D7C0E12B11B509006BC2FB /* EditableSelectableIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSelectableIngredientView.swift; sourceTree = "<group>"; };
 		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,6 +292,7 @@
 		A49FC95B2B03C1E700A50F0E /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				A4D7C0DA2B11AE2C006BC2FB /* Views */,
 				A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */,
 				A45EA2362B043DEA0097B863 /* Onboarding */,
 				A45EA2392B043EB90097B863 /* Home */,
@@ -345,6 +352,16 @@
 				A45EA2342B03FEF90097B863 /* GeneratedList.swift */,
 			);
 			path = AddNewShoppingList;
+			sourceTree = "<group>";
+		};
+		A4D7C0DA2B11AE2C006BC2FB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A4D7C0DB2B11AE3D006BC2FB /* IngredientView.swift */,
+				A4D7C0DF2B11B0CC006BC2FB /* SelectableIngredientView.swift */,
+				A4D7C0E12B11B509006BC2FB /* EditableSelectableIngredientView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,6 +497,7 @@
 				A49FC95F2B03C1E700A50F0E /* OnboardingFlowView.swift in Sources */,
 				A45EA23F2B0460C60097B863 /* ShoppingListReviewView.swift in Sources */,
 				A44EC5642B03C594007CCB5B /* FeaturesOnboardingPageView.swift in Sources */,
+				A4D7C0DC2B11AE3D006BC2FB /* IngredientView.swift in Sources */,
 				A44EC5662B03CCC6007CCB5B /* UserNameView.swift in Sources */,
 				A45C14D42B0D51F3001F7529 /* ShoppingListViewModel.swift in Sources */,
 				A45C14CE2B0AC4DA001F7529 /* DietaryPreferences.swift in Sources */,
@@ -487,6 +505,7 @@
 				A45EA2412B0516210097B863 /* EmptyListView.swift in Sources */,
 				A49FC95D2B03C1E700A50F0E /* CapstoneApp.swift in Sources */,
 				A45C14CC2B0AC451001F7529 /* Prompt.swift in Sources */,
+				A4D7C0E02B11B0CC006BC2FB /* SelectableIngredientView.swift in Sources */,
 				A45C14D92B0D97A1001F7529 /* UserDefault+Extensions.swift in Sources */,
 				A45EA2352B03FEF90097B863 /* GeneratedList.swift in Sources */,
 				A45EA22B2B03D7E20097B863 /* UserDetailView.swift in Sources */,
@@ -494,6 +513,7 @@
 				A45C14E32B0DAD01001F7529 /* OnboardingFlowViewModel.swift in Sources */,
 				A45C14DB2B0D9EEA001F7529 /* UserNameViewModel.swift in Sources */,
 				A45C14C12B09524A001F7529 /* URLSessionHTTPClient.swift in Sources */,
+				A4D7C0E22B11B509006BC2FB /* EditableSelectableIngredientView.swift in Sources */,
 				A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */,
 				A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */,
 				A45C14EC2B0EF2F7001F7529 /* DetailView.swift in Sources */,

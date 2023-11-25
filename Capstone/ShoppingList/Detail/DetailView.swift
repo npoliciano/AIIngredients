@@ -9,29 +9,29 @@ import SwiftUI
 
 struct DetailView: View {
     @StateObject var viewModel: DetailViewModel
+    @FocusState var focused: Bool
     
-    @FocusState var focusedItem: Item?
-    @State private var isEditing = false
+    @Environment(\.editMode) private var editMode
     
     var body: some View {
         List {
-            Section(header: Text(viewModel.list.name)) {
-                ForEach($viewModel.list.items) { $item in
-                    ZStack(alignment: .topLeading) {
-                        TextField("", text: $item.name)
-                            .opacity(isEditing ? 1 : 0)
-                            .focused($focusedItem, equals: item)
-                            .animation(.easeInOut(duration: 0.5), value: isEditing)
-                        
-                        HStack {
-                            Image(systemName: "square")
-                            Text(item.name)
-                        }
-                        .opacity(isEditing ? 0 : 1)
-                        .animation(.easeInOut(duration: 0.5), value: isEditing)
-                    }
-                    .padding(.vertical, 4)
+            Section("Meal name") {
+                EditableMealName(name: $viewModel.list.name)
+                    .focused($focused)
                     .listRowSeparator(.hidden)
+            }
+            
+            Section("Ingredients") {
+                ForEach($viewModel.list.items) { $item in
+                    EditableSelectableIngredientView(item: $item)
+                        .padding(.vertical, 4)
+                        .listRowSeparator(.hidden)
+                }
+                .onDelete { indexSet in
+                    viewModel.list.items.remove(atOffsets: indexSet)
+                }
+                .onMove { indexSet, index in
+                    viewModel.list.items.move(fromOffsets: indexSet, toOffset: index)
                 }
             }
             .padding(.bottom, 4)
@@ -40,22 +40,26 @@ struct DetailView: View {
         .listStyle(.plain)
         .navigationTitle("Meal Details")
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if isEditing {
-                    Button("Done") {
-                        viewModel.updateList()
-                        withAnimation {
-                            isEditing = false
-                        }
-                    }
-                } else {
-                    ImageButton(systemName: "pencil", action: {
-                        withAnimation {
-                            isEditing = true
-                            focusedItem = viewModel.list.items.first
-                        }
-                    })
-                }
+            EditButton()
+        }
+        .onChange(of: editMode?.wrappedValue.isEditing) { isEditing in
+            if isEditing == false {
+                viewModel.updateList()
+            }
+        }
+    }
+}
+
+struct EditableMealName: View {
+    @Binding var name: String
+    @Environment(\.editMode) private var editMode
+    
+    var body: some View {
+        VStack {
+            if editMode?.wrappedValue.isEditing == true {
+                TextField("", text: $name)
+            } else {
+                Text(name)
             }
         }
     }

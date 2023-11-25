@@ -35,14 +35,10 @@ struct ShoppingListReviewView: View {
                         
                         LazyVStack(spacing: 16) {
                             ForEach(viewModel.items) { item in
-                                HStack {
-                                    Text(item.name)
-                                        .font(.subheadline)
-                                    Spacer()
-                                    Text(item.quantity)
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
-                                }
+                                IngredientView(
+                                    name: item.name,
+                                    quantity: item.quantity
+                                )
                             }
                         }
                     }

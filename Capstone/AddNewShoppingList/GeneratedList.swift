@@ -9,8 +9,9 @@ import Foundation
 
 struct GeneratedList: Codable, Identifiable, Hashable, Equatable {
     let id: UUID
-    let name: String
+    var name: String
     var items: [Item]
+    var isSelected: Bool = false
     
     init(id: UUID = UUID(), name: String, items: [Item]) {
         self.id = id
