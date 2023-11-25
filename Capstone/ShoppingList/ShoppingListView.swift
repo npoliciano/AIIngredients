@@ -33,16 +33,13 @@ struct ShoppingListView: View {
                         .pickerStyle(.segmented)
                         .padding()
                         
-                        List(viewModel.shoppingLists) { meal in
+                        List($viewModel.shoppingLists) { $meal in
                             Section {
-                                ForEach(Array(meal.ingredients.enumerated()), id: \.offset) { index, ingredient in
+                                ForEach(Array(meal.ingredients.indices), id: \.self) { index in
                                     if index < 3 || isExpanded {
-                                        SelectableIngredientView(
-                                            name: ingredient.name,
-                                            quantity: ingredient.quantity
-                                        )
-                                        .padding(.vertical, 4)
-                                        .padding(.bottom, 4)
+                                        SelectableIngredientView(ingredient: $meal.ingredients[index])
+                                            .padding(.vertical, 4)
+                                            .padding(.bottom, 4)
                                     }
                                 }
                                 

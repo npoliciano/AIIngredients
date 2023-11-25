@@ -24,11 +24,8 @@ struct EditableSelectableIngredientView: View {
                         .multilineTextAlignment(.trailing)
                 }
             } else {
-                SelectableIngredientView(
-                    name: ingredient.name,
-                    quantity: ingredient.quantity
-                )
-                .padding(.trailing, -0.5)
+                SelectableIngredientView(ingredient: $ingredient)
+                    .padding(.trailing, -0.5)
             }
         }
     }

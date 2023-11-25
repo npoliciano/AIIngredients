@@ -6,9 +6,34 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class DetailViewModel: ObservableObject {
-    @Published var meal: Meal
+    @Published var meal: Meal {
+        didSet {
+            var allMeals = userDefaults.shoppingLists
+
+            guard let index = allMeals.firstIndex(where: { $0.id == meal.id }) else {
+                return
+            }
+
+            var storedMeal = allMeals[index]
+
+            for ingredient in meal.ingredients {
+                storedMeal.ingredients = storedMeal.ingredients.map {
+                    if $0.id == ingredient.id {
+                        var storedIngredient = $0
+                        storedIngredient.isSelected = ingredient.isSelected
+                        return storedIngredient
+                    }
+                    return $0
+                }
+            }
+
+            allMeals[index] = storedMeal
+            saveAndNotify(updatedList: allMeals)
+        }
+    }
     
     private let userDefaults: UserDefaults
     
@@ -26,18 +51,18 @@ final class DetailViewModel: ObservableObject {
         
         allMeals[index] = meal
         
-        userDefaults.shoppingLists = allMeals
-        NotificationCenter.default.post(
-            name: .onUpdateShoppingList,
-            object: nil
-        )
+        saveAndNotify(updatedList: allMeals)
     }
     
     func delete() {
         var allMeals = userDefaults.shoppingLists
         allMeals.removeAll { $0.id == meal.id }
         
-        userDefaults.shoppingLists = allMeals
+        saveAndNotify(updatedList: allMeals)
+    }
+    
+    private func saveAndNotify(updatedList: [Meal]) {
+        userDefaults.shoppingLists = updatedList
         NotificationCenter.default.post(
             name: .onUpdateShoppingList,
             object: nil

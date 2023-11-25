@@ -8,26 +8,23 @@
 import SwiftUI
 
 struct SelectableIngredientView: View {
-    let name: String
-    let quantity: String
-    
-    @State var isSelected = false
+    @Binding var ingredient: Ingredient
     
     var body: some View {
         HStack {
-            Image(systemName: isSelected ? "square.inset.filled" : "square")
+            Image(systemName: ingredient.isSelected ? "square.inset.filled" : "square")
                 .opacity(0.3)
             IngredientView(
-                name: name,
-                quantity: quantity
+                name: ingredient.name,
+                quantity: ingredient.quantity
             )
-            .strikethrough(isSelected)
-            .opacity(isSelected ? 0.5 : 1)
+            .strikethrough(ingredient.isSelected)
+            .opacity(ingredient.isSelected ? 0.5 : 1)
         }
         
         .onTapGesture {
             withAnimation {
-                isSelected.toggle()
+                ingredient.isSelected.toggle()
             }
         }
     }
@@ -35,6 +32,9 @@ struct SelectableIngredientView: View {
 
 struct SelectableIngredientView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectableIngredientView(name: "Cheddar Cheese", quantity: "200g")
+        Group {
+            SelectableIngredientView(ingredient: .constant(Ingredient(name: "Cheddar Cheese", quantity: "200g")))
+            SelectableIngredientView(ingredient: .constant(Ingredient(name: "Cheddar Cheese", quantity: "200g", isSelected: true)))
+        }
     }
 }

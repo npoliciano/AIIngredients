@@ -8,7 +8,12 @@
 import Foundation
 
 final class ShoppingListViewModel: ObservableObject {
-    @Published var shoppingLists: [Meal] = []
+    @Published var shoppingLists: [Meal] = [] {
+        didSet {
+            userDefaults.shoppingLists = shoppingLists.reversed()
+        }
+    }
+    
     var userName: String
     private let userDefaults: UserDefaults
     
@@ -30,6 +35,7 @@ final class ShoppingListViewModel: ObservableObject {
     
     @objc
     private func loadLists() {
-        shoppingLists = userDefaults.shoppingLists.reversed()
+        let allLists = userDefaults.shoppingLists
+        shoppingLists = allLists.reversed()
     }
 }

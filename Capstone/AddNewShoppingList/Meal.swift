@@ -23,10 +23,12 @@ struct Ingredient: Codable, Identifiable, Hashable, Equatable {
     let id: UUID
     var name: String
     var quantity: String
+    var isSelected: Bool
     
-    init(id: UUID = UUID(), name: String, quantity: String) {
+    init(id: UUID = UUID(), name: String, quantity: String, isSelected: Bool = false) {
         self.id = id
         self.name = name
         self.quantity = quantity
+        self.isSelected = isSelected
     }
 }

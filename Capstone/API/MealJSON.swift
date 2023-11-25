@@ -30,5 +30,6 @@ extension Ingredient {
         self.id = UUID()
         self.name = json.name
         self.quantity = json.quantity
+        self.isSelected = false
     }
 }
