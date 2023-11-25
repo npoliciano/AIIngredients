@@ -55,6 +55,8 @@
 		A4D7C0E02B11B0CC006BC2FB /* SelectableIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0DF2B11B0CC006BC2FB /* SelectableIngredientView.swift */; };
 		A4D7C0E22B11B509006BC2FB /* EditableSelectableIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E12B11B509006BC2FB /* EditableSelectableIngredientView.swift */; };
 		A4D7C0E42B126B6C006BC2FB /* MealJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E32B126B6C006BC2FB /* MealJSON.swift */; };
+		A4D7C0E62B129790006BC2FB /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E52B129790006BC2FB /* PrimaryButton.swift */; };
+		A4D7C0E82B1299C1006BC2FB /* MealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E72B1299C1006BC2FB /* MealsView.swift */; };
 		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +130,8 @@
 		A4D7C0DF2B11B0CC006BC2FB /* SelectableIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableIngredientView.swift; sourceTree = "<group>"; };
 		A4D7C0E12B11B509006BC2FB /* EditableSelectableIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSelectableIngredientView.swift; sourceTree = "<group>"; };
 		A4D7C0E32B126B6C006BC2FB /* MealJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealJSON.swift; sourceTree = "<group>"; };
+		A4D7C0E52B129790006BC2FB /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		A4D7C0E72B1299C1006BC2FB /* MealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsView.swift; sourceTree = "<group>"; };
 		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -241,6 +245,7 @@
 				A45C14D32B0D51F3001F7529 /* ShoppingListViewModel.swift */,
 				A44EC5612B03C527007CCB5B /* ImageButton.swift */,
 				A45EA2402B0516210097B863 /* EmptyListView.swift */,
+				A4D7C0E72B1299C1006BC2FB /* MealsView.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				A4D7C0DB2B11AE3D006BC2FB /* IngredientView.swift */,
 				A4D7C0DF2B11B0CC006BC2FB /* SelectableIngredientView.swift */,
 				A4D7C0E12B11B509006BC2FB /* EditableSelectableIngredientView.swift */,
+				A4D7C0E52B129790006BC2FB /* PrimaryButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -521,6 +527,7 @@
 				A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */,
 				A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */,
 				A45C14EC2B0EF2F7001F7529 /* DetailView.swift in Sources */,
+				A4D7C0E62B129790006BC2FB /* PrimaryButton.swift in Sources */,
 				A45C14D62B0D8F51001F7529 /* UserPreferencesViewModel.swift in Sources */,
 				A44EC5622B03C527007CCB5B /* ImageButton.swift in Sources */,
 				A45C14C92B0AC439001F7529 /* OpenAIListGenerator.swift in Sources */,
@@ -528,6 +535,7 @@
 				A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */,
 				A45C14DF2B0DA55E001F7529 /* UserDetailViewModel.swift in Sources */,
 				A45C14D02B0D23EE001F7529 /* ShoppingListReviewViewModel.swift in Sources */,
+				A4D7C0E82B1299C1006BC2FB /* MealsView.swift in Sources */,
 				A45FFE642B104C1A007FE7B3 /* NotificationName+Extensions.swift in Sources */,
 				A45EA23D2B0441A70097B863 /* FeaturesOnboardingView.swift in Sources */,
 			);

@@ -9,12 +9,13 @@ import SwiftUI
 
 struct ShoppingListView: View {
     @State private var path = NavigationPath()
-    @State private var expanded = 1
+    @State private var expanded = 0
+    @State private var isShowingDetail = false
     
     @StateObject var viewModel = ShoppingListViewModel()
     
     var isExpanded: Bool {
-        expanded == 0
+        expanded == 1
     }
     
     var body: some View {
@@ -22,62 +23,33 @@ struct ShoppingListView: View {
             Group {
                 if viewModel.shoppingLists.isEmpty {
                     EmptyListView(onTap: {
+                        isShowingDetail = true
                         path.append(ShoppingListDestination.buildYourMeal)
                     })
                 } else {
                     VStack {
                         Picker("", selection: $expanded) {
-                            Text("Expanded").tag(0)
-                            Text("Collapsed").tag(1)
+                            Text("Summary").tag(0)
+                            Text("All").tag(1)
                         }
                         .pickerStyle(.segmented)
                         .padding()
                         
-                        List($viewModel.shoppingLists) { $meal in
-                            Section {
-                                ForEach(Array(meal.ingredients.indices), id: \.self) { index in
-                                    if index < 3 || isExpanded {
-                                        SelectableIngredientView(ingredient: $meal.ingredients[index])
-                                            .padding(.vertical, 4)
-                                            .padding(.bottom, 4)
-                                    }
-                                }
-                                
-                                if meal.ingredients.count > 3, !isExpanded {
-                                    VStack(alignment: .leading) {
-                                        Divider()
-                                        Button {
-                                            path.append(ShoppingListDestination.detail(meal))
-                                        } label: {
-                                            HStack(spacing: 4) {
-                                                Text("See all")
-                                                    .font(.callout)
-                                                
-                                                Image(systemName: "chevron.right")
-                                                    .imageScale(.small)
-                                            }
-                                            .foregroundStyle(Color.accentColor)
-                                        }
-                                        .padding(.top, 4)
-                                        
-                                    }
-                                    .padding(.bottom, 9)
-                                }
-                            } header: {
-                                Text(meal.name)
-                                    .font(.headline)
-                                    .foregroundStyle(.primary)
+                        MealsView(
+                            shoppingLists: $viewModel.shoppingLists,
+                            isExpanded: isExpanded,
+                            onTapMeal: { meal in
+                                isShowingDetail = true
+                                path.append(ShoppingListDestination.detail(meal))
                             }
-                            .listRowSeparator(.hidden)
-                            .listSectionSeparator(.hidden)
-                        }
-                        .listStyle(.plain)
+                        )
                     }
                 }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     ImageButton(systemName: "plus.circle", action: {
+                        isShowingDetail = true
                         path.append(ShoppingListDestination.buildYourMeal)
                     })
                 }
@@ -93,7 +65,15 @@ struct ShoppingListView: View {
                 }
                 .toolbar(.hidden, for: .tabBar)
             }
-            .navigationTitle("Hello, \(viewModel.userName)")
+            .navigationTitle(isShowingDetail ? "" : "Hello, \(viewModel.userName)")
+            .onDisappear {
+                //            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                isShowingDetail = true
+                //            }
+            }
+            .onAppear {
+                isShowingDetail = false
+            }
         }
     }
 }

@@ -48,20 +48,9 @@ struct ShoppingListReviewView: View {
             }
             
             VStack(spacing: 16) {
-                Button {
+                PrimaryButton(title: "Confirm Selection") {
                     viewModel.onConfirm()
                     onConfirm()
-                } label: {
-                    Text("Confirm Selection")
-                        .foregroundColor(Color.white)
-                        .padding()
-                        .cornerRadius(16)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(Color.accentColor)
-                        )
                 }
                 
                 Button("Make Changes") {

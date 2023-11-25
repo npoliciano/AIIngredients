@@ -85,29 +85,12 @@ struct BuildYourMealView: View {
                 
                 Spacer()
                 
-                Button {
+                PrimaryButton(
+                    title: "Generate",
+                    isLoading: viewModel.isLoading
+                ) {
                     viewModel.onTap()
-                } label: {
-                    Group {
-                        if viewModel.isLoading {
-                            ProgressView()
-                                .tint(.white)
-                                .progressViewStyle(.circular)
-                        } else {
-                            Text("Generate")
-                                .foregroundColor(Color.white)
-                                .padding()
-                                .cornerRadius(16)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.accentColor)
-                    )
                 }
-                
             }
             .disabled(viewModel.isLoading)
             .padding(.horizontal)

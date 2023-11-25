@@ -12,30 +12,21 @@ struct EmptyListView: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            
             Image(systemName: "cart.badge.plus")
                 .font(.system(size: 60))
-                .padding()
+                .foregroundStyle(.tertiary)
             
             Text("Your list is currently empty, but don't worry, start adding new meals now to make the most of our app!")
+                .foregroundStyle(.secondary)
                 .padding(.horizontal, 30)
+                .multilineTextAlignment(.center)
+                .padding(.bottom)
             
-            Button {
+            PrimaryButton(title: "Start Adding") {
                 onTap()
-            } label: {
-                Text("Add")
-                    .font(.headline)
-                    .bold()
-                    .foregroundColor(Color.white)
-                    .frame(width: 100)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(16)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.white, lineWidth: 2))
             }
         }
+        .padding(30)
     }
 }
 
