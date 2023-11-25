@@ -11,7 +11,10 @@ struct DetailView: View {
     @StateObject var viewModel: DetailViewModel
     @FocusState var focused: Bool
     
+    @State private var isDeleting = false
+    
     @Environment(\.editMode) private var editMode
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         List {
@@ -40,6 +43,11 @@ struct DetailView: View {
         .listStyle(.plain)
         .navigationTitle("Meal Details")
         .toolbar {
+            Button {
+                isDeleting = true
+            } label: {
+                Image(systemName: "trash")
+            }
             EditButton()
         }
         .onChange(of: editMode?.wrappedValue.isEditing) { isEditing in
@@ -47,6 +55,16 @@ struct DetailView: View {
                 viewModel.updateList()
             }
         }
+        .alert("Confirm Deletion", isPresented: $isDeleting) {
+            Button("Cancel", role: .cancel, action: {})
+            Button("Delete", role: .destructive) {
+                viewModel.delete()
+                dismiss()
+            }
+        } message: {
+            Text("Are you sure you want to delete \(viewModel.list.name)? This action cannot be undone.")
+        }
+
     }
 }
 

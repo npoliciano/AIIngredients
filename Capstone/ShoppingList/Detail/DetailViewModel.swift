@@ -32,5 +32,16 @@ final class DetailViewModel: ObservableObject {
             object: nil
         )
     }
+    
+    func delete() {
+        var allLists = userDefaults.shoppingLists
+        allLists.removeAll { $0.id == list.id }
+        
+        userDefaults.shoppingLists = allLists
+        NotificationCenter.default.post(
+            name: .onUpdateShoppingList,
+            object: nil
+        )
+    }
 }
    
