@@ -37,12 +37,21 @@ final class DetailViewModel: ObservableObject {
     
     private let userDefaults: UserDefaults
     
+    @Published var isErrorPresented = false
+    
     init(meal: Meal, userDefaults: UserDefaults = .standard) {
         self.meal = meal
         self.userDefaults = userDefaults
     }
     
     func updateList() {
+        guard !meal.name.isEmpty, meal.ingredients.allSatisfy({
+            !$0.name.isEmpty && !$0.quantity.isEmpty
+        }) else {
+            isErrorPresented = true
+            return
+        }
+        
         var allMeals = userDefaults.shoppingLists
         
         guard let index = allMeals.firstIndex(where: { $0.id == meal.id }) else {

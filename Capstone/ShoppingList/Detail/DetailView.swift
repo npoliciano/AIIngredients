@@ -13,7 +13,7 @@ struct DetailView: View {
     
     @State private var isDeleting = false
     
-    @Environment(\.editMode) private var editMode
+    @State var editMode = EditMode.inactive
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -48,13 +48,23 @@ struct DetailView: View {
             } label: {
                 Image(systemName: "trash")
             }
-            EditButton()
-        }
-        .onChange(of: editMode?.wrappedValue.isEditing) { isEditing in
-            if isEditing == false {
-                viewModel.updateList()
+            Button {
+                if editMode == .active {
+                    viewModel.updateList()
+                }
+                
+                if !viewModel.isErrorPresented {
+                    editMode = editMode == .active ? .inactive : .active
+                }
+            } label: {
+                if editMode == .active {
+                    Text("Done")
+                } else {
+                    Image(systemName: "pencil")
+                }
             }
         }
+        .environment(\.editMode, $editMode)
         .alert("Confirm Deletion", isPresented: $isDeleting) {
             Button("Cancel", role: .cancel, action: {})
             Button("Delete", role: .destructive) {
@@ -64,7 +74,11 @@ struct DetailView: View {
         } message: {
             Text("Are you sure you want to delete \(viewModel.meal.name)? This action cannot be undone.")
         }
-
+        .alert("Error", isPresented: $viewModel.isErrorPresented) {
+            Button("Got it", role: .cancel, action: {})
+        } message: {
+            Text("No field can be left empty. Please enter a value or delete.")
+        }
     }
 }
 
