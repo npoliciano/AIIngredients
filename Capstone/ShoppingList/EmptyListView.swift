@@ -17,7 +17,7 @@ struct EmptyListView: View {
                 .font(.system(size: 60))
                 .padding()
             
-            Text("Your list is currently empty, but don't worry, start adding new items now to make the most of our app!")
+            Text("Your list is currently empty, but don't worry, start adding new meals now to make the most of our app!")
                 .padding(.horizontal, 30)
             
             Button {

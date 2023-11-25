@@ -8,19 +8,19 @@
 import Foundation
 
 final class ShoppingListReviewViewModel: ObservableObject {
-    private let list: GeneratedList
+    private let meal: Meal
     private let userDefaults: UserDefaults
     
     var name: String {
-        list.name
+        meal.name
     }
     
-    var items: [Item] {
-        list.items
+    var ingredients: [Ingredient] {
+        meal.ingredients
     }
     
-    init(list: GeneratedList, userDefaults: UserDefaults = .standard) {
-        self.list = list
+    init(meal: Meal, userDefaults: UserDefaults = .standard) {
+        self.meal = meal
         self.userDefaults = userDefaults
     }
     
@@ -29,9 +29,9 @@ final class ShoppingListReviewViewModel: ObservableObject {
     }
     
     private func saveList() {
-        var allLists = userDefaults.shoppingLists
-        allLists.append(list)
-        userDefaults.shoppingLists = allLists
+        var allMeals = userDefaults.shoppingLists
+        allMeals.append(meal)
+        userDefaults.shoppingLists = allMeals
         
         NotificationCenter.default.post(
             name: .onUpdateShoppingList,

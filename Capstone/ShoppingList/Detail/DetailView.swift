@@ -19,22 +19,22 @@ struct DetailView: View {
     var body: some View {
         List {
             Section("Meal name") {
-                EditableMealName(name: $viewModel.list.name)
+                EditableMealName(name: $viewModel.meal.name)
                     .focused($focused)
                     .listRowSeparator(.hidden)
             }
             
             Section("Ingredients") {
-                ForEach($viewModel.list.items) { $item in
-                    EditableSelectableIngredientView(item: $item)
+                ForEach($viewModel.meal.ingredients) { $ingredient in
+                    EditableSelectableIngredientView(ingredient: $ingredient)
                         .padding(.vertical, 4)
                         .listRowSeparator(.hidden)
                 }
                 .onDelete { indexSet in
-                    viewModel.list.items.remove(atOffsets: indexSet)
+                    viewModel.meal.ingredients.remove(atOffsets: indexSet)
                 }
                 .onMove { indexSet, index in
-                    viewModel.list.items.move(fromOffsets: indexSet, toOffset: index)
+                    viewModel.meal.ingredients.move(fromOffsets: indexSet, toOffset: index)
                 }
             }
             .padding(.bottom, 4)
@@ -62,7 +62,7 @@ struct DetailView: View {
                 dismiss()
             }
         } message: {
-            Text("Are you sure you want to delete \(viewModel.list.name)? This action cannot be undone.")
+            Text("Are you sure you want to delete \(viewModel.meal.name)? This action cannot be undone.")
         }
 
     }
@@ -86,7 +86,7 @@ struct EditableMealName: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            DetailView(viewModel: DetailViewModel(list: GeneratedList(name: "some name", items: [Item(name: "some item", quantity: "some quantity")])))
+            DetailView(viewModel: DetailViewModel(meal: Meal(name: "some name", ingredients: [Ingredient(name: "some ingredient", quantity: "some quantity")])))
         }
     }
 }

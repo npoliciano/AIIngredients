@@ -8,7 +8,7 @@
 import Foundation
 
 final class ShoppingListViewModel: ObservableObject {
-    @Published var shoppingLists: [GeneratedList] = []
+    @Published var shoppingLists: [Meal] = []
     var userName: String
     private let userDefaults: UserDefaults
     

@@ -33,31 +33,29 @@ struct ShoppingListView: View {
                         .pickerStyle(.segmented)
                         .padding()
                         
-                        List(viewModel.shoppingLists) { list in
+                        List(viewModel.shoppingLists) { meal in
                             Section {
-                                ForEach(Array(list.items.enumerated()), id: \.offset) { index, item in
+                                ForEach(Array(meal.ingredients.enumerated()), id: \.offset) { index, ingredient in
                                     if index < 3 || isExpanded {
-                                        HStack {
-                                            SelectableIngredientView(
-                                                name: item.name,
-                                                quantity: item.quantity
-                                            )
-                                        }
+                                        SelectableIngredientView(
+                                            name: ingredient.name,
+                                            quantity: ingredient.quantity
+                                        )
                                         .padding(.vertical, 4)
                                         .padding(.bottom, 4)
                                     }
                                 }
                                 
-                                if list.items.count > 3, !isExpanded {
+                                if meal.ingredients.count > 3, !isExpanded {
                                     VStack(alignment: .leading) {
                                         Divider()
                                         Button {
-                                            path.append(ShoppingListDestination.detail(list))
+                                            path.append(ShoppingListDestination.detail(meal))
                                         } label: {
                                             HStack(spacing: 4) {
                                                 Text("See all")
                                                     .font(.callout)
-                                                    
+                                                
                                                 Image(systemName: "chevron.right")
                                                     .imageScale(.small)
                                             }
@@ -69,7 +67,7 @@ struct ShoppingListView: View {
                                     .padding(.bottom, 9)
                                 }
                             } header: {
-                                Text(list.name)
+                                Text(meal.name)
                                     .font(.headline)
                                     .foregroundStyle(.primary)
                             }
@@ -92,8 +90,8 @@ struct ShoppingListView: View {
                     switch destination {
                     case .buildYourMeal:
                         BuildYourMealView()
-                    case .detail(let list):
-                        DetailView(viewModel: DetailViewModel(list: list))
+                    case .detail(let meal):
+                        DetailView(viewModel: DetailViewModel(meal: meal))
                     }
                 }
                 .toolbar(.hidden, for: .tabBar)
@@ -105,7 +103,7 @@ struct ShoppingListView: View {
 
 enum ShoppingListDestination: Hashable {
     case buildYourMeal
-    case detail(GeneratedList)
+    case detail(Meal)
 }
 
 struct ShoppingListView_Previews: PreviewProvider {

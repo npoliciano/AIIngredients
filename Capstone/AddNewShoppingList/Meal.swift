@@ -7,26 +7,25 @@
 
 import Foundation
 
-struct GeneratedList: Codable, Identifiable, Hashable, Equatable {
+struct Meal: Codable, Identifiable, Hashable, Equatable {
     let id: UUID
     var name: String
-    var items: [Item]
-    var isSelected: Bool = false
+    var ingredients: [Ingredient]
     
-    init(id: UUID = UUID(), name: String, items: [Item]) {
+    init(id: UUID = UUID(), name: String, ingredients: [Ingredient]) {
         self.id = id
         self.name = name
-        self.items = items
+        self.ingredients = ingredients
     }
     
     enum CodingKeys: String, CodingKey {
         case id
         case name = "mealName"
-        case items
+        case ingredients
     }
 }
 
-struct Item: Codable, Identifiable, Hashable, Equatable {
+struct Ingredient: Codable, Identifiable, Hashable, Equatable {
     let id: UUID
     var name: String
     var quantity: String

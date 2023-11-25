@@ -46,10 +46,10 @@ extension UserDefaults {
     }
     
     
-    var shoppingLists: [GeneratedList] {
+    var shoppingLists: [Meal] {
         get {
             if let data = self.data(forKey: "shoppingLists") {
-                return (try? JSONDecoder().decode([GeneratedList].self, from: data)) ?? []
+                return (try? JSONDecoder().decode([Meal].self, from: data)) ?? []
             }
             return []
         }

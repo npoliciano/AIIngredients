@@ -51,7 +51,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
         let expectation = expectation(description: "wait for response")
         
         // Act
-        var receivedResult: Result<GeneratedList, Error>?
+        var receivedResult: Result<Meal, Error>?
         sut.generate(from: input) { result in
             receivedResult = result
             expectation.fulfill()
@@ -76,7 +76,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
         let expectation = expectation(description: "wait for response")
         
         // Act
-        var receivedResult: Result<GeneratedList, Error>?
+        var receivedResult: Result<Meal, Error>?
         sut.generate(from: input) { result in
             receivedResult = result
             expectation.fulfill()
@@ -102,7 +102,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
         let expectation = expectation(description: "wait for response")
         
         // Act
-        var receivedResult: Result<GeneratedList, Error>?
+        var receivedResult: Result<Meal, Error>?
         sut.generate(from: input) { result in
             receivedResult = result
             expectation.fulfill()
@@ -129,7 +129,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
         let expectation = expectation(description: "wait for response")
         
         // Act
-        var receivedResult: Result<GeneratedList, Error>?
+        var receivedResult: Result<Meal, Error>?
         sut.generate(from: input) { result in
             receivedResult = result
             expectation.fulfill()
@@ -144,7 +144,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
         }
     }
     
-    func testReturnsGeneratedListSuccessfuly() throws {
+    func testReturnsGeneratedMealSuccessfuly() throws {
         // Arrange
         let client = HTTPClientSpy()
         let sut = OpenAIListGenerator(httpClient: client)
@@ -154,7 +154,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
             "choices": [
                 {
                     "message": {
-                        "content": "{\\"id\\":\\"\(UUID().uuidString)\\",\\"mealName\\":\\"Some meal\\",\\"items\\": [{\\"id\\":\\"\(UUID().uuidString)\\",\\"name\\":\\"Some ingredient\\",\\"quantity\\":\\"4g\\"}]}"
+                        "content": "{\\"id\\":\\"\(UUID().uuidString)\\",\\"mealName\\":\\"Some meal\\",\\"ingredients\\": [{\\"id\\":\\"\(UUID().uuidString)\\",\\"name\\":\\"Some ingredient\\",\\"quantity\\":\\"4g\\"}]}"
                     }
                 }
             ]
@@ -165,7 +165,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
         let expectation = expectation(description: "wait for response")
         
         // Act
-        var receivedResult: Result<GeneratedList, Error>?
+        var receivedResult: Result<Meal, Error>?
         sut.generate(from: input) { result in
             receivedResult = result
             expectation.fulfill()
@@ -175,12 +175,12 @@ final class OpenAIListGeneratorTests: XCTestCase {
         wait(for: [expectation])
         
         XCTAssertTrue(client.postCalled)
-        let generatedList = try receivedResult?.get()
+        let generatedMeal = try receivedResult?.get()
         
-        XCTAssertEqual(generatedList?.name, "Some meal")
-        XCTAssertEqual(generatedList?.items[0].name, "Some ingredient")
-        XCTAssertEqual(generatedList?.items[0].quantity, "4g")
-        XCTAssertEqual(generatedList?.items.count, 1)
+        XCTAssertEqual(generatedMeal?.name, "Some meal")
+        XCTAssertEqual(generatedMeal?.ingredients[0].name, "Some ingredient")
+        XCTAssertEqual(generatedMeal?.ingredients[0].quantity, "4g")
+        XCTAssertEqual(generatedMeal?.ingredients.count, 1)
     }
     
     // MARK: Helpers

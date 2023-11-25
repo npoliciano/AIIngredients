@@ -34,10 +34,10 @@ struct ShoppingListReviewView: View {
                         Divider()
                         
                         LazyVStack(spacing: 16) {
-                            ForEach(viewModel.items) { item in
+                            ForEach(viewModel.ingredients) { ingredient in
                                 IngredientView(
-                                    name: item.name,
-                                    quantity: item.quantity
+                                    name: ingredient.name,
+                                    quantity: ingredient.quantity
                                 )
                             }
                         }
@@ -76,25 +76,25 @@ struct ShoppingListReviewView: View {
 struct ShoppingListReviewView_Previews: PreviewProvider {
     static var previews: some View {
         ShoppingListReviewView(
-            viewModel: ShoppingListReviewViewModel(list: GeneratedList(
+            viewModel: ShoppingListReviewViewModel(meal: Meal(
                 name: "Ceasar Salad",
-                items: [
-                    Item(name: "Letuce", quantity: "as needed"),
-                    Item(name: "Cheese", quantity: "20 g"),
-                    Item(name: "Milk", quantity: "200 ml"),
-                    Item(name: "Ceasar Sauce", quantity: "30 g"),
-                    Item(name: "Letuce", quantity: "as needed"),
-                    Item(name: "Cheese", quantity: "20 g"),
-                    Item(name: "Milk", quantity: "200 ml"),
-                    Item(name: "Ceasar Sauce", quantity: "30 g"),
-                    Item(name: "Letuce", quantity: "as needed"),
-                    Item(name: "Cheese", quantity: "20 g"),
-                    Item(name: "Milk", quantity: "200 ml"),
-                    Item(name: "Ceasar Sauce", quantity: "30 g"),
-                    Item(name: "Letuce", quantity: "as needed"),
-                    Item(name: "Cheese", quantity: "20 g"),
-                    Item(name: "Milk", quantity: "200 ml"),
-                    Item(name: "Ceasar Sauce", quantity: "30 g")
+                ingredients: [
+                    Ingredient(name: "Letuce", quantity: "as needed"),
+                    Ingredient(name: "Cheese", quantity: "20 g"),
+                    Ingredient(name: "Milk", quantity: "200 ml"),
+                    Ingredient(name: "Ceasar Sauce", quantity: "30 g"),
+                    Ingredient(name: "Letuce", quantity: "as needed"),
+                    Ingredient(name: "Cheese", quantity: "20 g"),
+                    Ingredient(name: "Milk", quantity: "200 ml"),
+                    Ingredient(name: "Ceasar Sauce", quantity: "30 g"),
+                    Ingredient(name: "Letuce", quantity: "as needed"),
+                    Ingredient(name: "Cheese", quantity: "20 g"),
+                    Ingredient(name: "Milk", quantity: "200 ml"),
+                    Ingredient(name: "Ceasar Sauce", quantity: "30 g"),
+                    Ingredient(name: "Letuce", quantity: "as needed"),
+                    Ingredient(name: "Cheese", quantity: "20 g"),
+                    Ingredient(name: "Milk", quantity: "200 ml"),
+                    Ingredient(name: "Ceasar Sauce", quantity: "30 g")
                 ])
             ),
             onConfirm: {}

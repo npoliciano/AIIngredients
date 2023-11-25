@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct EditableSelectableIngredientView: View {
-    @Binding var item: Item
+    @Binding var ingredient: Ingredient
     @Environment(\.editMode) private var editMode
     
     var body: some View {
         VStack {
             if editMode?.wrappedValue.isEditing == true {
                 HStack {
-                    TextField("", text: $item.name)
+                    TextField("", text: $ingredient.name)
                         .font(.subheadline)
                     Spacer()
-                    TextField("", text: $item.quantity)
+                    TextField("", text: $ingredient.quantity)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.trailing)
                 }
             } else {
                 SelectableIngredientView(
-                    name: item.name,
-                    quantity: item.quantity
+                    name: ingredient.name,
+                    quantity: ingredient.quantity
                 )
                 .padding(.trailing, -0.5)
             }
@@ -37,7 +37,7 @@ struct EditableSelectableIngredientView: View {
 struct EditableSelectableIngredientView_Previews: PreviewProvider {
     static var previews: some View {
         EditableSelectableIngredientView(
-            item: .constant(Item(name: "Cheddar Cheese", quantity: "200g"))
+            ingredient: .constant(Ingredient(name: "Cheddar Cheese", quantity: "200g"))
         )
     }
 }

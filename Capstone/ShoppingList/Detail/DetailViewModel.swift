@@ -8,25 +8,25 @@
 import Foundation
 
 final class DetailViewModel: ObservableObject {
-    @Published var list: GeneratedList
+    @Published var meal: Meal
     
     private let userDefaults: UserDefaults
     
-    init(list: GeneratedList, userDefaults: UserDefaults = .standard) {
-        self.list = list
+    init(meal: Meal, userDefaults: UserDefaults = .standard) {
+        self.meal = meal
         self.userDefaults = userDefaults
     }
     
     func updateList() {
-        var allLists = userDefaults.shoppingLists
+        var allMeals = userDefaults.shoppingLists
         
-        guard let index = allLists.firstIndex(where: { $0.id == list.id }) else {
+        guard let index = allMeals.firstIndex(where: { $0.id == meal.id }) else {
             return
         }
         
-        allLists[index] = list
+        allMeals[index] = meal
         
-        userDefaults.shoppingLists = allLists
+        userDefaults.shoppingLists = allMeals
         NotificationCenter.default.post(
             name: .onUpdateShoppingList,
             object: nil
@@ -34,10 +34,10 @@ final class DetailViewModel: ObservableObject {
     }
     
     func delete() {
-        var allLists = userDefaults.shoppingLists
-        allLists.removeAll { $0.id == list.id }
+        var allMeals = userDefaults.shoppingLists
+        allMeals.removeAll { $0.id == meal.id }
         
-        userDefaults.shoppingLists = allLists
+        userDefaults.shoppingLists = allMeals
         NotificationCenter.default.post(
             name: .onUpdateShoppingList,
             object: nil

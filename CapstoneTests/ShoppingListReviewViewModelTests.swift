@@ -19,26 +19,26 @@ final class ShoppingListReviewViewModelTests: XCTestCase {
         defaults.removePersistentDomain(forName: #file)
     }
     
-    func testInitDoesNotSaveTheList() {
+    func testInitDoesNotSaveTheMeal() {
         defaults.shoppingLists = []
-        let item = Item.fixture()
+        let ingredient = Ingredient.fixture()
         let sut = ShoppingListReviewViewModel(
-            list: GeneratedList.fixture(name: "some name", items: [item]),
+            meal: Meal.fixture(name: "some name", ingredients: [ingredient]),
             userDefaults: defaults
         )
         
         XCTAssertTrue(defaults.shoppingLists.isEmpty)
         XCTAssertEqual(sut.name, "some name")
-        XCTAssertEqual(sut.items, [item])
+        XCTAssertEqual(sut.ingredients, [ingredient])
     }
     
-    func testAppendNewListOnConfirm() {
-        let existingList = GeneratedList.fixture()
-        defaults.shoppingLists = [existingList]
-        let newList = GeneratedList.fixture()
+    func testAppendNewMealOnConfirm() {
+        let existingMeal = Meal.fixture()
+        defaults.shoppingLists = [existingMeal]
+        let newMeal = Meal.fixture()
         
         let sut = ShoppingListReviewViewModel(
-            list: newList,
+            meal: newMeal,
             userDefaults: defaults
         )
         expectation(
@@ -51,6 +51,6 @@ final class ShoppingListReviewViewModelTests: XCTestCase {
         
         waitForExpectations(timeout: 1, handler: nil)
         
-        XCTAssertEqual(defaults.shoppingLists, [existingList, newList])
+        XCTAssertEqual(defaults.shoppingLists, [existingMeal, newMeal])
     }
 }

@@ -32,7 +32,7 @@ final class OpenAIListGenerator: ListGenerator {
     
     func generate(
         from input: ListGeneratorInput,
-        completion: @escaping (Result<GeneratedList, Error>) -> Void
+        completion: @escaping (Result<Meal, Error>) -> Void
     ) {
         let url = URL(string: "https://api.openai.com/v1/chat/completions")!
         
@@ -53,7 +53,7 @@ final class OpenAIListGenerator: ListGenerator {
                     throw AppError.server
                 }
                 
-                let generatedList = try decoder.decode(GeneratedList.self, from: Data(content))
+                let generatedList = try decoder.decode(Meal.self, from: Data(content))
                 
                 await MainActor.run {
                     completion(.success(generatedList))

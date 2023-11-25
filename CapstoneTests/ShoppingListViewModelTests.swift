@@ -23,7 +23,7 @@ final class ShoppingListViewModelTests: XCTestCase {
     
     func testInitWithValidData() {
         defaults.userName = "some user name"
-        let existingList = GeneratedList.fixture()
+        let existingList = Meal.fixture()
         defaults.shoppingLists = [existingList]
         
         let sut = ShoppingListViewModel(userDefaults: defaults)
@@ -37,20 +37,20 @@ final class ShoppingListViewModelTests: XCTestCase {
         
         XCTAssertEqual(sut.shoppingLists, [])
         
-        let newList1 = GeneratedList.fixture()
-        simulateUpdateShoppingList(newList1)
+        let newMeal1 = Meal.fixture()
+        simulateUpdateShoppingList(newMeal1)
         
-        XCTAssertEqual(sut.shoppingLists, [newList1])
+        XCTAssertEqual(sut.shoppingLists, [newMeal1])
         
-        let newList2 = GeneratedList.fixture()
+        let newMeal2 = Meal.fixture()
         
-        simulateUpdateShoppingList(newList2)
+        simulateUpdateShoppingList(newMeal2)
         
-        XCTAssertEqual(sut.shoppingLists, [newList2, newList1])
+        XCTAssertEqual(sut.shoppingLists, [newMeal2, newMeal1])
     }
     
-    private func simulateUpdateShoppingList(_ list: GeneratedList) {
-        defaults.shoppingLists.append(list)
+    private func simulateUpdateShoppingList(_ meal: Meal) {
+        defaults.shoppingLists.append(meal)
         NotificationCenter.default.post(
             name: .onUpdateShoppingList,
             object: nil

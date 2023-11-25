@@ -19,13 +19,14 @@ final class BuildYourMealViewModelTests: XCTestCase {
         let preSelectedPortionType = Measurements.g
         
         // Assert
-        XCTAssertEqual(sut.meal, "")
+        XCTAssertEqual(sut.mealName, "")
         XCTAssertEqual(sut.portion, "")
         XCTAssertEqual(sut.selectedPortionType, preSelectedPortionType)
         XCTAssertEqual(sut.quantity, 1)
         XCTAssertEqual(sut.quantityRange, 1 ... Int.max)
         XCTAssertFalse(sut.isLoading)
         XCTAssertNil(sut.alertError)
+        XCTAssertNil(sut.meal)
         
         XCTAssertFalse(generator.generateCalled)
         
@@ -40,11 +41,11 @@ final class BuildYourMealViewModelTests: XCTestCase {
         ])
     }
     
-    func testShowErrorWhenThereIsNoMealAndPortion() {
+    func testShowErrorWhenThereIsNoMealNameAndPortion() {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
-        sut.meal = ""
+        sut.mealName = ""
         sut.portion = ""
         
         // Act
@@ -59,11 +60,11 @@ final class BuildYourMealViewModelTests: XCTestCase {
         ))
     }
     
-    func testShowErrorWhenThereIsNoMeal() {
+    func testShowErrorWhenThereIsNoMealName() {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
-        sut.meal = ""
+        sut.mealName = ""
         sut.portion = "Some portion"
         
         // Act
@@ -82,7 +83,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
-        sut.meal = "Some meal"
+        sut.mealName = "Some meal"
         sut.portion = ""
         
         // Act
@@ -101,7 +102,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
-        sut.meal = "Some meal"
+        sut.mealName = "Some meal"
         sut.portion = "Some portion"
         sut.quantity = 3
         sut.selectedPortionType = Measurements.kg
@@ -126,7 +127,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
-        sut.meal = "Some meal"
+        sut.mealName = "Some meal"
         sut.portion = "Some portion"
         
         // Act
@@ -150,7 +151,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
-        sut.meal = "Some meal"
+        sut.mealName = "Some meal"
         sut.portion = "Some portion"
         let specificErrorMessage = AppError.network
         
@@ -175,7 +176,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
-        sut.meal = "Some meal"
+        sut.mealName = "Some meal"
         sut.portion = "Some portion"
         let specificErrorMessage = AppError.server
         
@@ -196,13 +197,13 @@ final class BuildYourMealViewModelTests: XCTestCase {
         ))
     }
     
-    func testReceiveItemListWhenGenerateSuccessfully() {
+    func testReceiveNewMealWhenGeneratesSuccessfully() {
         // Arrange
         let generator = ListGeneratorSpy()
         let sut = BuildYourMealViewModel(generator: generator)
-        sut.meal = "Some meal"
+        sut.mealName = "Some meal"
         sut.portion = "Some portion"
-        let expectedList = GeneratedList(name: "Generated Meal", items: [])
+        let expectedMeal = Meal(name: "Generated Meal", ingredients: [])
 
         
         // Act
@@ -212,11 +213,11 @@ final class BuildYourMealViewModelTests: XCTestCase {
         XCTAssertTrue(sut.isLoading)
         
         // Act: Simulate async list generation completion with success
-        generator.completion?(.success(expectedList))
+        generator.completion?(.success(expectedMeal))
         
         // Assert
         XCTAssertFalse(sut.isLoading)
-        XCTAssertEqual(sut.generatedList, expectedList)
+        XCTAssertEqual(sut.meal, expectedMeal)
     }
 }
 
@@ -226,11 +227,11 @@ final class ListGeneratorSpy: ListGenerator {
     var generateCalled = false
     var receivedInput: ListGeneratorInput?
     
-    var completion: ((Result<GeneratedList, Error>) -> Void)?
+    var completion: ((Result<Meal, Error>) -> Void)?
     
     func generate(
         from input: ListGeneratorInput,
-        completion: @escaping (Result<GeneratedList, Error>) -> Void
+        completion: @escaping (Result<Meal, Error>) -> Void
     ) {
         generateCalled = true
         receivedInput = input

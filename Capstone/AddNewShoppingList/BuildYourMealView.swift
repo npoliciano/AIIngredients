@@ -56,7 +56,7 @@ struct BuildYourMealView: View {
                         Text("Meal")
                             .font(.footnote)
                             .fontWeight(.medium)
-                        TextField("E.g. greek salad, fried rice...", text: $viewModel.meal)
+                        TextField("E.g. greek salad, fried rice...", text: $viewModel.mealName)
                     }
                     
                     VStack(alignment: .leading) {
@@ -114,9 +114,9 @@ struct BuildYourMealView: View {
             .padding(.vertical, 16)
         }
         .ignoresSafeArea(.all)
-        .sheet(item: $viewModel.generatedList) { list in
+        .sheet(item: $viewModel.meal) { meal in
             ShoppingListReviewView(
-                viewModel: ShoppingListReviewViewModel(list: list),
+                viewModel: ShoppingListReviewViewModel(meal: meal),
                 onConfirm: {
                     dismiss()
                 }

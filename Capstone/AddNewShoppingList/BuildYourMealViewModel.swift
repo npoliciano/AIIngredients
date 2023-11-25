@@ -10,7 +10,7 @@ import Foundation
 protocol ListGenerator {
     func generate(
         from input: ListGeneratorInput,
-        completion: @escaping (Result<GeneratedList, Error>) -> Void
+        completion: @escaping (Result<Meal, Error>) -> Void
     )
 }
 
@@ -20,14 +20,14 @@ final class BuildYourMealViewModel: ObservableObject {
         let message: String
     }
     
-    @Published var meal = ""
+    @Published var mealName = ""
     @Published var portion = ""
     @Published var selectedPortionType = Measurements.g
     @Published var quantity = 1
     
     @Published var isLoading = false
     @Published var isErrorPresented = false
-    @Published var generatedList: GeneratedList?
+    @Published var meal: Meal?
     
     let quantityRange = 1 ... Int.max
     let measurements = Measurements.allCases
@@ -45,7 +45,7 @@ final class BuildYourMealViewModel: ObservableObject {
     }
     
     func onTap() {
-        switch (meal.isEmpty, portion.isEmpty) {
+        switch (mealName.isEmpty, portion.isEmpty) {
         case (true, true):
             alertError = AlertError(
                 title: "Required Fields Missing",
@@ -63,7 +63,7 @@ final class BuildYourMealViewModel: ObservableObject {
             )
         default:
             let input = ListGeneratorInput(
-                meal: meal,
+                meal: mealName,
                 portion: portion,
                 measurement: selectedPortionType,
                 quantity: quantity
@@ -75,12 +75,12 @@ final class BuildYourMealViewModel: ObservableObject {
     
     private func generate(from input: ListGeneratorInput) {
         isLoading = true
-        generatedList = nil
+        meal = nil
         
         generator.generate(from: input) { result in
             switch result {
             case .success(let list):
-                self.generatedList = list
+                self.meal = list
             case .failure(let error):
                 let message = (error as? AppError)?.message ?? "Something went wrong. Please, try again later."
                 
