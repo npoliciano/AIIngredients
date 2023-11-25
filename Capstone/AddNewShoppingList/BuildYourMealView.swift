@@ -52,12 +52,11 @@ struct BuildYourMealView: View {
                 Divider()
                 
                 VStack(spacing: 24) {
-                    VStack(alignment: .leading) {
-                        Text("Meal")
-                            .font(.footnote)
-                            .fontWeight(.medium)
-                        TextField("E.g. greek salad, fried rice...", text: $viewModel.mealName)
-                    }
+                    LabeledTextField(
+                        label: "Meal",
+                        placeholder: "E.g. greek salad, fried rice...",
+                        text: $viewModel.mealName
+                    )
                     
                     VStack(alignment: .leading) {
                         Text("Portion size")

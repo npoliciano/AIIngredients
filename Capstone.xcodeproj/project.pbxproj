@@ -57,6 +57,7 @@
 		A4D7C0E42B126B6C006BC2FB /* MealJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E32B126B6C006BC2FB /* MealJSON.swift */; };
 		A4D7C0E62B129790006BC2FB /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E52B129790006BC2FB /* PrimaryButton.swift */; };
 		A4D7C0E82B1299C1006BC2FB /* MealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E72B1299C1006BC2FB /* MealsView.swift */; };
+		A4D7C0EA2B12A77A006BC2FB /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0E92B12A77A006BC2FB /* LabeledTextField.swift */; };
 		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,7 @@
 		A4D7C0E32B126B6C006BC2FB /* MealJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealJSON.swift; sourceTree = "<group>"; };
 		A4D7C0E52B129790006BC2FB /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		A4D7C0E72B1299C1006BC2FB /* MealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsView.swift; sourceTree = "<group>"; };
+		A4D7C0E92B12A77A006BC2FB /* LabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextField.swift; sourceTree = "<group>"; };
 		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -369,6 +371,7 @@
 				A4D7C0DF2B11B0CC006BC2FB /* SelectableIngredientView.swift */,
 				A4D7C0E12B11B509006BC2FB /* EditableSelectableIngredientView.swift */,
 				A4D7C0E52B129790006BC2FB /* PrimaryButton.swift */,
+				A4D7C0E92B12A77A006BC2FB /* LabeledTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				A4D7C0E22B11B509006BC2FB /* EditableSelectableIngredientView.swift in Sources */,
 				A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */,
 				A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */,
+				A4D7C0EA2B12A77A006BC2FB /* LabeledTextField.swift in Sources */,
 				A45C14EC2B0EF2F7001F7529 /* DetailView.swift in Sources */,
 				A4D7C0E62B129790006BC2FB /* PrimaryButton.swift in Sources */,
 				A45C14D62B0D8F51001F7529 /* UserPreferencesViewModel.swift in Sources */,

@@ -12,32 +12,29 @@ struct UserNameView: View {
     let onTap: () -> Void
     
     var body: some View {
-        VStack {
-            Form {
-                Section {
-                    TextField("Name", text: $viewModel.userName)
-                } header: {
-                    Text("Name")
-                }
-            }
-            Button {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Who are you?")
+                .font(.title3)
+            
+            Text("We're excited to have you on board. Let's personalize your experience. Please enter your name below.")
+                .foregroundStyle(.secondary)
+
+            LabeledTextField(
+                label: "First name",
+                placeholder: "John Appleseed",
+                text: $viewModel.userName
+            )
+            .padding(.top)
+            
+            Spacer()
+            
+            PrimaryButton(title: "Next", onTap: {
                 viewModel.onTap()
                 onTap()
-            } label: {
-                Text("Next")
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .cornerRadius(16)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.accentColor)
-                    )
-            }
+            })
             .disabled(viewModel.userName.isEmpty)
-            .padding()
         }
+        .padding()
     }
 }
 
