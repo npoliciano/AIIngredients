@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct BuildYourMealView: View {
+    enum FocusedField {
+        case meal
+        case portion
+    }
+    
     @StateObject
     private var viewModel = BuildYourMealViewModel(
         generator: OpenAIListGenerator(
@@ -20,6 +25,8 @@ struct BuildYourMealView: View {
     
     @Environment(\.dismiss)
     private var dismiss
+    
+    @FocusState var focusedField: FocusedField?
     
     var headerHeight: CGFloat {
         verticalSizeClass == .regular ? 300 : 100
@@ -57,14 +64,17 @@ struct BuildYourMealView: View {
                         placeholder: "E.g. greek salad, fried rice...",
                         text: $viewModel.mealName
                     )
+                    .focused($focusedField, equals: .meal)
                     
                     VStack(alignment: .leading) {
                         Text("Portion size")
                             .font(.footnote)
                             .fontWeight(.medium)
+                        
                         HStack {
                             TextField("E.g. 3 units, 0.5 kg, 70 ml...", text: $viewModel.portion)
                                 .keyboardType(.decimalPad)
+                                .focused($focusedField, equals: .portion)
                             Picker("Unit", selection: $viewModel.selectedPortionType) {
                                 ForEach(viewModel.measurements, id: \.self) {
                                     Text($0.rawValue)
@@ -79,6 +89,28 @@ struct BuildYourMealView: View {
                             .fontWeight(.medium)
                         Stepper("\(viewModel.quantity)", value: $viewModel.quantity, in: viewModel.quantityRange)
                             .foregroundColor(.secondary)
+                    }
+                }
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        if focusedField == .meal {
+                            Button {
+                                focusedField = .portion
+                            } label: {
+                                Image(systemName: "chevron.right")
+                            }
+                        } else {
+                            Button {
+                                focusedField = .meal
+                            } label: {
+                                Image(systemName: "chevron.left")
+                            }
+                        }
+                        
+                        Spacer()
+                        Button("Done") {
+                            focusedField = nil
+                        }
                     }
                 }
                 
@@ -96,6 +128,7 @@ struct BuildYourMealView: View {
             .padding(.vertical, 16)
         }
         .ignoresSafeArea(.all)
+//        .keyboardResponsive()
         .sheet(item: $viewModel.meal) { meal in
             ShoppingListReviewView(
                 viewModel: ShoppingListReviewViewModel(meal: meal),
@@ -150,5 +183,32 @@ struct BuildYourMealView: View {
 struct BuildYourMealView_Previews: PreviewProvider {
     static var previews: some View {
         BuildYourMealView()
+    }
+}
+
+struct KeyboardResponsiveModifier: ViewModifier {
+    @State private var offset: CGFloat = 0
+    
+    func body(content: Content) -> some View {
+        content
+            .padding(.bottom, offset)
+            .onAppear {
+                NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notif in
+                    let value = notif.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+                    let height = value.height
+                    let bottomInset = UIApplication.shared.windows.first?.safeAreaInsets.bottom
+                    self.offset = height - (bottomInset ?? 0)
+                }
+                
+                NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { notif in
+                    self.offset = 0
+                }
+            }
+    }
+}
+
+extension View {
+    func keyboardResponsive() -> ModifiedContent<Self, KeyboardResponsiveModifier> {
+        return modifier(KeyboardResponsiveModifier())
     }
 }
