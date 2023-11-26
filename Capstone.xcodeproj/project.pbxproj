@@ -61,6 +61,7 @@
 		A4D7C0EC2B12AC92006BC2FB /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0EB2B12AC92006BC2FB /* HeaderView.swift */; };
 		A4D7C0EE2B138155006BC2FB /* OpenAI-API-Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4D7C0ED2B138155006BC2FB /* OpenAI-API-Key.plist */; };
 		A4D7C0F02B1381E9006BC2FB /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0EF2B1381E9006BC2FB /* Bundle+Extensions.swift */; };
+		A4D7C0F42B13892C006BC2FB /* DietaryPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0F32B13892C006BC2FB /* DietaryPreferencesView.swift */; };
 		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +141,7 @@
 		A4D7C0EB2B12AC92006BC2FB /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		A4D7C0ED2B138155006BC2FB /* OpenAI-API-Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenAI-API-Key.plist"; sourceTree = "<group>"; };
 		A4D7C0EF2B1381E9006BC2FB /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		A4D7C0F32B13892C006BC2FB /* DietaryPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietaryPreferencesView.swift; sourceTree = "<group>"; };
 		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -381,6 +383,7 @@
 				A4D7C0E52B129790006BC2FB /* PrimaryButton.swift */,
 				A4D7C0E92B12A77A006BC2FB /* LabeledTextField.swift */,
 				A4D7C0EB2B12AC92006BC2FB /* HeaderView.swift */,
+				A4D7C0F32B13892C006BC2FB /* DietaryPreferencesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				A45C14D42B0D51F3001F7529 /* ShoppingListViewModel.swift in Sources */,
 				A45C14CE2B0AC4DA001F7529 /* DietaryPreferences.swift in Sources */,
 				A45EA23B2B043ED30097B863 /* HomeView.swift in Sources */,
+				A4D7C0F42B13892C006BC2FB /* DietaryPreferencesView.swift in Sources */,
 				A45EA2412B0516210097B863 /* EmptyListView.swift in Sources */,
 				A49FC95D2B03C1E700A50F0E /* CapstoneApp.swift in Sources */,
 				A4D7C0F02B1381E9006BC2FB /* Bundle+Extensions.swift in Sources */,

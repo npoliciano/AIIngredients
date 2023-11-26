@@ -12,25 +12,23 @@ struct UserDetailView: View {
     let onStart: () -> Void
     
     var body: some View {
-        
-        VStack() {
-            Text(viewModel.userName)
-                .font(.largeTitle)
-                .padding()
-            
+        NavigationStack {
             Form {
-                Section("DietaryPreferences") {
-                    Toggle("Gluten", isOn: $viewModel.preferences.glutenFree)
-                    
-                    Toggle("Lactose", isOn: $viewModel.preferences.lactoseFree)
-                    
-                    Toggle("Sugar", isOn: $viewModel.preferences.sugarFree)
-                    
-                    Toggle("Vegan", isOn: $viewModel.preferences.vegan)
-                    
-                    Toggle("Vegeterian", isOn: $viewModel.preferences.vegetarian)
+                DietaryPreferencesView(title: "Dietary Preferences", preferences: $viewModel.preferences)
+                
+                Section {
+                    HStack {
+                        Text("App Version")
+                        Spacer()
+                        Text("v0.1")
+                            .foregroundColor(.secondary)
+                    }
+                } footer: {
+                    Text("Please note, our AI's results may not always be accurate or complete. We're constantly refining our technology, but urge caution, especially for dietary restrictions or allergies. Your feedback is crucial to our improvement.")
+                        .padding(.vertical)
                 }
             }
+            .navigationTitle("Nicolle")
         }
     }
 }

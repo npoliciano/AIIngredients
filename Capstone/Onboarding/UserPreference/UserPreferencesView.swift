@@ -24,15 +24,7 @@ struct UserPreferencesView: View {
                         .font(.headline)
                         .foregroundColor(.secondary)
                     
-                    Toggle("Gluten Free", isOn: $viewModel.preferences.glutenFree)
-                    
-                    Toggle("Lactose Free", isOn: $viewModel.preferences.lactoseFree)
-                    
-                    Toggle("Sugar Free", isOn: $viewModel.preferences.sugarFree)
-                    
-                    Toggle("Vegan", isOn: $viewModel.preferences.vegan)
-                    
-                    Toggle("Vegeterian", isOn: $viewModel.preferences.vegetarian)
+                    DietaryPreferencesView(preferences: $viewModel.preferences)
                 }
             }
             
