@@ -28,7 +28,7 @@ struct UserDetailView: View {
                         .padding(.vertical)
                 }
             }
-            .navigationTitle("Nicolle")
+            .navigationTitle($viewModel.userName)
         }
     }
 }
