@@ -92,3 +92,7 @@ iOSInjectionProject/
 .DS_Store
 
 CapstoneTests/**/*.plist
+
+# API Keys
+
+Capstone/OpenAI-API-Key.plist

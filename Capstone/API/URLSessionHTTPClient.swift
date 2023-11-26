@@ -15,7 +15,7 @@ final class URLSessionHTTPClient: HTTPClient {
     
     init(
         urlSession: URLSession = .shared,
-        authorizationKey: String = ""
+        authorizationKey: String = .openAIKey
     ) {
         self.urlSession = urlSession
         self.authorizationKey = authorizationKey
