@@ -14,39 +14,53 @@ struct FeaturesOnboardingPageView: View {
     let onStart: () -> Void
     
     var body: some View {
-        VStack(spacing: 58){
-            
+        VStack(spacing: 24) {
+            Spacer()
             Image(image)
                 .resizable()
                 .scaledToFit()
-                .padding()
+                .clipShape(Circle())
+                
+            Spacer()
             
-            Text(featureTitle)
-            
-            Text(featureDescription)
-                .padding()
-            
+            VStack(alignment: .leading, spacing: 16) {
+                Text(featureTitle)
+                    .font(.title)
+                    .offset(x: 0)
+                    .fontWeight(.heavy)
+                
+                Text(featureDescription)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .multilineTextAlignment(.leading)
+        }
+        .overlay(
             Button {
                 onStart()
             } label: {
                 Text("Start")
                     .font(.headline)
                     .bold()
-                    .foregroundColor(Color.white)
-                    .frame(width: 100)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(16)
+                    .frame(width: 90)
+                    .padding(8)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.white, lineWidth: 2))
-            }
-        }
+                        RoundedRectangle(cornerRadius: 24)
+                            .stroke(Color.accentColor, lineWidth: 2))
+            },
+            alignment: .topTrailing
+        )
+        .padding(24)
+        .padding(.bottom, 24)
     }
 }
 
 struct FeaturesOnboardingPageView_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturesOnboardingPageView(image: "Placeholder", featureTitle: "Feature A", featureDescription: "Enter your desired recipe, and watch as we provide you with a convenient weekly list of ingredients along with their quantities", onStart: {})
+        FeaturesOnboardingPageView(
+            image: "Placeholder",
+            featureTitle: "AI-Powered Ingredient Lists",
+            featureDescription: "Input any meal you're planning to shop for, and our AI will instantly generate a detailed ingredient list for you. Experience the ease and innovation in shopping for your meals!",
+            onStart: {}
+        )
     }
 }

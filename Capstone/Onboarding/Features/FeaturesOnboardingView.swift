@@ -10,13 +10,33 @@ import SwiftUI
 struct FeaturesOnboardingView: View {
     let onStart: () -> Void
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         TabView {
-            FeaturesOnboardingPageView(image: "Placeholder", featureTitle: "Feature A", featureDescription: "Enter your desired recipe, and watch as we provide you with a convenient weekly list of ingredients along with their quantities", onStart: onStart)
-            FeaturesOnboardingPageView(image: "Placeholder", featureTitle: "Feature B", featureDescription: "Enter your desired recipe, and watch as we provide you with a convenient weekly list of ingredients along with their quantities", onStart: onStart)
-            FeaturesOnboardingPageView(image: "Placeholder", featureTitle: "Feature C", featureDescription: "Enter your desired recipe, and watch as we provide you with a convenient wepath.append(Destination.userName)ekly list of ingredients along with their quantities", onStart: onStart)
+            FeaturesOnboardingPageView(
+                image: "Placeholder",
+                featureTitle: "AI-Powered Ingredient Lists",
+                featureDescription: "Input any meal you're planning to shop for, and our AI will instantly generate a detailed ingredient list for you. Experience the ease and innovation in shopping for your meals!",
+                onStart: onStart
+            )
+            
+            FeaturesOnboardingPageView(
+                image: "Placeholder",
+                featureTitle: "Manage Your Shopping List",
+                featureDescription: "Easily edit and organize your shopping list. Maintain total control and save time when shopping!",
+                onStart: onStart
+            )
+            
+            FeaturesOnboardingPageView(
+                image: "Placeholder",
+                featureTitle: "Personalized Dietary Preferences",
+                featureDescription: "Customize your meals. Choose preferences like gluten-free or vegan and enjoy ingredients tailored for you!",
+                onStart: onStart
+            )
         }
         .tabViewStyle(.page)
+        .indexViewStyle(.page(backgroundDisplayMode: colorScheme == .light ? .always : .interactive))
         .padding(.vertical, -20)
     }
 }
