@@ -10,10 +10,20 @@ import XCTest
 @testable import Capstone
 
 final class OpenAIListGeneratorTests: XCTestCase {
+    var defaults: UserDefaults!
+    
+    override func setUp() {
+        super.setUp()
+        
+        defaults = UserDefaults(suiteName: #file)
+        defaults.removePersistentDomain(forName: #file)
+        defaults.dietaryPreferences = preferences
+    }
+    
     func testInitDoesNotPerformAnyRequest() {
         // Arrange & Act
         let client = HTTPClientSpy()
-        _ = OpenAIListGenerator(httpClient: client)
+        _ = OpenAIListGenerator(httpClient: client, preferences: preferences)
         
         // Assert
         XCTAssertFalse(client.postCalled)
@@ -21,9 +31,8 @@ final class OpenAIListGeneratorTests: XCTestCase {
     
     func testProvidesValidURLAndBody() throws {
         // Arrange & Act
-        UserDefaults.standard.dietaryPreferences = preferences
         let client = HTTPClientSpy()
-        let sut = OpenAIListGenerator(httpClient: client)
+        let sut = OpenAIListGenerator(httpClient: client, preferences: preferences)
         
         // used because the Task completes after this test method returns
         let expectation = expectation(description: "wait for response")
@@ -38,13 +47,13 @@ final class OpenAIListGeneratorTests: XCTestCase {
         
         XCTAssertTrue(client.postCalled)
         XCTAssertEqual(client.urlReceived, URL(string: "https://api.openai.com/v1/chat/completions"))
-        XCTAssertEqual(client.bodyReceived, expectedBodyData)
+        XCTAssertEqual(client.bodyReceived?.jsonDict, expectedBodyData.jsonDict)
     }
     
     func testCompletesWithErrorWhenClientThrowsNetworkError() throws {
         // Arrange
         let client = HTTPClientSpy()
-        let sut = OpenAIListGenerator(httpClient: client)
+        let sut = OpenAIListGenerator(httpClient: client, preferences: preferences)
         client.errorToBeThrown = AppError.network
         
         // used because the Task completes after this test method returns
@@ -69,7 +78,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     func testCompletesWithErrorWhenClientThrowsServerError() throws {
         // Arrange
         let client = HTTPClientSpy()
-        let sut = OpenAIListGenerator(httpClient: client)
+        let sut = OpenAIListGenerator(httpClient: client, preferences: preferences)
         client.errorToBeThrown = AppError.server
         
         // used because the Task completes after this test method returns
@@ -94,7 +103,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     func testFailsToDecode() throws {
         // Arrange
         let client = HTTPClientSpy()
-        let sut = OpenAIListGenerator(httpClient: client)
+        let sut = OpenAIListGenerator(httpClient: client, preferences: preferences)
         let invalidData = Data()
         client.dataToBeReturned = invalidData
         
@@ -118,7 +127,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     func testFailsWhenThereIsNoChoice() throws {
         // Arrange
         let client = HTTPClientSpy()
-        let sut = OpenAIListGenerator(httpClient: client)
+        let sut = OpenAIListGenerator(httpClient: client, preferences: preferences)
         client.dataToBeReturned = Data("""
         {
             "choices": []
@@ -147,7 +156,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
     func testReturnsGeneratedMealSuccessfuly() throws {
         // Arrange
         let client = HTTPClientSpy()
-        let sut = OpenAIListGenerator(httpClient: client)
+        let sut = OpenAIListGenerator(httpClient: client, preferences: preferences)
         
         client.dataToBeReturned = Data("""
         {
@@ -219,5 +228,11 @@ final class HTTPClientSpy: HTTPClient {
         }
         
         return dataToBeReturned
+    }
+}
+
+extension Data {
+    var jsonDict: [String: String]? {
+        return try? JSONSerialization.jsonObject(with: self, options: []) as? [String: String]
     }
 }

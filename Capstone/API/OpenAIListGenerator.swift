@@ -10,18 +10,12 @@ import Foundation
 extension String: Error { }
 
 final class OpenAIListGenerator: ListGenerator {
-    private let userDefaultsKey = "dietaryPreferences"
     private let httpClient: HTTPClient
+    private let preferences: DietaryPreferences
     
-    init(httpClient: HTTPClient) {
+    init(httpClient: HTTPClient, preferences: DietaryPreferences? = UserDefaults.standard.dietaryPreferences) {
         self.httpClient = httpClient
-    }
-    
-    private func getPreferences() -> DietaryPreferences {
-        if let savedPreferences = UserDefaults.standard.dietaryPreferences {
-            return savedPreferences
-        }
-        return DietaryPreferences(
+        self.preferences = preferences ?? DietaryPreferences(
             glutenFree: false,
             lactoseFree: false,
             sugarFree: false,
@@ -37,7 +31,7 @@ final class OpenAIListGenerator: ListGenerator {
         let url = URL(string: "https://api.openai.com/v1/chat/completions")!
         
         let requestBody = OpenAIRequestBody(messages: [
-            .init(content: input.prompt(preferences: getPreferences()))
+            .init(content: input.prompt(preferences: preferences))
         ])
 
         Task {
@@ -70,18 +64,18 @@ final class OpenAIListGenerator: ListGenerator {
     }
 }
 
-struct OpenAIRequestBody: Encodable {
+struct OpenAIRequestBody: Codable, Equatable {
     let model = "gpt-3.5-turbo-1106"
     let responseFormat = ResponseFormat()
     let messages: [Message]
     
-    struct Message: Encodable {
-        let role = "assistant"
+    struct Message: Codable, Equatable {
+        var role = "assistant"
         let content: String
     }
     
-    struct ResponseFormat: Encodable {
-        let type = "json_object"
+    struct ResponseFormat: Codable, Equatable {
+        var type = "json_object"
     }
     
     enum CodingKeys: String, CodingKey {

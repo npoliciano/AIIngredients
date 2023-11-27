@@ -31,6 +31,8 @@ final class URLSessionHTTPClient: HTTPClient {
         ]
         do {
             let (data, response) = try await urlSession.data(for: urlRequest)
+//            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+//            print(json)
             
             guard let response = response as? HTTPURLResponse,
                   (200 ... 299).contains(response.statusCode)  else {
