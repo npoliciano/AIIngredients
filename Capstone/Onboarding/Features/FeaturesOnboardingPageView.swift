@@ -14,46 +14,69 @@ struct FeaturesOnboardingPageView<OnboardingImage: View>: View {
     @ViewBuilder let onboardingImage: () -> OnboardingImage
     let onStart: () -> Void
     
+    @Environment (\.verticalSizeClass) private var verticalSizeClass
+    
     var body: some View {
         VStack(spacing: 24) {
-            Spacer()
-            
-            onboardingImage()
-                .padding()
+            HStack {
+                Spacer()
                 
-            Spacer()
-            
-            VStack(alignment: .leading, spacing: 16) {
-                Text(featureTitle)
-                    .font(.title)
-                    .offset(x: 0)
-                    .fontWeight(.heavy)
-                
-                Text(featureDescription)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                Button {
+                    onStart()
+                } label: {
+                    Text("Start")
+                        .font(.headline)
+                        .bold()
+                        .frame(width: 90)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 24)
+                                .stroke(Color.accentColor, lineWidth: 2))
+                }
             }
-            .multilineTextAlignment(.leading)
-            .padding()
+            
+            if verticalSizeClass == .compact {
+                HStack(spacing: 24) {
+                    illustration
+                    textContent
+                }
+            } else {
+                VStack(spacing: 24) {
+                    illustration
+                    textContent
+                }
+            }
             
             Divider()
         }
-        .overlay(
-            Button {
-                onStart()
-            } label: {
-                Text("Start")
-                    .font(.headline)
-                    .bold()
-                    .frame(width: 90)
-                    .padding(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 24)
-                            .stroke(Color.accentColor, lineWidth: 2))
-            },
-            alignment: .topTrailing
-        )
         .padding(24)
         .padding(.bottom, 24)
+    }
+    
+    private var illustration: some View {
+        VStack {
+//            Spacer()
+            
+            onboardingImage()
+                .padding()
+            
+//            Spacer()
+        }
+    }
+    
+    private var textContent: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text(featureTitle)
+                .font(.title)
+                .fontWeight(.heavy)
+                .lineLimit(3)
+            
+            Text(featureDescription)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .multilineTextAlignment(.leading)
+        .padding()
+
     }
 }
 

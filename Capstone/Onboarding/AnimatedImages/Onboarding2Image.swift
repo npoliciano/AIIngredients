@@ -10,7 +10,6 @@ import SwiftUI
 struct Onboarding2Image: View {
     @State private var isRotating = -10.0
     @State var size: CGSize = .zero
-    @Environment(\.verticalSizeClass) var verticalSizeClass
     
     var body: some View {
         Image(.onboarding21)
@@ -25,18 +24,13 @@ struct Onboarding2Image: View {
                 }
             )
             .overlay(
-                Group {
-                    if verticalSizeClass != .compact {
-                        Image(.onboarding22)
-                            .resizable()
-                            .scaledToFit()
-                            .rotationEffect(.degrees(isRotating))
-                            .frame(width: size.width/2.5, height: size.height/2.5)
-                            .offset(y: -size.height/8)
-                    } else {
-                        EmptyView()
-                    }
-                }
+                Image(.onboarding22)
+                    .resizable()
+                    .scaledToFit()
+                    .rotationEffect(.degrees(isRotating))
+                    .frame(width: size.width, height: size.height/2.5)
+                    .offset(x: size.width/3.5, y: -size.height/12)
+                    .shadow(radius: 5)
                 , alignment: .topLeading
             )
             .onAppear {

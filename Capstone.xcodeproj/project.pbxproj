@@ -286,9 +286,9 @@
 				A45C14EA2B0EF2C6001F7529 /* Detail */,
 				A45EA22E2B03E8840097B863 /* ShoppingListView.swift */,
 				A45C14D32B0D51F3001F7529 /* ShoppingListViewModel.swift */,
-				A44EC5612B03C527007CCB5B /* ImageButton.swift */,
 				A45EA2402B0516210097B863 /* EmptyListView.swift */,
 				A4D7C0E72B1299C1006BC2FB /* MealsView.swift */,
+				A44EC5612B03C527007CCB5B /* ImageButton.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";

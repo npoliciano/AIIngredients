@@ -11,7 +11,7 @@ struct Onboarding3Image: View {
     @State var isAnimating = false
     
     var repeatingAnimation: Animation {
-        Animation.linear(duration: 1).delay(2).repeatForever()
+        Animation.easeInOut(duration: 0.5).delay(1.5).repeatForever()
     }
     
     var body: some View {

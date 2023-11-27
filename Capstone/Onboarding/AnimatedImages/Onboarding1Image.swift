@@ -26,6 +26,7 @@ struct Onboarding1Image: View {
                 .scaleEffect(isAnimating ? 1.05: 1)
                 .opacity(isAnimating ? 1 : 0.9)
                 .animation(repeatingAnimation, value: isAnimating)
+                .shadow(radius: 5)
         }
         .onAppear {
             self.isAnimating = true
