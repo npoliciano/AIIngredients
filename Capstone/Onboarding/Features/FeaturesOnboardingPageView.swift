@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct FeaturesOnboardingPageView: View {
+struct FeaturesOnboardingPageView<OnboardingImage: View>: View {
     let image: String
     let featureTitle: String
     let featureDescription: String
+    @ViewBuilder let onboardingImage: () -> OnboardingImage
     let onStart: () -> Void
     
     var body: some View {
         VStack(spacing: 24) {
             Spacer()
-            Image(image)
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
+            
+            onboardingImage()
+                .padding()
                 
             Spacer()
             
@@ -33,6 +33,9 @@ struct FeaturesOnboardingPageView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .multilineTextAlignment(.leading)
+            .padding()
+            
+            Divider()
         }
         .overlay(
             Button {
@@ -60,6 +63,9 @@ struct FeaturesOnboardingPageView_Previews: PreviewProvider {
             image: "Placeholder",
             featureTitle: "AI-Powered Ingredient Lists",
             featureDescription: "Input any meal you're planning to shop for, and our AI will instantly generate a detailed ingredient list for you. Experience the ease and innovation in shopping for your meals!",
+            onboardingImage: {
+                Onboarding1Image()
+            },
             onStart: {}
         )
     }
