@@ -35,9 +35,10 @@ final class DetailViewModel: ObservableObject {
         }
     }
     
-    private let userDefaults: UserDefaults
-    
     @Published var isErrorPresented = false
+    @Published var isEmptyIngredientsErrorPresented = false
+    
+    private let userDefaults: UserDefaults
     
     init(meal: Meal, userDefaults: UserDefaults = .standard) {
         self.meal = meal
@@ -68,6 +69,15 @@ final class DetailViewModel: ObservableObject {
         allMeals.removeAll { $0.id == meal.id }
         
         saveAndNotify(updatedList: allMeals)
+    }
+    
+    func delete(ingredient: Ingredient) {
+        if meal.ingredients.count > 1 {
+            meal.ingredients.removeAll { $0.id == ingredient.id }
+            return
+        }
+        
+        isEmptyIngredientsErrorPresented = true
     }
     
     private func saveAndNotify(updatedList: [Meal]) {

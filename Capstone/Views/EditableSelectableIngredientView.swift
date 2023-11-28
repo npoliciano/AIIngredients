@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct EditableSelectableIngredientView: View {
+    let isEditing: Bool
     @Binding var ingredient: Ingredient
-    @Environment(\.editMode) private var editMode
     
     var body: some View {
         VStack {
-            if editMode?.wrappedValue.isEditing == true {
+            if isEditing {
                 HStack {
                     TextField("", text: $ingredient.name)
                         .font(.subheadline)
@@ -34,6 +34,7 @@ struct EditableSelectableIngredientView: View {
 struct EditableSelectableIngredientView_Previews: PreviewProvider {
     static var previews: some View {
         EditableSelectableIngredientView(
+            isEditing: true,
             ingredient: .constant(Ingredient(name: "Cheddar Cheese", quantity: "200g"))
         )
     }

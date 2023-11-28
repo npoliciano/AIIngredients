@@ -12,8 +12,9 @@ struct DetailView: View {
     @FocusState var focused: Bool
     
     @State private var isDeleting = false
+    @State private var confirmDelete = false
     
-    @State var editMode = EditMode.inactive
+    @State var isEditing = false
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -26,15 +27,27 @@ struct DetailView: View {
             
             Section("Ingredients") {
                 ForEach($viewModel.meal.ingredients) { $ingredient in
-                    EditableSelectableIngredientView(ingredient: $ingredient)
+                    HStack {
+                        EditableSelectableIngredientView(
+                            isEditing: isEditing,
+                            ingredient: $ingredient
+                        )
                         .padding(.vertical, 4)
                         .listRowSeparator(.hidden)
-                }
-                .onDelete { indexSet in
-                    viewModel.meal.ingredients.remove(atOffsets: indexSet)
-                }
-                .onMove { indexSet, index in
-                    viewModel.meal.ingredients.move(fromOffsets: indexSet, toOffset: index)
+                        
+                        if isEditing {
+                            Button {
+                                withAnimation {
+                                    viewModel.delete(ingredient: ingredient)
+                                }
+                            } label: {
+                                Image(systemName: "minus.circle.fill")
+                                    .font(.title2)
+                                    .foregroundStyle(.red)
+                            }
+                            .padding(.leading, 24)
+                        }
+                    }
                 }
             }
             .padding(.bottom, 4)
@@ -48,23 +61,23 @@ struct DetailView: View {
             } label: {
                 Image(systemName: "trash")
             }
+            
             Button {
-                if editMode == .active {
+                if isEditing {
                     viewModel.updateList()
                 }
                 
                 if !viewModel.isErrorPresented {
-                    editMode = editMode == .active ? .inactive : .active
+                    isEditing.toggle()
                 }
             } label: {
-                if editMode == .active {
+                if isEditing {
                     Text("Done")
                 } else {
                     Image(systemName: "pencil")
                 }
             }
         }
-        .environment(\.editMode, $editMode)
         .alert("Confirm Deletion", isPresented: $isDeleting) {
             Button("Cancel", role: .cancel, action: {})
             Button("Delete", role: .destructive) {
@@ -78,6 +91,15 @@ struct DetailView: View {
             Button("Got it", role: .cancel, action: {})
         } message: {
             Text("No field can be left empty. Please enter a value or delete.")
+        }
+        .alert("Confirm Deletion", isPresented: $viewModel.isEmptyIngredientsErrorPresented) {
+            Button("Cancel", role: .cancel, action: {})
+            Button("Delete", role: .destructive) {
+                viewModel.delete()
+                dismiss()
+            }
+        } message: {
+            Text("You can not delete all ingredients. Would you like to delete the meal?")
         }
     }
 }
