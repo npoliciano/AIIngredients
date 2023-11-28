@@ -28,7 +28,9 @@ final class OpenAIListGenerator: ListGenerator {
     from input: ListGeneratorInput,
     completion: @escaping (Result<Meal, Error>) -> Void
   ) {
-    let url = URL(string: "https://api.openai.com/v1/chat/completions")!
+    guard let url = URL(string: "https://api.openai.com/v1/chat/completions") else {
+      return
+    }
 
     let requestBody = OpenAIRequestBody(messages: [
       .init(content: input.prompt(preferences: preferences))

@@ -10,6 +10,8 @@ import XCTest
 @testable import Capstone
 
 final class URLSessionHTTPClientTests: XCTestCase {
+  // Disabling implicitly_unwrapped_optional to be able to leverage the `setUp` method
+  // swiftlint:disable:next implicitly_unwrapped_optional
   var sut: URLSessionHTTPClient!
   let expectedAuthorizationKey = "some authorization"
 

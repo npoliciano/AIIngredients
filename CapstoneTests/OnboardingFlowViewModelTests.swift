@@ -11,14 +11,7 @@ import XCTest
 @testable import Capstone
 
 final class OnboardingFlowViewModelTests: XCTestCase {
-  var defaults: UserDefaults!
-
-  override func setUp() {
-    super.setUp()
-
-    defaults = UserDefaults(suiteName: #file)
-    defaults.removePersistentDomain(forName: #file)
-  }
+  let defaults = UserDefaults.testDefaults()
 
   func testInitsWithValidData() {
     defaults.onboardingStatus = .pendingName

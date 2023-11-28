@@ -10,15 +10,12 @@ import XCTest
 @testable import Capstone
 
 final class ShoppingListViewModelTests: XCTestCase {
-  var defaults: UserDefaults!
+  var defaults = UserDefaults.testDefaults()
 
   override func setUp() {
     super.setUp()
 
-    // Mocking User Defaults:
-    // - Reference: https://www.swiftbysundell.com/tips/avoiding-mocking-userdefaults/
-    defaults = UserDefaults(suiteName: #file)
-    defaults.removePersistentDomain(forName: #file)
+    defaults = UserDefaults.testDefaults()
   }
 
   func testInitWithValidData() {

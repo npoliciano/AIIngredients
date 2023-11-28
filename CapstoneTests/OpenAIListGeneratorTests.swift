@@ -10,14 +10,10 @@ import XCTest
 @testable import Capstone
 
 final class OpenAIListGeneratorTests: XCTestCase {
-  var defaults: UserDefaults!
-
-  override func setUp() {
-    super.setUp()
-
-    defaults = UserDefaults(suiteName: #file)
-    defaults.removePersistentDomain(forName: #file)
+  var defaults: UserDefaults {
+    let defaults = UserDefaults.testDefaults()
     defaults.dietaryPreferences = preferences
+    return defaults
   }
 
   func testInitDoesNotPerformAnyRequest() {
@@ -249,6 +245,9 @@ final class OpenAIListGeneratorTests: XCTestCase {
     let requestBody = OpenAIRequestBody(messages: [
       .init(content: input.prompt(preferences: preferences))
     ])
+
+    // Disabling force_try because it does not bring any risk on Test target
+    // swiftlint:disable:next force_try
     return try! JSONEncoder().encode(requestBody)
   }
 }
