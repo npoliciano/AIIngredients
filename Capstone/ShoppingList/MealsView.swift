@@ -52,9 +52,39 @@ struct MealsView: View {
                     Text(meal.name)
                         .font(.title3)
                         .fontWeight(.medium)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundStyle(allSelected(meal: meal) ? .secondary : .primary)
                         .strikethrough(allSelected(meal: meal))
+                    
+                    Spacer()
+                    ForEach(meal.categories, id: \.self) { category in
+                        switch category {
+                        case .proteins:
+                            Image(.meat)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 22, height: 22)
+                                .foregroundStyle(Color(.salmon))
+                        case .carbo:
+                            Image(systemName: "circle.hexagongrid")
+                                .foregroundStyle(Color(.maroon))
+
+                        case .veggies:
+                            Image(systemName: "carrot")
+                                .foregroundStyle(Color(.aspargus))
+
+                        case .dairy:
+                            Image(.dairy)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20, height: 20)
+                                .foregroundStyle(Color(.sky))
+
+                        case .seasonings:
+                            Image(systemName: "loupe")
+                                .foregroundStyle(.brown)
+                        }
+                    }
+                    
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.secondary)
                 }
@@ -73,30 +103,50 @@ struct MealsView: View {
 
 struct MealsView_Previews: PreviewProvider {
     static let meals = [
-        Meal(name: "Chicken Pie", ingredients: [
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-        ]),
-        Meal(name: "Chicken Pie", ingredients: [
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-        ]),
-        Meal(name: "Chicken Pie", ingredients: [
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-            Ingredient(name: "Chicken Breast", quantity: "200g"),
-        ])
+        Meal(
+            name: "Chicken Pie",
+            categories: [.carbo, .proteins],
+            ingredients: [
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+            ]
+        ),
+        Meal(
+            name: "Chicken Pie",
+            categories: [.seasonings, .proteins, .veggies],
+            ingredients: [
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+            ]
+        ),
+        Meal(
+            name: "Chicken Pie",
+            categories: [.dairy],
+            ingredients: [
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+            ]
+        ),
+        Meal(
+            name: "Chicken Pie",
+            categories: [],
+            ingredients: [
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g"),
+            ]
+        )
     ]
     
     static var previews: some View {

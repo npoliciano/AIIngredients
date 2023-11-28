@@ -14,7 +14,7 @@ struct ShoppingListReviewView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Review Your Shopping List")
@@ -30,6 +30,15 @@ struct ShoppingListReviewView: View {
                         Label(viewModel.name, systemImage: "cart")
                             .fontWeight(.medium)
                             .foregroundStyle(.secondary)
+                        
+                        Divider()
+                        
+                        Text("MAY CONTAIN")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundStyle(.tertiary)
+                        
+                        CategoriesView(categories: viewModel.categories)
                         
                         Divider()
                         
@@ -67,6 +76,7 @@ struct ShoppingListReviewView_Previews: PreviewProvider {
         ShoppingListReviewView(
             viewModel: ShoppingListReviewViewModel(meal: Meal(
                 name: "Ceasar Salad",
+                categories: [.dairy, .proteins, .carbo, .seasonings, .veggies],
                 ingredients: [
                     Ingredient(name: "Letuce", quantity: "as needed"),
                     Ingredient(name: "Cheese", quantity: "20 g"),

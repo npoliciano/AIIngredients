@@ -163,7 +163,7 @@ final class OpenAIListGeneratorTests: XCTestCase {
             "choices": [
                 {
                     "message": {
-                        "content": "{\\"mealName\\":\\"Some meal\\",\\"ingredients\\": [{\\"name\\":\\"Some ingredient\\",\\"quantity\\":\\"4g\\"}]}"
+                        "content": "{\\"mealName\\":\\"Some meal\\",\\"categories\\":[\\"PROTEINS\\", \\"GRAINS_AND_CARBOHYDRATES\\"],\\"ingredients\\": [{\\"name\\":\\"Some ingredient\\",\\"quantity\\":\\"4g\\"}]}"
                     }
                 }
             ]
@@ -187,9 +187,48 @@ final class OpenAIListGeneratorTests: XCTestCase {
         let generatedMeal = try receivedResult?.get()
         
         XCTAssertEqual(generatedMeal?.name, "Some meal")
+        // Should have valid sorted categories
+        XCTAssertEqual(generatedMeal?.categories, [.proteins, .carbo])
         XCTAssertEqual(generatedMeal?.ingredients[0].name, "Some ingredient")
         XCTAssertEqual(generatedMeal?.ingredients[0].quantity, "4g")
         XCTAssertEqual(generatedMeal?.ingredients.count, 1)
+    }
+    
+    // Categories tests
+    
+    func testHandlesCategoriesProperly() throws {
+        // Arrange
+        let client = HTTPClientSpy()
+        let sut = OpenAIListGenerator(httpClient: client, preferences: preferences)
+        
+        client.dataToBeReturned = Data("""
+        {
+            "choices": [
+                {
+                    "message": {
+                        "content": "{\\"mealName\\":\\"Some meal\\",\\"categories\\":[\\"INVALID\\", \\"GRAINS_AND_CARBOHYDRATES\\", \\"PROTEINS\\", \\"SEASONINGS_AND_CONDIMENTS\\", \\"PROTEINS\\", \\"FRUITS_AND_VEGETABLES\\", \\"DAIRY_AND_ALTERNATIVES\\"],\\"ingredients\\": [{\\"name\\":\\"Some ingredient\\",\\"quantity\\":\\"4g\\"}]}"
+                    }
+                }
+            ]
+        }
+        """.utf8)
+        
+        // used because the Task completes after this test method returns
+        let expectation = expectation(description: "wait for response")
+        
+        // Act
+        var receivedResult: Result<Meal, Error>?
+        sut.generate(from: input) { result in
+            receivedResult = result
+            expectation.fulfill()
+        }
+        
+        // Assert
+        wait(for: [expectation])
+        
+        let generatedMeal = try receivedResult?.get()
+        // Should sort and eliminate repeated and unknown values
+        XCTAssertEqual(generatedMeal?.categories, [.proteins, .carbo, .veggies, .dairy, .seasonings])
     }
     
     // MARK: Helpers

@@ -203,7 +203,7 @@ final class BuildYourMealViewModelTests: XCTestCase {
         let sut = BuildYourMealViewModel(generator: generator)
         sut.mealName = "Some meal"
         sut.portion = "Some portion"
-        let expectedMeal = Meal(name: "Generated Meal", ingredients: [])
+        let expectedMeal = Meal.fixture(name: "Generated Meal", ingredients: [])
 
         
         // Act

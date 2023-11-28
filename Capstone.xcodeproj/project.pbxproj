@@ -69,6 +69,7 @@
 		A4D7C0F02B1381E9006BC2FB /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0EF2B1381E9006BC2FB /* Bundle+Extensions.swift */; };
 		A4D7C0F42B13892C006BC2FB /* DietaryPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7C0F32B13892C006BC2FB /* DietaryPreferencesView.swift */; };
 		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
+		A4F7414E2B15AC2000DC8FB7 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7414D2B15AC2000DC8FB7 /* CategoriesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 		A4D7C0EF2B1381E9006BC2FB /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		A4D7C0F32B13892C006BC2FB /* DietaryPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietaryPreferencesView.swift; sourceTree = "<group>"; };
 		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
+		A4F7414D2B15AC2000DC8FB7 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,6 +422,7 @@
 				A4D7C0E92B12A77A006BC2FB /* LabeledTextField.swift */,
 				A4D7C0EB2B12AC92006BC2FB /* HeaderView.swift */,
 				A4D7C0F32B13892C006BC2FB /* DietaryPreferencesView.swift */,
+				A4F7414D2B15AC2000DC8FB7 /* CategoriesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				A4D7C0DC2B11AE3D006BC2FB /* IngredientView.swift in Sources */,
 				A44EC5662B03CCC6007CCB5B /* UserNameView.swift in Sources */,
 				A4D7C0EC2B12AC92006BC2FB /* HeaderView.swift in Sources */,
+				A4F7414E2B15AC2000DC8FB7 /* CategoriesView.swift in Sources */,
 				A45C14D42B0D51F3001F7529 /* ShoppingListViewModel.swift in Sources */,
 				A45C14CE2B0AC4DA001F7529 /* DietaryPreferences.swift in Sources */,
 				A45EA23B2B043ED30097B863 /* HomeView.swift in Sources */,

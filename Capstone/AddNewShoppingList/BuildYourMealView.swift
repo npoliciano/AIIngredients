@@ -64,6 +64,8 @@ struct BuildYourMealView: View {
                         placeholder: "E.g. greek salad, fried rice...",
                         text: $viewModel.mealName
                     )
+                    .keyboardType(.alphabet)
+                    .disableAutocorrection(true)
                     .submitLabel(.next)
                     .focused($focusedField, equals: .meal)
                     

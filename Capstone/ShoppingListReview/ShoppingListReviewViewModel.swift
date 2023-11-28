@@ -19,6 +19,10 @@ final class ShoppingListReviewViewModel: ObservableObject {
         meal.ingredients
     }
     
+    var categories: [Category] {
+        meal.categories
+    }
+    
     init(meal: Meal, userDefaults: UserDefaults = .standard) {
         self.meal = meal
         self.userDefaults = userDefaults

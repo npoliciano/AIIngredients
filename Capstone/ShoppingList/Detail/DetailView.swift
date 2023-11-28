@@ -25,6 +25,11 @@ struct DetailView: View {
                     .listRowSeparator(.hidden)
             }
             
+            Section("May contain") {
+                CategoriesView(categories: viewModel.meal.categories)
+                    .listRowSeparator(.hidden)
+            }
+            
             Section("Ingredients") {
                 ForEach($viewModel.meal.ingredients) { $ingredient in
                     HStack {
@@ -124,6 +129,7 @@ struct DetailView_Previews: PreviewProvider {
         NavigationStack {
             DetailView(viewModel: DetailViewModel(meal: Meal(
                 name: "some name",
+                categories: [.dairy, .proteins],
                 ingredients: [
                     Ingredient(name: "some ingredient", quantity: "some quantity")
                 ]
