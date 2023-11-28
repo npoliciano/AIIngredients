@@ -13,14 +13,14 @@ final class OnboardingFlowViewModel: ObservableObject {
             userDefaults.onboardingStatus = onboardingStatus
         }
     }
-    
+
     private let userDefaults: UserDefaults
-    
+
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
         onboardingStatus = userDefaults.onboardingStatus
     }
-        
+
     func nextStep() {
         switch onboardingStatus {
         case .none:

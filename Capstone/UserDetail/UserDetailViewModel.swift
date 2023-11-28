@@ -14,11 +14,11 @@ final class UserDetailViewModel: ObservableObject {
             userDefaults.dietaryPreferences = preferences
         }
     }
-    
+
     @Published var userName: String
-    
+
     private let userDefaults: UserDefaults
-    
+
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
         self.preferences = userDefaults.dietaryPreferences ?? DietaryPreferences(

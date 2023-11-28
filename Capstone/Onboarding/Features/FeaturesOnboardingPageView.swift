@@ -13,14 +13,14 @@ struct FeaturesOnboardingPageView<OnboardingImage: View>: View {
     let featureDescription: String
     @ViewBuilder let onboardingImage: () -> OnboardingImage
     let onStart: () -> Void
-    
+
     @Environment (\.verticalSizeClass) private var verticalSizeClass
-    
+
     var body: some View {
         VStack(spacing: 24) {
             HStack {
                 Spacer()
-                
+
                 Button {
                     onStart()
                 } label: {
@@ -34,7 +34,7 @@ struct FeaturesOnboardingPageView<OnboardingImage: View>: View {
                                 .stroke(Color.accentColor, lineWidth: 2))
                 }
             }
-            
+
             if verticalSizeClass == .compact {
                 HStack(spacing: 24) {
                     illustration
@@ -46,37 +46,36 @@ struct FeaturesOnboardingPageView<OnboardingImage: View>: View {
                     textContent
                 }
             }
-            
+
             Divider()
         }
         .padding(24)
         .padding(.bottom, 24)
     }
-    
+
     private var illustration: some View {
         VStack {
 //            Spacer()
-            
+
             onboardingImage()
                 .padding()
-            
+
 //            Spacer()
         }
     }
-    
+
     private var textContent: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(featureTitle)
                 .font(.title)
                 .fontWeight(.heavy)
                 .lineLimit(3)
-            
+
             Text(featureDescription)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .multilineTextAlignment(.leading)
         .padding()
-
     }
 }
 

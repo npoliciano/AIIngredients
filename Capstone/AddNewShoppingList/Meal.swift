@@ -12,7 +12,7 @@ struct Meal: Codable, Identifiable, Hashable, Equatable {
     var name: String
     let categories: [Category]
     var ingredients: [Ingredient]
-    
+
     init(id: UUID = UUID(), name: String, categories: [Category], ingredients: [Ingredient]) {
         self.id = id
         self.name = name
@@ -34,7 +34,7 @@ struct Ingredient: Codable, Identifiable, Hashable, Equatable {
     var name: String
     var quantity: String
     var isSelected: Bool
-    
+
     init(id: UUID = UUID(), name: String, quantity: String, isSelected: Bool = false) {
         self.id = id
         self.name = name

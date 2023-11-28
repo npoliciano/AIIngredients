@@ -10,7 +10,7 @@ import SwiftUI
 struct Onboarding2Image: View {
     @State private var isRotating = -10.0
     @State var size: CGSize = .zero
-    
+
     var body: some View {
         Image(.onboarding21)
             .resizable()
@@ -28,8 +28,8 @@ struct Onboarding2Image: View {
                     .resizable()
                     .scaledToFit()
                     .rotationEffect(.degrees(isRotating))
-                    .frame(width: size.width, height: size.height/2.5)
-                    .offset(x: size.width/3.5, y: -size.height/12)
+                    .frame(width: size.width, height: size.height / 2.5)
+                    .offset(x: size.width / 3.5, y: -size.height / 12)
                     .shadow(radius: 5)
                 , alignment: .topLeading
             )

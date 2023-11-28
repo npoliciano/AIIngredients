@@ -9,9 +9,9 @@ import SwiftUI
 
 struct FeaturesOnboardingView: View {
     let onStart: () -> Void
-    
+
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some View {
         TabView {
             FeaturesOnboardingPageView(
@@ -23,7 +23,7 @@ struct FeaturesOnboardingView: View {
                 },
                 onStart: onStart
             )
-            
+
             FeaturesOnboardingPageView(
                 image: "Onboarding2",
                 featureTitle: "Personalized Dietary Preferences",

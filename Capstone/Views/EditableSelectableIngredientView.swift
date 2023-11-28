@@ -10,7 +10,7 @@ import SwiftUI
 struct EditableSelectableIngredientView: View {
     let isEditing: Bool
     @Binding var ingredient: Ingredient
-    
+
     var body: some View {
         VStack {
             if isEditing {

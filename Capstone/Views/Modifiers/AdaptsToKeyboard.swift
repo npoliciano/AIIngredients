@@ -5,7 +5,7 @@ import Combine
 /// See more: https://stackoverflow.com/a/60178361
 struct AdaptsToKeyboard: ViewModifier {
     @State var currentHeight: CGFloat = 0
-    
+
     func body(content: Content) -> some View {
         GeometryReader { geometry in
             content
@@ -22,9 +22,9 @@ struct AdaptsToKeyboard: ViewModifier {
                             rect.height - geometry.safeAreaInsets.bottom
                         }
                         .subscribe(Subscribers.Assign(object: self, keyPath: \.currentHeight))
-                    
+
                     NotificationCenter.Publisher(center: NotificationCenter.default, name: UIResponder.keyboardWillHideNotification)
-                        .compactMap { notification in
+                        .compactMap { _ in
                             CGFloat.zero
                         }
                         .subscribe(Subscribers.Assign(object: self, keyPath: \.currentHeight))

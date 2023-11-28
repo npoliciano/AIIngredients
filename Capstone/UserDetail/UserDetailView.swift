@@ -10,12 +10,12 @@ import SwiftUI
 struct UserDetailView: View {
     @StateObject var viewModel = UserDetailViewModel()
     let onStart: () -> Void
-    
+
     var body: some View {
         NavigationStack {
             Form {
                 DietaryPreferencesView(title: "Dietary Preferences", preferences: $viewModel.preferences)
-                
+
                 Section {
                     HStack {
                         Text("App Version")

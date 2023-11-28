@@ -13,10 +13,10 @@ final class ShoppingListViewModel: ObservableObject {
             userDefaults.shoppingLists = shoppingLists.reversed()
         }
     }
-    
+
     var userName: String
     private let userDefaults: UserDefaults
-    
+
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
         userName = userDefaults.userName
@@ -28,11 +28,11 @@ final class ShoppingListViewModel: ObservableObject {
         )
         loadLists()
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     @objc
     private func loadLists() {
         let allLists = userDefaults.shoppingLists

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoriesView: View {
     let categories: [Category]
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             ForEach(categories, id: \.self) { category in

@@ -10,7 +10,7 @@ import SwiftUI
 struct ImageButton: View {
     let systemName: String
     let action: () -> Void
-    
+
     var body: some View {
         Button {
             action()

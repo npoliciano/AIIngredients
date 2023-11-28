@@ -11,11 +11,11 @@ struct MealsView: View {
     @Binding var shoppingLists: [Meal]
     let isExpanded: Bool
     let onTapMeal: (Meal) -> Void
-    
+
     private func allSelected(meal: Meal) -> Bool {
         meal.ingredients.allSatisfy { $0.isSelected }
     }
-    
+
     var body: some View {
         List($shoppingLists) { $meal in
             Section {
@@ -26,7 +26,7 @@ struct MealsView: View {
                             .padding(.bottom, 4)
                     }
                 }
-                
+
                 if meal.ingredients.count > 3, !isExpanded {
                     VStack(alignment: .leading) {
                         Divider()
@@ -36,14 +36,13 @@ struct MealsView: View {
                             HStack(spacing: 4) {
                                 Text("See all")
                                     .font(.callout)
-                                
+
                                 Image(systemName: "chevron.right")
                                     .imageScale(.small)
                             }
                             .foregroundStyle(Color.accentColor)
                         }
                         .padding(.top, 4)
-                        
                     }
                     .padding(.bottom, 9)
                 }
@@ -54,7 +53,7 @@ struct MealsView: View {
                         .fontWeight(.medium)
                         .foregroundStyle(allSelected(meal: meal) ? .secondary : .primary)
                         .strikethrough(allSelected(meal: meal))
-                    
+
                     Spacer()
                     ForEach(meal.categories, id: \.self) { category in
                         switch category {
@@ -84,7 +83,7 @@ struct MealsView: View {
                                 .foregroundStyle(.brown)
                         }
                     }
-                    
+
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.secondary)
                 }
@@ -112,7 +111,7 @@ struct MealsView_Previews: PreviewProvider {
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
-                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g")
             ]
         ),
         Meal(
@@ -124,7 +123,7 @@ struct MealsView_Previews: PreviewProvider {
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
-                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g")
             ]
         ),
         Meal(
@@ -136,7 +135,7 @@ struct MealsView_Previews: PreviewProvider {
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
-                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g")
             ]
         ),
         Meal(
@@ -144,11 +143,11 @@ struct MealsView_Previews: PreviewProvider {
             categories: [],
             ingredients: [
                 Ingredient(name: "Chicken Breast", quantity: "200g"),
-                Ingredient(name: "Chicken Breast", quantity: "200g"),
+                Ingredient(name: "Chicken Breast", quantity: "200g")
             ]
         )
     ]
-    
+
     static var previews: some View {
         MealsView(
             shoppingLists: .constant(meals),
@@ -156,7 +155,7 @@ struct MealsView_Previews: PreviewProvider {
             onTapMeal: { _ in }
         )
         .previewDisplayName("Collapsed")
-        
+
         MealsView(
             shoppingLists: .constant(meals),
             isExpanded: true,

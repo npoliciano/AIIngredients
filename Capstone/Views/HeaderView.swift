@@ -10,7 +10,7 @@ import SwiftUI
 struct HeaderView: View {
     let title: String
     let headline: String
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)

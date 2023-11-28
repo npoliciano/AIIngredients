@@ -11,7 +11,7 @@ struct LabeledTextField: View {
     let label: String
     let placeholder: String
     @Binding var text: String
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(label)

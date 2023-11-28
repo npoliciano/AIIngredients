@@ -10,7 +10,7 @@ import SwiftUI
 struct IngredientView: View {
     let name: String
     let quantity: String
-    
+
     var body: some View {
         HStack {
             Text(name)

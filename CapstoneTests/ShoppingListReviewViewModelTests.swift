@@ -11,14 +11,14 @@ import XCTest
 
 final class ShoppingListReviewViewModelTests: XCTestCase {
     var defaults: UserDefaults!
-    
+
     override func setUp() {
         super.setUp()
-        
+
         defaults = UserDefaults(suiteName: #file)
         defaults.removePersistentDomain(forName: #file)
     }
-    
+
     func testInitDoesNotSaveTheMeal() {
         defaults.shoppingLists = []
         let ingredient = Ingredient.fixture()
@@ -26,17 +26,17 @@ final class ShoppingListReviewViewModelTests: XCTestCase {
             meal: Meal.fixture(name: "some name", ingredients: [ingredient]),
             userDefaults: defaults
         )
-        
+
         XCTAssertTrue(defaults.shoppingLists.isEmpty)
         XCTAssertEqual(sut.name, "some name")
         XCTAssertEqual(sut.ingredients, [ingredient])
     }
-    
+
     func testAppendNewMealOnConfirm() {
         let existingMeal = Meal.fixture()
         defaults.shoppingLists = [existingMeal]
         let newMeal = Meal.fixture()
-        
+
         let sut = ShoppingListReviewViewModel(
             meal: newMeal,
             userDefaults: defaults
@@ -46,11 +46,11 @@ final class ShoppingListReviewViewModelTests: XCTestCase {
             object: nil,
             handler: { _ in true }
         )
-        
+
         sut.onConfirm()
-        
+
         waitForExpectations(timeout: 1, handler: nil)
-        
+
         XCTAssertEqual(defaults.shoppingLists, [existingMeal, newMeal])
     }
 }

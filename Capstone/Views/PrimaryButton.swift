@@ -11,13 +11,13 @@ struct PrimaryButton: View {
     let title: String
     let isLoading: Bool
     var onTap: () -> Void
-    
+
     init(title: String, isLoading: Bool = false, onTap: @escaping () -> Void) {
         self.title = title
         self.isLoading = isLoading
         self.onTap = onTap
     }
-    
+
     var body: some View {
         Button {
             onTap()

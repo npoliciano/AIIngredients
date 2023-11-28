@@ -11,9 +11,9 @@ struct OnboardingFlowView: View {
     @State private var path = NavigationPath()
     @State private var isUserNamePresented = false
     @State private var isHomePresented = false
-    
+
     @StateObject var viewModel = OnboardingFlowViewModel()
-    
+
     var body: some View {
         switch viewModel.onboardingStatus {
         case .none:
@@ -34,9 +34,9 @@ struct OnboardingFlowView: View {
             HomeView()
         }
     }
-    
+
     // MARK: Screens
-    
+
     private var userPreferencesView: some View {
         UserPreferencesView(onTap: {
             viewModel.nextStep()
@@ -47,7 +47,7 @@ struct OnboardingFlowView: View {
             HomeView()
         }
     }
-    
+
     private var userNameView: some View {
         NavigationStack(path: $path) {
             UserNameView(onTap: {

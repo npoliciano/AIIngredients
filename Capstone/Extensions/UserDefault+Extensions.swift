@@ -21,7 +21,7 @@ extension UserDefaults {
             }
         }
     }
-    
+
     var userName: String {
         get {
             self.string(forKey: "userName") ?? ""
@@ -30,7 +30,7 @@ extension UserDefaults {
             self.set(newValue, forKey: "userName")
         }
     }
-    
+
     var dietaryPreferences: DietaryPreferences? {
         get {
             if let data = self.data(forKey: "dietaryPreferences") {
@@ -44,8 +44,8 @@ extension UserDefaults {
             }
         }
     }
-    
-    
+
+
     var shoppingLists: [Meal] {
         get {
             if let data = self.data(forKey: "shoppingLists") {

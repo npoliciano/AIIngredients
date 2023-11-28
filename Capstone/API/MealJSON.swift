@@ -11,13 +11,13 @@ struct MealJSON: Decodable, Equatable {
     let mealName: String
     var categories: [CategoryJSON]
     let ingredients: [IngredientJSON]
-    
+
     enum CodingKeys: CodingKey {
         case mealName
         case categories
         case ingredients
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.mealName = try container.decode(String.self, forKey: .mealName)
@@ -33,7 +33,7 @@ enum CategoryJSON: String, Decodable {
     case dairy = "DAIRY_AND_ALTERNATIVES"
     case seasonings = "SEASONINGS_AND_CONDIMENTS"
     case unknown
-    
+
     init(from decoder: Decoder) throws {
         let value = try decoder.singleValueContainer().decode(String.self)
         self = CategoryJSON(rawValue: value) ?? .unknown

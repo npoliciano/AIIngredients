@@ -10,7 +10,7 @@ import SwiftUI
 struct UserNameView: View {
     @StateObject var viewModel = UserNameViewModel()
     let onTap: () -> Void
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HeaderView(
@@ -24,9 +24,9 @@ struct UserNameView: View {
                 text: $viewModel.userName
             )
             .padding(.top)
-            
+
             Spacer()
-            
+
             PrimaryButton(title: "Next", onTap: {
                 viewModel.onTap()
                 onTap()

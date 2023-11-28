@@ -19,31 +19,31 @@ final class BuildYourMealViewModel: ObservableObject {
         let title: String
         let message: String
     }
-    
+
     @Published var mealName = ""
     @Published var portion = ""
     @Published var selectedPortionType = Measurements.g
     @Published var quantity = 1
-    
+
     @Published var isLoading = false
     @Published var isErrorPresented = false
     @Published var meal: Meal?
-    
+
     let quantityRange = 1 ... Int.max
     let measurements = Measurements.allCases
-    
+
     var alertError: AlertError? {
         didSet {
             isErrorPresented = alertError != nil
         }
     }
-    
+
     private let generator: ListGenerator
-    
+
     init(generator: ListGenerator) {
         self.generator = generator
     }
-    
+
     func onTap() {
         switch (mealName.isEmpty, portion.isEmpty) {
         case (true, true):
@@ -68,22 +68,22 @@ final class BuildYourMealViewModel: ObservableObject {
                 measurement: selectedPortionType,
                 quantity: quantity
             )
-            
+
             generate(from: input)
         }
     }
-    
+
     private func generate(from input: ListGeneratorInput) {
         isLoading = true
         meal = nil
-        
+
         generator.generate(from: input) { result in
             switch result {
             case .success(let list):
                 self.meal = list
             case .failure(let error):
                 let message = (error as? AppError)?.message ?? "Something went wrong. Please, try again later."
-                
+
                 self.alertError = AlertError(
                     title: "Sorry!",
                     message: message

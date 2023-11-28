@@ -10,9 +10,9 @@ import SwiftUI
 struct ShoppingListReviewView: View {
     @StateObject var viewModel: ShoppingListReviewViewModel
     let onConfirm: () -> Void
-    
+
     @Environment(\.dismiss) var dismiss
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             ScrollView {
@@ -21,27 +21,27 @@ struct ShoppingListReviewView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.top)
-                    
+
                     Text("Satisfied with your ingredients? If there's anything amiss, go ahead and customize the list to your taste!")
                         .foregroundColor(.secondary)
                         .padding(.bottom)
-                    
+
                     VStack(alignment: .leading, spacing: 20) {
                         Label(viewModel.name, systemImage: "cart")
                             .fontWeight(.medium)
                             .foregroundStyle(.secondary)
-                        
+
                         Divider()
-                        
+
                         Text("MAY CONTAIN")
                             .font(.caption)
                             .fontWeight(.medium)
                             .foregroundStyle(.tertiary)
-                        
+
                         CategoriesView(categories: viewModel.categories)
-                        
+
                         Divider()
-                        
+
                         LazyVStack(spacing: 16) {
                             ForEach(viewModel.ingredients) { ingredient in
                                 IngredientView(
@@ -55,13 +55,13 @@ struct ShoppingListReviewView: View {
                 }
                 .padding()
             }
-            
+
             VStack(spacing: 16) {
                 PrimaryButton(title: "Confirm Selection") {
                     viewModel.onConfirm()
                     onConfirm()
                 }
-                
+
                 Button("Make Changes") {
                     dismiss()
                 }

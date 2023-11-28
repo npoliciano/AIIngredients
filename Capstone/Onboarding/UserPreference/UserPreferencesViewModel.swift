@@ -15,13 +15,13 @@ final class UserPreferencesViewModel: ObservableObject {
         vegan: false,
         vegetarian: false
     )
-    
+
     private let userDefaults: UserDefaults
-    
+
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
     }
-    
+
     func onTap() {
         userDefaults.dietaryPreferences = preferences
     }

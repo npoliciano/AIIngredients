@@ -9,17 +9,17 @@ import SwiftUI
 
 struct Onboarding3Image: View {
     @State var isAnimating = false
-    
+
     var repeatingAnimation: Animation {
         Animation.easeInOut(duration: 0.5).delay(1.5).repeatForever()
     }
-    
+
     var body: some View {
         ZStack {
             Image(.onboarding31)
                 .resizable()
                 .scaledToFit()
-            
+
             Image(.onboarding32)
                 .resizable()
                 .scaledToFit()

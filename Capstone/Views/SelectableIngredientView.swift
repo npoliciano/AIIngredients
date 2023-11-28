@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SelectableIngredientView: View {
     @Binding var ingredient: Ingredient
-    
+
     var body: some View {
         HStack {
             Image(systemName: ingredient.isSelected ? "square.inset.filled" : "square")
@@ -21,7 +21,7 @@ struct SelectableIngredientView: View {
             .strikethrough(ingredient.isSelected)
             .opacity(ingredient.isSelected ? 0.5 : 1)
         }
-        
+
         .onTapGesture {
             withAnimation {
                 ingredient.isSelected.toggle()

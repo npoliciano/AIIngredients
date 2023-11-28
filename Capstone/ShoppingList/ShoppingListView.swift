@@ -11,13 +11,13 @@ struct ShoppingListView: View {
     @State private var path = NavigationPath()
     @State private var expanded = 0
     @State private var isShowingDetail = false
-    
+
     @StateObject var viewModel = ShoppingListViewModel()
-    
+
     var isExpanded: Bool {
         expanded == 1
     }
-    
+
     var body: some View {
         NavigationStack(path: $path) {
             Group {
@@ -34,7 +34,7 @@ struct ShoppingListView: View {
                         }
                         .pickerStyle(.segmented)
                         .padding()
-                        
+
                         MealsView(
                             shoppingLists: $viewModel.shoppingLists,
                             isExpanded: isExpanded,

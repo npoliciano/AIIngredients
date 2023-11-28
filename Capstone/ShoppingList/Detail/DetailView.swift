@@ -10,13 +10,13 @@ import SwiftUI
 struct DetailView: View {
     @StateObject var viewModel: DetailViewModel
     @FocusState var focused: Bool
-    
+
     @State private var isDeleting = false
     @State private var confirmDelete = false
-    
+
     @State var isEditing = false
     @Environment(\.dismiss) private var dismiss
-    
+
     var body: some View {
         List {
             Section("Meal name") {
@@ -24,12 +24,12 @@ struct DetailView: View {
                     .focused($focused)
                     .listRowSeparator(.hidden)
             }
-            
+
             Section("May contain") {
                 CategoriesView(categories: viewModel.meal.categories)
                     .listRowSeparator(.hidden)
             }
-            
+
             Section("Ingredients") {
                 ForEach($viewModel.meal.ingredients) { $ingredient in
                     HStack {
@@ -39,7 +39,7 @@ struct DetailView: View {
                         )
                         .padding(.vertical, 4)
                         .listRowSeparator(.hidden)
-                        
+
                         if isEditing {
                             Button {
                                 withAnimation {
@@ -66,12 +66,12 @@ struct DetailView: View {
             } label: {
                 Image(systemName: "trash")
             }
-            
+
             Button {
                 if isEditing {
                     viewModel.updateList()
                 }
-                
+
                 if !viewModel.isErrorPresented {
                     isEditing.toggle()
                 }
@@ -112,7 +112,7 @@ struct DetailView: View {
 struct EditableMealName: View {
     @Binding var name: String
     @Environment(\.editMode) private var editMode
-    
+
     var body: some View {
         VStack {
             if editMode?.wrappedValue.isEditing == true {
