@@ -434,6 +434,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A49FC97D2B03C1E800A50F0E /* Build configuration list for PBXNativeTarget "Capstone" */;
 			buildPhases = (
+				A4F7414F2B163D0300DC8FB7 /* SwiftLint */,
 				A49FC9552B03C1E700A50F0E /* Sources */,
 				A49FC9562B03C1E700A50F0E /* Frameworks */,
 				A49FC9572B03C1E700A50F0E /* Resources */,
@@ -554,6 +555,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A4F7414F2B163D0300DC8FB7 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A49FC9552B03C1E700A50F0E /* Sources */ = {
