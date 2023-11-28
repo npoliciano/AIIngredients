@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct HomeView: View {
-    var body: some View {
-        TabView {
-            Group {
-                ShoppingListView()
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                UserDetailView(onStart: {})
-                    .tabItem {
-                        Label("User", systemImage: "person.circle.fill")
-                    }
-            }
-            .toolbarBackground(Color(uiColor: .systemBackground), for: .tabBar)
-            .toolbarBackground(.visible, for: .tabBar)
-        }
+  var body: some View {
+    TabView {
+      Group {
+        ShoppingListView()
+          .tabItem {
+            Label("Home", systemImage: "house.fill")
+          }
+        UserDetailView {}
+          .tabItem {
+            Label("User", systemImage: "person.circle.fill")
+          }
+      }
+      .toolbarBackground(Color(uiColor: .systemBackground), for: .tabBar)
+      .toolbarBackground(.visible, for: .tabBar)
     }
+  }
 }
 
 struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
+  static var previews: some View {
+    HomeView()
+  }
 }

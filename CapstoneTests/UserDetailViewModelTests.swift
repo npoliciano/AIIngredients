@@ -11,50 +11,80 @@ import XCTest
 @testable import Capstone
 
 final class UserDetailViewModelTests: XCTestCase {
-    var defaults: UserDefaults!
+  var defaults: UserDefaults!
 
-    override func setUp() {
-        super.setUp()
+  override func setUp() {
+    super.setUp()
 
-        defaults = UserDefaults(suiteName: #file)
-        defaults.removePersistentDomain(forName: #file)
-    }
+    defaults = UserDefaults(suiteName: #file)
+    defaults.removePersistentDomain(forName: #file)
+  }
 
-    func testInitsWithNilDietaryPreferences() {
-        defaults.userName = "some name"
-        defaults.dietaryPreferences = nil
+  func testInitsWithNilDietaryPreferences() {
+    defaults.userName = "some name"
+    defaults.dietaryPreferences = nil
 
-        let sut = UserDetailViewModel(userDefaults: defaults)
+    let sut = UserDetailViewModel(userDefaults: defaults)
 
-        XCTAssertEqual(sut.userName, "some name")
-        XCTAssertEqual(sut.preferences, DietaryPreferences(glutenFree: false, lactoseFree: false, sugarFree: false, vegan: false, vegetarian: false))
-    }
+    XCTAssertEqual(sut.userName, "some name")
+    XCTAssertEqual(
+      sut.preferences,
+      DietaryPreferences(
+        glutenFree: false,
+        lactoseFree: false,
+        sugarFree: false,
+        vegan: false,
+        vegetarian: false
+      )
+    )
+  }
 
-    func testInitsWithSomeDietaryPreferences() {
-        defaults.userName = "some name"
-        let previousPreference = DietaryPreferences(glutenFree: true, lactoseFree: true, sugarFree: false, vegan: true, vegetarian: false)
-        defaults.dietaryPreferences = previousPreference
+  func testInitsWithSomeDietaryPreferences() {
+    defaults.userName = "some name"
+    let previousPreference = DietaryPreferences(
+      glutenFree: true,
+      lactoseFree: true,
+      sugarFree: false,
+      vegan: true,
+      vegetarian: false
+    )
+    defaults.dietaryPreferences = previousPreference
 
-        let sut = UserDetailViewModel(userDefaults: defaults)
+    let sut = UserDetailViewModel(userDefaults: defaults)
 
-        XCTAssertEqual(sut.userName, "some name")
-        XCTAssertEqual(sut.preferences, previousPreference)
-    }
+    XCTAssertEqual(sut.userName, "some name")
+    XCTAssertEqual(sut.preferences, previousPreference)
+  }
 
-    func testUpdatesDietaryPreferencesDefaults() {
-        let previousPreference = DietaryPreferences(glutenFree: true, lactoseFree: true, sugarFree: false, vegan: true, vegetarian: false)
-        defaults.dietaryPreferences = previousPreference
+  func testUpdatesDietaryPreferencesDefaults() {
+    let previousPreference = DietaryPreferences(
+      glutenFree: true,
+      lactoseFree: true,
+      sugarFree: false,
+      vegan: true,
+      vegetarian: false
+    )
+    defaults.dietaryPreferences = previousPreference
 
-        let sut = UserDetailViewModel(userDefaults: defaults)
+    let sut = UserDetailViewModel(userDefaults: defaults)
 
-        XCTAssertEqual(sut.preferences, previousPreference)
+    XCTAssertEqual(sut.preferences, previousPreference)
 
-        sut.preferences.glutenFree = false
-        sut.preferences.lactoseFree = false
-        sut.preferences.sugarFree = true
-        sut.preferences.vegan = true
-        sut.preferences.vegetarian = false
+    sut.preferences.glutenFree = false
+    sut.preferences.lactoseFree = false
+    sut.preferences.sugarFree = true
+    sut.preferences.vegan = true
+    sut.preferences.vegetarian = false
 
-        XCTAssertEqual(defaults.dietaryPreferences, DietaryPreferences(glutenFree: false, lactoseFree: false, sugarFree: true, vegan: true, vegetarian: false))
-    }
+    XCTAssertEqual(
+      defaults.dietaryPreferences,
+      DietaryPreferences(
+        glutenFree: false,
+        lactoseFree: false,
+        sugarFree: true,
+        vegan: true,
+        vegetarian: false
+      )
+    )
+  }
 }

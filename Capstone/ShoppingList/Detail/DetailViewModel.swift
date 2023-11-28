@@ -9,83 +9,82 @@ import Foundation
 import SwiftUI
 
 final class DetailViewModel: ObservableObject {
-    @Published var meal: Meal {
-        didSet {
-            var allMeals = userDefaults.shoppingLists
+  @Published var meal: Meal {
+    didSet {
+      var allMeals = userDefaults.shoppingLists
 
-            guard let index = allMeals.firstIndex(where: { $0.id == meal.id }) else {
-                return
-            }
+      guard let index = allMeals.firstIndex(where: { $0.id == meal.id }) else {
+        return
+      }
 
-            var storedMeal = allMeals[index]
+      var storedMeal = allMeals[index]
 
-            for ingredient in meal.ingredients {
-                storedMeal.ingredients = storedMeal.ingredients.map {
-                    if $0.id == ingredient.id {
-                        var storedIngredient = $0
-                        storedIngredient.isSelected = ingredient.isSelected
-                        return storedIngredient
-                    }
-                    return $0
-                }
-            }
-
-            allMeals[index] = storedMeal
-            saveAndNotify(updatedList: allMeals)
+      for ingredient in meal.ingredients {
+        storedMeal.ingredients = storedMeal.ingredients.map {
+          if $0.id == ingredient.id {
+            var storedIngredient = $0
+            storedIngredient.isSelected = ingredient.isSelected
+            return storedIngredient
+          }
+          return $0
         }
+      }
+
+      allMeals[index] = storedMeal
+      saveAndNotify(updatedList: allMeals)
+    }
+  }
+
+  @Published var isErrorPresented = false
+  @Published var isEmptyIngredientsErrorPresented = false
+
+  private let userDefaults: UserDefaults
+
+  init(meal: Meal, userDefaults: UserDefaults = .standard) {
+    self.meal = meal
+    self.userDefaults = userDefaults
+  }
+
+  func updateList() {
+    guard !meal.name.isEmpty, meal.ingredients.allSatisfy({
+      !$0.name.isEmpty && !$0.quantity.isEmpty
+    }) else {
+      isErrorPresented = true
+      return
     }
 
-    @Published var isErrorPresented = false
-    @Published var isEmptyIngredientsErrorPresented = false
+    var allMeals = userDefaults.shoppingLists
 
-    private let userDefaults: UserDefaults
-
-    init(meal: Meal, userDefaults: UserDefaults = .standard) {
-        self.meal = meal
-        self.userDefaults = userDefaults
+    guard let index = allMeals.firstIndex(where: { $0.id == meal.id }) else {
+      return
     }
 
-    func updateList() {
-        guard !meal.name.isEmpty, meal.ingredients.allSatisfy({
-            !$0.name.isEmpty && !$0.quantity.isEmpty
-        }) else {
-            isErrorPresented = true
-            return
-        }
+    allMeals[index] = meal
 
-        var allMeals = userDefaults.shoppingLists
+    saveAndNotify(updatedList: allMeals)
+  }
 
-        guard let index = allMeals.firstIndex(where: { $0.id == meal.id }) else {
-            return
-        }
+  func delete() {
+    var allMeals = userDefaults.shoppingLists
+    allMeals.removeAll { $0.id == meal.id }
 
-        allMeals[index] = meal
+    saveAndNotify(updatedList: allMeals)
+  }
 
-        saveAndNotify(updatedList: allMeals)
+  func delete(ingredient: Ingredient) {
+    if meal.ingredients.count > 1 {
+      meal.ingredients.removeAll { $0.id == ingredient.id }
+      return
     }
 
-    func delete() {
-        var allMeals = userDefaults.shoppingLists
-        allMeals.removeAll { $0.id == meal.id }
+    isEmptyIngredientsErrorPresented = true
+  }
 
-        saveAndNotify(updatedList: allMeals)
-    }
-
-    func delete(ingredient: Ingredient) {
-        if meal.ingredients.count > 1 {
-            meal.ingredients.removeAll { $0.id == ingredient.id }
-            return
-        }
-
-        isEmptyIngredientsErrorPresented = true
-    }
-
-    private func saveAndNotify(updatedList: [Meal]) {
-        userDefaults.shoppingLists = updatedList
-        NotificationCenter.default.post(
-            name: .onUpdateShoppingList,
-            object: nil
-        )
-    }
+  private func saveAndNotify(updatedList: [Meal]) {
+    userDefaults.shoppingLists = updatedList
+    NotificationCenter.default.post(
+      name: .onUpdateShoppingList,
+      object: nil
+    )
+  }
 }
-

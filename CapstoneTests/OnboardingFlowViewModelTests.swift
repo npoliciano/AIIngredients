@@ -11,46 +11,46 @@ import XCTest
 @testable import Capstone
 
 final class OnboardingFlowViewModelTests: XCTestCase {
-    var defaults: UserDefaults!
+  var defaults: UserDefaults!
 
-    override func setUp() {
-        super.setUp()
+  override func setUp() {
+    super.setUp()
 
-        defaults = UserDefaults(suiteName: #file)
-        defaults.removePersistentDomain(forName: #file)
-    }
+    defaults = UserDefaults(suiteName: #file)
+    defaults.removePersistentDomain(forName: #file)
+  }
 
-    func testInitsWithValidData() {
-        defaults.onboardingStatus = .pendingName
-        let sut = OnboardingFlowViewModel(userDefaults: defaults)
+  func testInitsWithValidData() {
+    defaults.onboardingStatus = .pendingName
+    let sut = OnboardingFlowViewModel(userDefaults: defaults)
 
-        XCTAssertEqual(sut.onboardingStatus, .pendingName)
-    }
+    XCTAssertEqual(sut.onboardingStatus, .pendingName)
+  }
 
-    func testMoveToTheNextStep() {
-        defaults.onboardingStatus = .none
-        let sut = OnboardingFlowViewModel(userDefaults: defaults)
+  func testMoveToTheNextStep() {
+    defaults.onboardingStatus = .none
+    let sut = OnboardingFlowViewModel(userDefaults: defaults)
 
-        XCTAssertEqual(sut.onboardingStatus, .none)
+    XCTAssertEqual(sut.onboardingStatus, .none)
 
-        sut.nextStep()
+    sut.nextStep()
 
-        XCTAssertEqual(sut.onboardingStatus, .pendingName)
-        XCTAssertEqual(defaults.onboardingStatus, .pendingName)
+    XCTAssertEqual(sut.onboardingStatus, .pendingName)
+    XCTAssertEqual(defaults.onboardingStatus, .pendingName)
 
-        sut.nextStep()
+    sut.nextStep()
 
-        XCTAssertEqual(sut.onboardingStatus, .pendingPreferences)
-        XCTAssertEqual(defaults.onboardingStatus, .pendingPreferences)
+    XCTAssertEqual(sut.onboardingStatus, .pendingPreferences)
+    XCTAssertEqual(defaults.onboardingStatus, .pendingPreferences)
 
-        sut.nextStep()
+    sut.nextStep()
 
-        XCTAssertEqual(sut.onboardingStatus, .complete)
-        XCTAssertEqual(defaults.onboardingStatus, .complete)
+    XCTAssertEqual(sut.onboardingStatus, .complete)
+    XCTAssertEqual(defaults.onboardingStatus, .complete)
 
-        sut.nextStep()
+    sut.nextStep()
 
-        XCTAssertEqual(sut.onboardingStatus, .complete)
-        XCTAssertEqual(defaults.onboardingStatus, .complete)
-    }
+    XCTAssertEqual(sut.onboardingStatus, .complete)
+    XCTAssertEqual(defaults.onboardingStatus, .complete)
+  }
 }

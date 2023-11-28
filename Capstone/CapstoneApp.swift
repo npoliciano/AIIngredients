@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct CapstoneApp: App {
-    var body: some Scene {
-        WindowGroup {
-            OnboardingFlowView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      OnboardingFlowView()
     }
+  }
 }

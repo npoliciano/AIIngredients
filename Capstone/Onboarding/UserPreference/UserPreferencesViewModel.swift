@@ -8,21 +8,21 @@
 import Foundation
 
 final class UserPreferencesViewModel: ObservableObject {
-    @Published var preferences = DietaryPreferences(
-        glutenFree: false,
-        lactoseFree: false,
-        sugarFree: false,
-        vegan: false,
-        vegetarian: false
-    )
+  @Published var preferences = DietaryPreferences(
+    glutenFree: false,
+    lactoseFree: false,
+    sugarFree: false,
+    vegan: false,
+    vegetarian: false
+  )
 
-    private let userDefaults: UserDefaults
+  private let userDefaults: UserDefaults
 
-    init(userDefaults: UserDefaults = .standard) {
-        self.userDefaults = userDefaults
-    }
+  init(userDefaults: UserDefaults = .standard) {
+    self.userDefaults = userDefaults
+  }
 
-    func onTap() {
-        userDefaults.dietaryPreferences = preferences
-    }
+  func onTap() {
+    userDefaults.dietaryPreferences = preferences
+  }
 }

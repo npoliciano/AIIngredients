@@ -8,64 +8,64 @@
 import SwiftUI
 
 struct OnboardingFlowView: View {
-    @State private var path = NavigationPath()
-    @State private var isUserNamePresented = false
-    @State private var isHomePresented = false
+  @State private var path = NavigationPath()
+  @State private var isUserNamePresented = false
+  @State private var isHomePresented = false
 
-    @StateObject var viewModel = OnboardingFlowViewModel()
+  @StateObject var viewModel = OnboardingFlowViewModel()
 
-    var body: some View {
-        switch viewModel.onboardingStatus {
-        case .none:
-            FeaturesOnboardingView(onStart: {
-                viewModel.nextStep()
-                isUserNamePresented = true
-            })
-            .fullScreenCover(isPresented: $isUserNamePresented) {
-                userNameView
-            }
-        case .pendingName:
-            userNameView
-        case .pendingPreferences:
-            NavigationStack {
-                userPreferencesView
-            }
-        case .complete:
-            HomeView()
-        }
+  var body: some View {
+    switch viewModel.onboardingStatus {
+    case .none:
+      FeaturesOnboardingView(onStart: {
+        viewModel.nextStep()
+        isUserNamePresented = true
+      })
+      .fullScreenCover(isPresented: $isUserNamePresented) {
+        userNameView
+      }
+    case .pendingName:
+      userNameView
+    case .pendingPreferences:
+      NavigationStack {
+        userPreferencesView
+      }
+    case .complete:
+      HomeView()
     }
+  }
 
-    // MARK: Screens
+  // MARK: Screens
 
-    private var userPreferencesView: some View {
-        UserPreferencesView(onTap: {
-            viewModel.nextStep()
-            isHomePresented = true
-        })
-        .navigationBarTitle("Dietary Preferences")
-        .fullScreenCover(isPresented: $isHomePresented) {
-            HomeView()
-        }
+  private var userPreferencesView: some View {
+    UserPreferencesView {
+      viewModel.nextStep()
+      isHomePresented = true
     }
-
-    private var userNameView: some View {
-        NavigationStack(path: $path) {
-            UserNameView(onTap: {
-                viewModel.nextStep()
-                path.append(UserPreferencesDestination())
-            })
-            .navigationBarTitle("Enter your name")
-            .navigationDestination(for: UserPreferencesDestination.self) { _ in
-                UserPreferencesView(onTap: {})
-            }
-        }
+    .navigationBarTitle("Dietary Preferences")
+    .fullScreenCover(isPresented: $isHomePresented) {
+      HomeView()
     }
+  }
+
+  private var userNameView: some View {
+    NavigationStack(path: $path) {
+      UserNameView {
+        viewModel.nextStep()
+        path.append(UserPreferencesDestination())
+      }
+      .navigationBarTitle("Enter your name")
+      .navigationDestination(for: UserPreferencesDestination.self) { _ in
+        UserPreferencesView {}
+      }
+    }
+  }
 }
 
 struct UserPreferencesDestination: Hashable { }
 
 struct OnboardingFlowView_Previews: PreviewProvider {
-    static var previews: some View {
-        OnboardingFlowView()
-    }
+  static var previews: some View {
+    OnboardingFlowView()
+  }
 }

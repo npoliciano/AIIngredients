@@ -9,25 +9,25 @@ import Foundation
 import Combine
 
 final class UserDetailViewModel: ObservableObject {
-    @Published var preferences: DietaryPreferences {
-        didSet {
-            userDefaults.dietaryPreferences = preferences
-        }
+  @Published var preferences: DietaryPreferences {
+    didSet {
+      userDefaults.dietaryPreferences = preferences
     }
+  }
 
-    @Published var userName: String
+  @Published var userName: String
 
-    private let userDefaults: UserDefaults
+  private let userDefaults: UserDefaults
 
-    init(userDefaults: UserDefaults = .standard) {
-        self.userDefaults = userDefaults
-        self.preferences = userDefaults.dietaryPreferences ?? DietaryPreferences(
-            glutenFree: false,
-            lactoseFree: false,
-            sugarFree: false,
-            vegan: false,
-            vegetarian: false
-        )
-        self.userName = userDefaults.userName
-    }
+  init(userDefaults: UserDefaults = .standard) {
+    self.userDefaults = userDefaults
+    self.preferences = userDefaults.dietaryPreferences ?? DietaryPreferences(
+      glutenFree: false,
+      lactoseFree: false,
+      sugarFree: false,
+      vegan: false,
+      vegetarian: false
+    )
+    self.userName = userDefaults.userName
+  }
 }
