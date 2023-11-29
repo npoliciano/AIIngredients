@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct DietaryPreferencesView: View {
+  typealias Str = Strings.DietaryPreferences
   var title: String = ""
   @Binding var preferences: DietaryPreferences
 
   var body: some View {
     Section(title) {
-      Toggle("Gluten Free", isOn: $preferences.glutenFree)
+      Toggle(Str.glutenFree, isOn: $preferences.glutenFree)
 
-      Toggle("Lactose Free", isOn: $preferences.lactoseFree)
+      Toggle(Str.lactoseFree, isOn: $preferences.lactoseFree)
 
-      Toggle("Sugar Free", isOn: $preferences.sugarFree)
+      Toggle(Str.sugarFree, isOn: $preferences.sugarFree)
 
-      Toggle("Vegan", isOn: $preferences.vegan)
+      Toggle(Str.vegan, isOn: $preferences.vegan)
 
-      Toggle("Vegeterian", isOn: $preferences.vegetarian)
+      Toggle(Str.vegetarian, isOn: $preferences.vegetarian)
     }
   }
 }

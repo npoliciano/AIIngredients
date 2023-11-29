@@ -8,39 +8,40 @@
 import Foundation
 
 extension UserDefaults {
+  typealias Key = UserDefaultsKeys
   var onboardingStatus: OnboardingStatus? {
     get {
-      if let data = self.data(forKey: "onboardingStatus") {
+      if let data = self.data(forKey: Key.onboardingStatus) {
         return try? JSONDecoder().decode(OnboardingStatus.self, from: data)
       }
       return nil
     }
     set {
       if let encoded = try? JSONEncoder().encode(newValue) {
-        self.set(encoded, forKey: "onboardingStatus")
+        self.set(encoded, forKey: Key.onboardingStatus)
       }
     }
   }
 
   var userName: String {
     get {
-      self.string(forKey: "userName") ?? ""
+      self.string(forKey: Key.userName) ?? ""
     }
     set {
-      self.set(newValue, forKey: "userName")
+      self.set(newValue, forKey: Key.userName)
     }
   }
 
   var dietaryPreferences: DietaryPreferences? {
     get {
-      if let data = self.data(forKey: "dietaryPreferences") {
+      if let data = self.data(forKey: Key.dietaryPreferences) {
         return try? JSONDecoder().decode(DietaryPreferences.self, from: data)
       }
       return nil
     }
     set {
       if let encoded = try? JSONEncoder().encode(newValue) {
-        self.set(encoded, forKey: "dietaryPreferences")
+        self.set(encoded, forKey: Key.dietaryPreferences)
       }
     }
   }
@@ -48,14 +49,14 @@ extension UserDefaults {
 
   var shoppingLists: [Meal] {
     get {
-      if let data = self.data(forKey: "shoppingLists") {
+      if let data = self.data(forKey: Key.shoppingLists) {
         return (try? JSONDecoder().decode([Meal].self, from: data)) ?? []
       }
       return []
     }
     set {
       if let encoded = try? JSONEncoder().encode(newValue) {
-        self.set(encoded, forKey: "shoppingLists")
+        self.set(encoded, forKey: Key.shoppingLists)
       }
     }
   }

@@ -8,26 +8,27 @@
 import SwiftUI
 
 struct UserNameView: View {
+  typealias Str = Strings.UserName
   @StateObject var viewModel = UserNameViewModel()
   let onTap: () -> Void
 
   var body: some View {
     VStack(alignment: .leading, spacing: 8) {
       HeaderView(
-        title: "Who are you?",
-        headline: "We're excited to have you on board. Let's personalize your experience. Please enter your name below."
+        title: Str.title,
+        headline: Str.headline
       )
 
       LabeledTextField(
-        label: "First name",
-        placeholder: "John Appleseed",
+        label: Str.label,
+        placeholder: Str.placeholder,
         text: $viewModel.userName
       )
       .padding(.top)
 
       Spacer()
 
-      PrimaryButton(title: "Next") {
+      PrimaryButton(title: Str.next) {
         viewModel.onTap()
         onTap()
       }

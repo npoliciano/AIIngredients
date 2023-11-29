@@ -8,26 +8,25 @@
 import SwiftUI
 
 struct UserDetailView: View {
+  typealias Str = Strings.UserDetail
   @StateObject var viewModel = UserDetailViewModel()
   let onStart: () -> Void
 
   var body: some View {
     NavigationStack {
       Form {
-        DietaryPreferencesView(title: "Dietary Preferences", preferences: $viewModel.preferences)
+        DietaryPreferencesView(title: Str.dietaryPreferences, preferences: $viewModel.preferences)
 
         Section {
           HStack {
-            Text("App Version")
+            Text(Str.appVersionTitle)
             Spacer()
-            Text("v0.1")
+            Text(Str.appVersion)
               .foregroundColor(.secondary)
           }
         } footer: {
-          // swiftlint:disable line_length
-          Text("Please note, our AI's results may not always be accurate or complete. We're constantly refining our technology, but urge caution, especially for dietary restrictions or allergies. Your feedback is crucial to our improvement.")
+          Text(Str.text)
             .padding(.vertical)
-          // swiftlint:enable line_length
         }
       }
       .navigationTitle($viewModel.userName)

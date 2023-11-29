@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
+  typealias Str = Strings.Detail
   @StateObject var viewModel: DetailViewModel
   @FocusState var focused: Bool
 
@@ -21,18 +22,18 @@ struct DetailView: View {
 
   var body: some View {
     List {
-      Section("Meal name") {
+      Section(Str.mealName) {
         EditableMealName(name: $viewModel.meal.name)
           .focused($focused)
           .listRowSeparator(.hidden)
       }
 
-      Section("May contain") {
+      Section(Str.mayContain) {
         CategoriesView(categories: viewModel.meal.categories)
           .listRowSeparator(.hidden)
       }
 
-      Section("Ingredients") {
+      Section(Str.ingredients) {
         ForEach($viewModel.meal.ingredients) { $ingredient in
           HStack {
             EditableSelectableIngredientView(
@@ -61,7 +62,7 @@ struct DetailView: View {
       .listSectionSeparator(.hidden)
     }
     .listStyle(.plain)
-    .navigationTitle("Meal Details")
+    .navigationTitle(Str.mealDetails)
     .toolbar {
       Button {
         isDeleting = true
@@ -79,34 +80,34 @@ struct DetailView: View {
         }
       } label: {
         if isEditing {
-          Text("Done")
+          Text(Str.done)
         } else {
           Image(systemName: "pencil")
         }
       }
     }
-    .alert("Confirm Deletion", isPresented: $isDeleting) {
-      Button("Cancel", role: .cancel) { }
-      Button("Delete", role: .destructive) {
+    .alert(Str.confirmDeletion, isPresented: $isDeleting) {
+      Button(Str.cancel, role: .cancel) { }
+      Button(Str.delete, role: .destructive) {
         viewModel.delete()
         dismiss()
       }
     } message: {
       Text("Are you sure you want to delete \(viewModel.meal.name)? This action cannot be undone.")
     }
-    .alert("Error", isPresented: $viewModel.isErrorPresented) {
-      Button("Got it", role: .cancel) { }
+    .alert(Str.error, isPresented: $viewModel.isErrorPresented) {
+      Button(Str.gotIt, role: .cancel) { }
     } message: {
-      Text("No field can be left empty. Please enter a value or delete.")
+      Text(Str.emptyFieldAlert)
     }
-    .alert("Confirm Deletion", isPresented: $viewModel.isEmptyIngredientsErrorPresented) {
-      Button("Cancel", role: .cancel) { }
-      Button("Delete", role: .destructive) {
+    .alert(Str.confirmDeletion, isPresented: $viewModel.isEmptyIngredientsErrorPresented) {
+      Button(Str.cancel, role: .cancel) { }
+      Button(Str.delete, role: .destructive) {
         viewModel.delete()
         dismiss()
       }
     } message: {
-      Text("You can not delete all ingredients. Would you like to delete the meal?")
+      Text(Str.emptyIngredientsAlert)
     }
   }
 }

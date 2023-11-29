@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShoppingListView: View {
+  typealias Str = Strings.ShoppingList
   @State private var path = NavigationPath()
   @State private var expanded = 0
   @State private var isShowingDetail = false
@@ -29,8 +30,8 @@ struct ShoppingListView: View {
         } else {
           VStack {
             Picker("", selection: $expanded) {
-              Text("Summary").tag(0)
-              Text("All").tag(1)
+              Text(Str.summary).tag(0)
+              Text(Str.all).tag(1)
             }
             .pickerStyle(.segmented)
             .padding()
@@ -64,12 +65,7 @@ struct ShoppingListView: View {
         }
         .toolbar(.hidden, for: .tabBar)
       }
-      .navigationTitle(isShowingDetail ? "" : "Hello, \(viewModel.userName)")
-      .onDisappear {
-        //            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-        //                isShowingDetail = true
-        //            }
-      }
+      .navigationTitle(isShowingDetail ? "" : Str.greetings(viewModel.userName))
       .onAppear {
         isShowingDetail = false
       }

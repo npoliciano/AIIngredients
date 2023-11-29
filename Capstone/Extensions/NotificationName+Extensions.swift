@@ -8,5 +8,5 @@
 import Foundation
 
 extension Notification.Name {
-  static let onUpdateShoppingList = Notification.Name("onUpdateShoppingList")
+  static let onUpdateShoppingList = Notification.Name(NotificationNames.onUpdateShoppingList)
 }

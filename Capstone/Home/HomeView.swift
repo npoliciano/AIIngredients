@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct HomeView: View {
+  typealias Str = Strings.Home
   var body: some View {
     TabView {
       Group {
         ShoppingListView()
           .tabItem {
-            Label("Home", systemImage: "house.fill")
+            Label(Str.home, systemImage: "house.fill")
           }
         UserDetailView {}
           .tabItem {
-            Label("User", systemImage: "person.circle.fill")
+            Label(Str.user, systemImage: "person.circle.fill")
           }
       }
       .toolbarBackground(Color(uiColor: .systemBackground), for: .tabBar)

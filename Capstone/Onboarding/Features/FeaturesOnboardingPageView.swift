@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FeaturesOnboardingPageView<OnboardingImage: View>: View {
+  typealias Str = Strings.OnboardingPage
   let image: String
   let featureTitle: String
   let featureDescription: String
@@ -25,7 +26,7 @@ struct FeaturesOnboardingPageView<OnboardingImage: View>: View {
         Button {
           onStart()
         } label: {
-          Text("Start")
+          Text(Str.start)
             .font(.headline)
             .bold()
             .frame(width: 90)

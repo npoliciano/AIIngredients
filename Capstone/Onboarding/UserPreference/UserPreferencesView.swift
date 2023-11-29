@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserPreferencesView: View {
+  typealias Str = Strings.UserPreferences
   let onTap: () -> Void
   @StateObject var viewModel = UserPreferencesViewModel()
 
@@ -15,13 +16,12 @@ struct UserPreferencesView: View {
     VStack(alignment: .leading) {
       VStack(alignment: .leading, spacing: 24) {
         HeaderView(
-          title: "Tailor Your Experience to Your Taste!",
-          headline: "Let us know what suits your diet, and we'll customize your experience accordingly." + " " +
-            "Please select any dietary preferences that apply to you from the options below."
+          title: Str.title,
+          headline: Str.headline
         )
 
         VStack(alignment: .leading) {
-          Text("Preferences")
+          Text(Str.preferences)
             .font(.headline)
             .foregroundColor(.secondary)
 
@@ -31,7 +31,7 @@ struct UserPreferencesView: View {
 
       Spacer()
 
-      PrimaryButton(title: "Next") {
+      PrimaryButton(title: Str.next) {
         viewModel.onTap()
         onTap()
       }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CategoriesView: View {
+  typealias Str = Strings.Categories
   let categories: [Category]
 
   var body: some View {
@@ -21,29 +22,29 @@ struct CategoriesView: View {
               .scaledToFit()
               .frame(width: 22, height: 24)
               .foregroundStyle(Color(.salmon))
-            Text("Proteins")
+            Text(Str.protein)
           case .carbo:
             Image(systemName: "circle.hexagongrid")
               .frame(width: 22)
               .foregroundStyle(Color(.maroon))
-            Text("Grains and Carbohydrates")
+            Text(Str.carbo)
           case .veggies:
             Image(systemName: "carrot")
               .frame(width: 22)
               .foregroundStyle(Color(.aspargus))
-            Text("Fruits and Vegetables")
+            Text(Str.veggies)
           case .dairy:
             Image(.dairy)
               .resizable()
               .scaledToFit()
               .frame(width: 22, height: 20)
               .foregroundStyle(Color(.sky))
-            Text("Dairy and Alternatives")
+            Text(Str.dairy)
           case .seasonings:
             Image(systemName: "loupe")
               .frame(width: 22)
               .foregroundStyle(.brown)
-            Text("Seasonings and Condiments")
+            Text(Str.seasonings)
           }
         }
       }

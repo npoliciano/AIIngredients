@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MealsView: View {
+  typealias Str = Strings.Meal
   @Binding var shoppingLists: [Meal]
   let isExpanded: Bool
   let onTapMeal: (Meal) -> Void
@@ -34,7 +35,7 @@ struct MealsView: View {
               onTapMeal(meal)
             } label: {
               HStack(spacing: 4) {
-                Text("See all")
+                Text(Str.seeAll)
                   .font(.callout)
 
                 Image(systemName: "chevron.right")

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EmptyListView: View {
+  typealias Str = Strings.EmptyList
   let onTap: () -> Void
 
   var body: some View {
@@ -16,13 +17,13 @@ struct EmptyListView: View {
         .font(.system(size: 60))
         .foregroundStyle(.tertiary)
 
-      Text("Your list is currently empty, but don't worry, start adding new meals now to make the most of our app!")
+      Text(Str.text)
         .foregroundStyle(.secondary)
         .padding(.horizontal, 30)
         .multilineTextAlignment(.center)
         .padding(.bottom)
 
-      PrimaryButton(title: "Start Adding") {
+      PrimaryButton(title: Str.startAdding) {
         onTap()
       }
     }

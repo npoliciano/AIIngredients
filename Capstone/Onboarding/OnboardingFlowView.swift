@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingFlowView: View {
+  typealias Str = Strings.OnboardingFlow
   @State private var path = NavigationPath()
   @State private var isUserNamePresented = false
   @State private var isHomePresented = false
@@ -42,7 +43,7 @@ struct OnboardingFlowView: View {
       viewModel.nextStep()
       isHomePresented = true
     }
-    .navigationBarTitle("Dietary Preferences")
+    .navigationBarTitle(Str.dietaryPreferences)
     .fullScreenCover(isPresented: $isHomePresented) {
       HomeView()
     }
@@ -54,7 +55,7 @@ struct OnboardingFlowView: View {
         viewModel.nextStep()
         path.append(UserPreferencesDestination())
       }
-      .navigationBarTitle("Enter your name")
+      .navigationBarTitle(Str.enterYourName)
       .navigationDestination(for: UserPreferencesDestination.self) { _ in
         UserPreferencesView {}
       }

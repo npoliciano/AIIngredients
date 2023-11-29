@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FeaturesOnboardingView: View {
+  typealias Str = Strings.FeaturesOnboarding
   let onStart: () -> Void
 
   @Environment(\.colorScheme)
@@ -17,9 +18,8 @@ struct FeaturesOnboardingView: View {
     TabView {
       FeaturesOnboardingPageView(
         image: "Onboarding1",
-        featureTitle: "AI-Powered Ingredient Lists",
-        // swiftlint:disable:next line_length
-        featureDescription: "Input any meal you're planning to shop for, and our AI will instantly generate a detailed ingredient list for you. Experience the ease and innovation in shopping for your meals!",
+        featureTitle: Str.feature1,
+        featureDescription: Str.description1,
         onboardingImage: {
           Onboarding1Image()
         },
@@ -28,9 +28,8 @@ struct FeaturesOnboardingView: View {
 
       FeaturesOnboardingPageView(
         image: "Onboarding2",
-        featureTitle: "Personalized Dietary Preferences",
-        // swiftlint:disable:next line_length
-        featureDescription: "Customize your meals. Choose preferences like gluten-free or vegan and enjoy ingredients tailored for you!",
+        featureTitle: Str.feature2,
+        featureDescription: Str.description2,
         onboardingImage: {
           Onboarding2Image()
         },
@@ -39,9 +38,8 @@ struct FeaturesOnboardingView: View {
       FeaturesOnboardingPageView(
         image: "Onboarding3",
 
-        featureTitle: "Manage Your Shopping List",
-        // swiftlint:disable:next line_length
-        featureDescription: "Easily edit and organize your shopping list. Maintain total control and save time when shopping!",
+        featureTitle: Str.feature3,
+        featureDescription: Str.description3,
         onboardingImage: {
           Onboarding3Image()
         },

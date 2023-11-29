@@ -70,6 +70,9 @@
 		A4E013462B07350D00D272A8 /* BuildYourMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E013452B07350D00D272A8 /* BuildYourMealView.swift */; };
 		A4F7414E2B15AC2000DC8FB7 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7414D2B15AC2000DC8FB7 /* CategoriesView.swift */; };
 		A4F741522B16832B00DC8FB7 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F741512B16832B00DC8FB7 /* UserDefaults+Extensions.swift */; };
+		A4F7415B2B16B5E600DC8FB7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7415A2B16B5E600DC8FB7 /* Strings.swift */; };
+		A4F7415D2B16EB7F00DC8FB7 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7415C2B16EB7F00DC8FB7 /* UserDefaultsKeys.swift */; };
+		A4F7415F2B16EB9D00DC8FB7 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7415E2B16EB9D00DC8FB7 /* NotificationNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +161,9 @@
 		A4E013452B07350D00D272A8 /* BuildYourMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildYourMealView.swift; sourceTree = "<group>"; };
 		A4F7414D2B15AC2000DC8FB7 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		A4F741512B16832B00DC8FB7 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		A4F7415A2B16B5E600DC8FB7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		A4F7415C2B16EB7F00DC8FB7 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		A4F7415E2B16EB9D00DC8FB7 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +353,7 @@
 			children = (
 				A4530AA72B14262F00D423F2 /* Info.plist */,
 				A49FC95C2B03C1E700A50F0E /* CapstoneApp.swift */,
+				A4F741592B16B5D700DC8FB7 /* Helpers */,
 				A4D7C0DA2B11AE2C006BC2FB /* Views */,
 				A45EA2362B043DEA0097B863 /* Onboarding */,
 				A45EA2392B043EB90097B863 /* Home */,
@@ -431,6 +438,16 @@
 			isa = PBXGroup;
 			children = (
 				A4F741512B16832B00DC8FB7 /* UserDefaults+Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A4F741592B16B5D700DC8FB7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A4F7415A2B16B5E600DC8FB7 /* Strings.swift */,
+				A4F7415C2B16EB7F00DC8FB7 /* UserDefaultsKeys.swift */,
+				A4F7415E2B16EB9D00DC8FB7 /* NotificationNames.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -604,6 +621,7 @@
 				A45EA23B2B043ED30097B863 /* HomeView.swift in Sources */,
 				A4D7C0F42B13892C006BC2FB /* DietaryPreferencesView.swift in Sources */,
 				A45EA2412B0516210097B863 /* EmptyListView.swift in Sources */,
+				A4F7415D2B16EB7F00DC8FB7 /* UserDefaultsKeys.swift in Sources */,
 				A49FC95D2B03C1E700A50F0E /* CapstoneApp.swift in Sources */,
 				A4D7C0F02B1381E9006BC2FB /* Bundle+Extensions.swift in Sources */,
 				A45C14CC2B0AC451001F7529 /* Prompt.swift in Sources */,
@@ -616,6 +634,7 @@
 				A4D7C0E42B126B6C006BC2FB /* MealJSON.swift in Sources */,
 				A45C14E32B0DAD01001F7529 /* OnboardingFlowViewModel.swift in Sources */,
 				A45C14DB2B0D9EEA001F7529 /* UserNameViewModel.swift in Sources */,
+				A4F7415F2B16EB9D00DC8FB7 /* NotificationNames.swift in Sources */,
 				A45C14C12B09524A001F7529 /* URLSessionHTTPClient.swift in Sources */,
 				A4D7C0E22B11B509006BC2FB /* EditableSelectableIngredientView.swift in Sources */,
 				A45EA22F2B03E8840097B863 /* ShoppingListView.swift in Sources */,
@@ -627,6 +646,7 @@
 				A44EC5622B03C527007CCB5B /* ImageButton.swift in Sources */,
 				A45C14C92B0AC439001F7529 /* OpenAIListGenerator.swift in Sources */,
 				A45FFE622B10007B007FE7B3 /* DetailViewModel.swift in Sources */,
+				A4F7415B2B16B5E600DC8FB7 /* Strings.swift in Sources */,
 				A45EA2432B0550390097B863 /* UserPreferencesView.swift in Sources */,
 				A4530AA42B13F0EC00D423F2 /* AdaptsToKeyboard.swift in Sources */,
 				A45C14DF2B0DA55E001F7529 /* UserDetailViewModel.swift in Sources */,

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShoppingListReviewView: View {
+  private typealias Str = Strings.ShoppingListReview
   @StateObject var viewModel: ShoppingListReviewViewModel
   let onConfirm: () -> Void
 
@@ -18,13 +19,12 @@ struct ShoppingListReviewView: View {
     VStack(alignment: .leading) {
       ScrollView {
         VStack(alignment: .leading, spacing: 16) {
-          Text("Review Your Shopping List")
+          Text(Str.title)
             .font(.largeTitle)
             .fontWeight(.bold)
             .padding(.top)
 
-          Text("Satisfied with your ingredients? If there's anything amiss, go ahead and customize" + " " +
-            "the list to your taste!")
+          Text(Str.headline)
           .foregroundColor(.secondary)
           .padding(.bottom)
 
@@ -35,7 +35,7 @@ struct ShoppingListReviewView: View {
 
             Divider()
 
-            Text("MAY CONTAIN")
+            Text(Str.mayContain)
               .font(.caption)
               .fontWeight(.medium)
               .foregroundStyle(.tertiary)
@@ -59,12 +59,12 @@ struct ShoppingListReviewView: View {
       }
 
       VStack(spacing: 16) {
-        PrimaryButton(title: "Confirm Selection") {
+        PrimaryButton(title: Str.confirmSelection) {
           viewModel.onConfirm()
           onConfirm()
         }
 
-        Button("Make Changes") {
+        Button(Str.makeChanges) {
           dismiss()
         }
       }
