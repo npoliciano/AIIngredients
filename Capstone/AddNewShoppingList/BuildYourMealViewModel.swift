@@ -15,6 +15,7 @@ protocol ListGenerator {
 }
 
 final class BuildYourMealViewModel: ObservableObject {
+  typealias Str = Strings.BuilYourMealViewModel
   struct AlertError: Equatable {
     let title: String
     let message: String
@@ -48,18 +49,18 @@ final class BuildYourMealViewModel: ObservableObject {
     switch (mealName.isEmpty, portion.isEmpty) {
     case (true, true):
       alertError = AlertError(
-        title: "Required Fields Missing",
-        message: "Please enter the \"Meal\" and \"Portion size\" details. Both fields are required to proceed."
+        title: Str.emptyFieldsAlertTitle,
+        message: Str.emptyMealAndPortionAlert
       )
     case (true, _):
       alertError = AlertError(
-        title: "Required Field Missing",
-        message: "Please enter the \"Meal\" details. This field is required to proceed."
+        title: Str.emptyFieldAlertTitle,
+        message: Str.emptyMealAlert
       )
     case (_, true):
       alertError = AlertError(
-        title: "Required Field Missing",
-        message: "Please enter the \"Portion size\" details. This field is required to proceed."
+        title: Str.emptyFieldAlertTitle,
+        message: Str.emptyPortionAlert
       )
     default:
       let input = ListGeneratorInput(
@@ -82,10 +83,10 @@ final class BuildYourMealViewModel: ObservableObject {
       case .success(let list):
         self.meal = list
       case .failure(let error):
-        let message = (error as? AppError)?.message ?? "Something went wrong. Please, try again later."
+        let message = (error as? AppError)?.message ?? Str.failureOnGenerateMessage
 
         self.alertError = AlertError(
-          title: "Sorry!",
+          title: Str.alertTitle,
           message: message
         )
       }
@@ -112,13 +113,13 @@ enum Measurements: String, CaseIterable, Encodable {
 }
 
 extension AppError {
+  typealias Str = Strings.AppError
   var message: String {
     switch self {
     case .server:
-      // swiftlint:disable:next line_length
-      return "We encountered an issue generating the ingredients list. Please check the details of your request and try again"
+      return Str.serverError
     case .network:
-      return "It seems like we're having trouble connecting. Please check your internet connection and try again"
+      return Str.networkError
     }
   }
 }

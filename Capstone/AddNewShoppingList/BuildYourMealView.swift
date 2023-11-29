@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BuildYourMealView: View {
+  typealias Str = Strings.BuilYourMeal
   enum FocusedField {
     case meal
     case portion
@@ -45,13 +46,13 @@ struct BuildYourMealView: View {
 
       VStack(alignment: .leading, spacing: 24) {
         VStack(alignment: .leading, spacing: 8) {
-          Text("Build Your Meal")
+          Text(Str.buildYourMeal)
             .font(.largeTitle)
             .fontWeight(.bold)
 
           HeaderView(
-            title: "Get ready to cook with ease!",
-            headline: "Type in the recipe you wish to prepare, specify the quantity and portion size"
+            title: Str.title,
+            headline: Str.headline
           )
         }
 
@@ -59,8 +60,8 @@ struct BuildYourMealView: View {
 
         VStack(spacing: 24) {
           LabeledTextField(
-            label: "Meal",
-            placeholder: "E.g. greek salad, fried rice...",
+            label: Str.meal,
+            placeholder: Str.placeholder,
             text: $viewModel.mealName
           )
           .keyboardType(.alphabet)
@@ -69,17 +70,17 @@ struct BuildYourMealView: View {
           .focused($focusedField, equals: .meal)
 
           VStack(alignment: .leading) {
-            Text("Portion size")
+            Text(Str.portionSize)
               .font(.footnote)
               .fontWeight(.medium)
 
             HStack {
-              TextField("E.g. 3 units, 0.5 kg, 70 ml...", text: $viewModel.portion)
+              TextField(Str.portionField, text: $viewModel.portion)
                 .keyboardType(.decimalPad)
                 .focused($focusedField, equals: .portion)
                 .accessibilityIdentifier("portionField")
 
-              Picker("Unit", selection: $viewModel.selectedPortionType) {
+              Picker(Str.unit, selection: $viewModel.selectedPortionType) {
                 ForEach(viewModel.measurements, id: \.self) {
                   Text($0.rawValue)
                     .accessibilityIdentifier($0.rawValue)
@@ -90,7 +91,7 @@ struct BuildYourMealView: View {
           }
 
           VStack(alignment: .leading) {
-            Text("Quantity per week")
+            Text(Str.quantity)
               .font(.footnote)
               .fontWeight(.medium)
             Stepper("\(viewModel.quantity)", value: $viewModel.quantity, in: viewModel.quantityRange)
@@ -114,7 +115,7 @@ struct BuildYourMealView: View {
             }
 
             Spacer()
-            Button("Done") {
+            Button(Str.done) {
               focusedField = nil
             }
           }
@@ -123,7 +124,7 @@ struct BuildYourMealView: View {
         Spacer()
 
         PrimaryButton(
-          title: "Generate",
+          title: Str.generate,
           isLoading: viewModel.isLoading
         ) {
           viewModel.onTap()
@@ -147,7 +148,7 @@ struct BuildYourMealView: View {
       isPresented: $viewModel.isErrorPresented,
       presenting: viewModel.alertError,
       actions: { _ in
-        Button("Got it") {
+        Button(Str.gotIt) {
           viewModel.alertError = nil
         }
       }, message: { alertError in

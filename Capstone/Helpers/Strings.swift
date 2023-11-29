@@ -63,6 +63,12 @@ enum Strings {
     static let user = "User"
   }
 
+  enum ShoppingList {
+    static let summary = "Summary"
+    static let all = "All"
+    static func greetings(_ name: String) -> String { "Hello, \(name)" }
+  }
+
   enum Detail {
     static let mealName = "Meal name"
     static let mayContain = "May contain"
@@ -78,12 +84,6 @@ enum Strings {
     static let emptyIngredientsAlert = "You can not delete all ingredients. Would you like to delete the meal?"
   }
 
-  enum ShoppingList {
-    static let summary = "Summary"
-    static let all = "All"
-    static func greetings(_ name: String) -> String { "Hello, \(name)" }
-  }
-
   enum EmptyList {
     static let text = "Your list is currently empty, but don't worry, start adding new meals now to make the most of our app!"
     static let startAdding = "Start Adding"
@@ -91,6 +91,36 @@ enum Strings {
 
   enum Meal {
     static let seeAll = "See all"
+  }
+
+  enum BuilYourMeal {
+    static let buildYourMeal = "Build Your Meal"
+    static let title = "Get ready to cook with ease!"
+    static let headline = "Type in the recipe you wish to prepare, specify the quantity and portion size"
+    static let meal = "Meal"
+    static let placeholder = "E.g. greek salad, fried rice..."
+    static let portionSize = "Portion size"
+    static let portionField = "E.g. 3 units, 0.5 kg, 70 ml..."
+    static let unit = "Unit"
+    static let quantity = "Quantity per week"
+    static let done = "Done"
+    static let generate = "Generate"
+    static let gotIt = "Got it"
+  }
+
+  enum BuilYourMealViewModel {
+    static let emptyFieldsAlertTitle = "Required Fields Missing"
+    static let emptyFieldAlertTitle = "Required Field Missing"
+    static let emptyMealAndPortionAlert = "Please enter the \"Meal\" and \"Portion size\" details. Both fields are required to proceed."
+    static let emptyMealAlert = "Please enter the \"Meal\" details. This field is required to proceed."
+    static let emptyPortionAlert = "Please enter the \"Portion size\" details. This field is required to proceed."
+    static let failureOnGenerateMessage = "Something went wrong. Please, try again later."
+    static let alertTitle = "Sorry!"
+  }
+
+  enum AppError {
+    static let serverError = "We encountered an issue generating the ingredients list. Please check the details of your request and try again"
+    static let networkError = "It seems like we're having trouble connecting. Please check your internet connection and try again"
   }
 
   enum ShoppingListReview {
