@@ -78,14 +78,14 @@ final class CapstoneUITests: XCTestCase {
 
     app.toolbars.buttons["Back"].tap()
 
-    app.toolbars/*@START_MENU_TOKEN@*/.buttons["Forward"]/*[[".otherElements[\"Forward\"].buttons[\"Forward\"]",".buttons[\"Forward\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+    app.toolbars.buttons["Forward"].tap()
 
     app.buttons["Increment"].tap()
     app.buttons["Increment"].tap()
     app.buttons["Decrement"].tap()
     app.buttons["Increment"].tap()
 
-    app.navigationBars["_TtGC7SwiftUI32NavigationStackHosting"].buttons["Back"].tap()
-    app.navigationBars["Hello, Nicolle 🎉"]/*@START_MENU_TOKEN@*/.buttons["Add"]/*[[".otherElements[\"Add\"].buttons[\"Add\"]",".buttons[\"Add\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+    app.buttons["Back"].tap()
+    app.buttons["Add"].tap()
   }
 }
