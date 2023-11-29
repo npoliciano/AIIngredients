@@ -8,33 +8,76 @@
 import XCTest
 
 final class CapstoneUITests: XCTestCase {
+  private let app = XCUIApplication()
+
   override func setUpWithError() throws {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    app.launchArguments += ["UITesting"]
+    app.launch()
 
-    // In UI tests it is usually best to stop immediately when a failure occurs.
     continueAfterFailure = false
-
-    // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-  }
-
-  override func tearDownWithError() throws {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
   }
 
   func testExample() throws {
-    // UI tests must launch the application that they test.
-    let app = XCUIApplication()
-    app.launch()
+    // Onboarding Pages
+    let onboardingScreen = app.collectionViews.element
+    onboardingScreen.swipeLeft()
+    onboardingScreen.swipeLeft()
+    onboardingScreen.swipeRight()
 
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-  }
 
-  func testLaunchPerformance() throws {
-    if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-      // This measures how long it takes to launch your application.
-      measure(metrics: [XCTApplicationLaunchMetric()]) {
-        XCUIApplication().launch()
-      }
-    }
+    let startButton = app.buttons["Start"]
+    startButton.tap()
+
+    // User Name
+    let expectedUserName = "Nicolle 🎉"
+
+    let nameField = app.textFields["John Appleseed"]
+    nameField.tap()
+    nameField.typeText(expectedUserName)
+
+    app.buttons["Next"].tap()
+
+    // Dietary Preferences
+    let glutenToggle = app.switches["glutenFreeToggle"]
+    let sugarToggle = app.switches["sugarFreeToggle"]
+    let vegetarianToggle = app.switches["vegetarianToggle"]
+    let lactoToggle = app.switches["lactoseFreeToggle"]
+    let veganToggle = app.switches["veganToggle"]
+
+    XCTAssertEqual(glutenToggle.value as? String, "0")
+    XCTAssertEqual(sugarToggle.value as? String, "0")
+    XCTAssertEqual(vegetarianToggle.value as? String, "0")
+    XCTAssertEqual(lactoToggle.value as? String, "0")
+    XCTAssertEqual(veganToggle.value as? String, "0")
+
+    app.buttons["Next"].tap()
+    
+    // Home
+    let tabBar = app.tabBars["Tab Bar"]
+    tabBar.buttons["User"].tap()
+
+    // User
+    XCTAssertTrue(app.navigationBars[expectedUserName].exists)
+    tabBar.buttons["Home"].tap()
+
+    // Home
+    app.buttons["Start Adding"].tap()
+
+    // Build your meal
+    let mealField = app.textFields["E.g. greek salad, fried rice..."]
+    mealField.tap()
+    mealField.typeText("Chicken Pie")
+
+    let portionField = app.textFields["portionField"]
+    portionField.tap()
+    portionField.typeText("200")
+
+    app.buttons["Increment"].tap()
+    app.buttons["Increment"].tap()
+    app.buttons["Decrement"].tap()
+    app.buttons["Increment"].tap()
+
+    let measurementPicker = app.buttons["measurementPicker"]
+    measurementPicker.tap()
   }
 }

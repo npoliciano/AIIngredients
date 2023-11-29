@@ -77,12 +77,15 @@ struct BuildYourMealView: View {
               TextField("E.g. 3 units, 0.5 kg, 70 ml...", text: $viewModel.portion)
                 .keyboardType(.decimalPad)
                 .focused($focusedField, equals: .portion)
+                .accessibilityIdentifier("portionField")
 
               Picker("Unit", selection: $viewModel.selectedPortionType) {
                 ForEach(viewModel.measurements, id: \.self) {
                   Text($0.rawValue)
+                    .accessibilityIdentifier($0.rawValue)
                 }
               }
+              .accessibilityIdentifier("measurementPicker")
             }
           }
 

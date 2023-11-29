@@ -15,14 +15,19 @@ struct DietaryPreferencesView: View {
   var body: some View {
     Section(title) {
       Toggle(Str.glutenFree, isOn: $preferences.glutenFree)
+        .accessibilityIdentifier("glutenFreeToggle")
 
       Toggle(Str.lactoseFree, isOn: $preferences.lactoseFree)
+        .accessibilityIdentifier("lactoseFreeToggle")
 
       Toggle(Str.sugarFree, isOn: $preferences.sugarFree)
+        .accessibilityIdentifier("sugarFreeToggle")
 
       Toggle(Str.vegan, isOn: $preferences.vegan)
+        .accessibilityIdentifier("veganToggle")
 
       Toggle(Str.vegetarian, isOn: $preferences.vegetarian)
+        .accessibilityIdentifier("vegetarianToggle")
     }
   }
 }

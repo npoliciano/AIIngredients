@@ -24,8 +24,6 @@
       }
     },
     {
-      "enabled" : false,
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Capstone.xcodeproj",
         "identifier" : "A49FC9722B03C1E800A50F0E",

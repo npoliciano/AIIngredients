@@ -164,6 +164,7 @@
 		A4F7415A2B16B5E600DC8FB7 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		A4F7415C2B16EB7F00DC8FB7 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		A4F7415E2B16EB9D00DC8FB7 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		A4F741602B16EE9800DC8FB7 /* UI Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "UI Tests.xctestplan"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +387,7 @@
 				A4F741502B16830100DC8FB7 /* Helpers */,
 				A45FFE652B104F21007FE7B3 /* Fixtures */,
 				A4C29B232B085F1A0040A41A /* Capstone.xctestplan */,
+				A4F741602B16EE9800DC8FB7 /* UI Tests.xctestplan */,
 				A4D7C0D22B106117006BC2FB /* OnboardingFlowViewModelTests.swift */,
 				A4D7C0D62B106A7D006BC2FB /* UserNameViewModelTests.swift */,
 				A4D7C0D42B106720006BC2FB /* UserPreferencesViewModelTests.swift */,
