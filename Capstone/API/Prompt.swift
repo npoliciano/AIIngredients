@@ -37,6 +37,7 @@ extension DietaryPreferences {
 
 extension ListGeneratorInput {
   func prompt(preferences: DietaryPreferences) -> String {
+    // Disabling line_length rule because an one-liner prompt saves a couple of tokens
     // swiftlint:disable line_length
     """
     Create a deterministic JSON format shopping list for my weekly diet based on the meal and the dietary restrictions I've input. Include all the necessary ingredients to prepare the meal, suggesting as few composite ingredients as possible. For example, if I mention "alfredo chicken lasagna," assume that I will prepare the alfredo sauce from scratch instead of buying it pre-made. Do not suggest buying pre-made products; all recipes must be prepared manually. Then, suggest natural ingredients for this meal and avoid processed ones whenever possible, with a strong focus on healthy homemade cooking. If the meal lacks specific details, make reasonable inferences based on the meal's name.

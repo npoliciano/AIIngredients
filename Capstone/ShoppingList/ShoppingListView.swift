@@ -52,6 +52,7 @@ struct ShoppingListView: View {
             isShowingDetail = true
             path.append(ShoppingListDestination.buildYourMeal)
           }
+          .accessibilityIdentifier("Add")
         }
       }
       .navigationDestination(for: ShoppingListDestination.self) { destination in

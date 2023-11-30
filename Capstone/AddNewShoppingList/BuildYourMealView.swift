@@ -112,6 +112,7 @@ struct BuildYourMealView: View {
               Image(systemName: "chevron.down")
             }
             .disabled(focusedField == .portion)
+            .accessibilityIdentifier("GoDown")
 
             Button {
               focusedField = .meal
@@ -119,11 +120,13 @@ struct BuildYourMealView: View {
               Image(systemName: "chevron.up")
             }
             .disabled(focusedField == .meal)
+            .accessibilityIdentifier("GoUp")
 
             Spacer()
             Button(Str.done) {
               focusedField = nil
             }
+            .accessibilityIdentifier("Done")
           }
         }
 

@@ -76,9 +76,10 @@ final class CapstoneUITests: XCTestCase {
     measurementPicker.tap()
     app.buttons["ml"].tap()
 
-    app.toolbars.buttons["Back"].tap()
+    app.toolbars.buttons["GoUp"].tap()
+    app.toolbars.buttons["GoDown"].tap()
 
-    app.toolbars.buttons["Forward"].tap()
+    app.toolbars.buttons["Done"].tap()
 
     app.buttons["Increment"].tap()
     app.buttons["Increment"].tap()
