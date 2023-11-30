@@ -14,29 +14,29 @@ struct UserPreferencesView: View {
 
   var body: some View {
     VStack(alignment: .leading) {
-      VStack(alignment: .leading, spacing: 24) {
-        HeaderView(
-          title: Str.title,
-          headline: Str.headline
-        )
+      ScrollView {
+        VStack(alignment: .leading, spacing: 24) {
+          HeaderView(
+            title: Str.title,
+            headline: Str.headline
+          )
 
-        VStack(alignment: .leading) {
-          Text(Str.preferences)
-            .font(.headline)
-            .foregroundColor(.secondary)
+          VStack(alignment: .leading) {
+            Text(Str.preferences)
+              .font(.headline)
+              .foregroundColor(.secondary)
 
-          DietaryPreferencesView(preferences: $viewModel.preferences)
+            DietaryPreferencesView(preferences: $viewModel.preferences)
+          }
         }
+        .padding()
       }
-
-      Spacer()
-
       PrimaryButton(title: Str.next) {
         viewModel.onTap()
         onTap()
       }
+      .padding()
     }
-    .padding()
   }
 }
 
