@@ -100,19 +100,20 @@ struct BuildYourMealView: View {
         }
         .toolbar {
           ToolbarItemGroup(placement: .keyboard) {
-            if focusedField == .meal {
-              Button {
-                focusedField = .portion
-              } label: {
-                Image(systemName: "chevron.right")
-              }
-            } else {
-              Button {
-                focusedField = .meal
-              } label: {
-                Image(systemName: "chevron.left")
-              }
+
+            Button {
+              focusedField = .portion
+            } label: {
+              Image(systemName: "chevron.down")
             }
+            .disabled(focusedField == .portion)
+
+            Button {
+              focusedField = .meal
+            } label: {
+              Image(systemName: "chevron.up")
+            }
+            .disabled(focusedField == .meal)
 
             Spacer()
             Button(Str.done) {
