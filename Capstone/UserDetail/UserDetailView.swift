@@ -21,8 +21,17 @@ struct UserDetailView: View {
           HStack {
             Text(Str.appVersionTitle)
             Spacer()
-            Text(Str.appVersion)
-              .foregroundColor(.secondary)
+            HStack {
+              Text(Str.beta)
+                .font(.caption)
+                .foregroundStyle(Color.accentColor)
+                .padding(.vertical, 2)
+                .padding(.horizontal, 4)
+                .background(Color.accentColor.opacity(0.2))
+                .cornerRadius(4)
+              Text(Str.appVersion)
+                .foregroundColor(.secondary)
+            }
           }
         } footer: {
           Text(Str.text)

@@ -135,6 +135,7 @@ enum Strings {
   enum UserDetail {
     static let dietaryPreferences = "Dietary Preferences"
     static let appVersionTitle = "App Version"
+    static let beta = "BETA"
     static let appVersion = "v0.1"
     static let text = "Please note, our AI's results may not always be accurate or complete. We're constantly refining our technology, but urge caution, especially for dietary restrictions or allergies. Your feedback is crucial to our improvement."
   }
