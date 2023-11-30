@@ -28,21 +28,27 @@ struct BuildYourMealView: View {
 
   @FocusState var focusedField: FocusedField?
 
-  var headerHeight: CGFloat {
-    verticalSizeClass == .regular ? 300 : 100
+  private var headerHeight: CGFloat {
+    isLandscape ? 100 : 300
+  }
+
+  private var isLandscape: Bool {
+    verticalSizeClass != .regular
   }
 
   var body: some View {
     ScrollView {
-      GeometryReader { geometry in
-        Image("pan")
-          .resizable()
-          .scaledToFill()
-          .frame(width: geometry.size.width, height: getHeightForHeaderImage(geometry))
-          .clipped()
-          .offset(x: 0, y: getOffsetForHeaderImage(geometry))
+      if !isLandscape {
+        GeometryReader { geometry in
+          Image("pan")
+            .resizable()
+            .scaledToFill()
+            .frame(width: geometry.size.width, height: getHeightForHeaderImage(geometry))
+            .clipped()
+            .offset(x: 0, y: getOffsetForHeaderImage(geometry))
+        }
+        .frame(height: headerHeight)
       }
-      .frame(height: headerHeight)
 
       VStack(alignment: .leading, spacing: 24) {
         VStack(alignment: .leading, spacing: 8) {
@@ -100,7 +106,6 @@ struct BuildYourMealView: View {
         }
         .toolbar {
           ToolbarItemGroup(placement: .keyboard) {
-
             Button {
               focusedField = .portion
             } label: {
@@ -136,7 +141,7 @@ struct BuildYourMealView: View {
       .padding(.vertical, 16)
     }
     .adaptsToKeyboard()
-    .ignoresSafeArea(.all)
+    .ignoresSafeArea(isLandscape ? .keyboard : .all)
     .sheet(item: $viewModel.meal) { meal in
       ShoppingListReviewView(
         viewModel: ShoppingListReviewViewModel(meal: meal)
