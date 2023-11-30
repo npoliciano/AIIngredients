@@ -93,7 +93,7 @@ struct DetailView: View {
         dismiss()
       }
     } message: {
-      Text("Are you sure you want to delete \(viewModel.meal.name)? This action cannot be undone.")
+      Text(Str.mealDeletionAlert(viewModel.meal.name))
     }
     .alert(Str.error, isPresented: $viewModel.isErrorPresented) {
       Button(Str.gotIt, role: .cancel) { }

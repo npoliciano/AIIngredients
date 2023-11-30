@@ -51,7 +51,7 @@ final class CapstoneUITests: XCTestCase {
     XCTAssertEqual(veganToggle.value as? String, "0")
 
     app.buttons["Next"].tap()
-    
+
     // Home
     let tabBar = app.tabBars["Tab Bar"]
     tabBar.buttons["User"].tap()

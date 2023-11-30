@@ -82,6 +82,7 @@ enum Strings {
     static let gotIt = "Got it"
     static let emptyFieldAlert = "No field can be left empty. Please enter a value or delete."
     static let emptyIngredientsAlert = "You can not delete all ingredients. Would you like to delete the meal?"
+    static func mealDeletionAlert(_ mealName: String) -> String { "Are you sure you want to delete \(mealName)? This action cannot be undone." }
   }
 
   enum EmptyList {

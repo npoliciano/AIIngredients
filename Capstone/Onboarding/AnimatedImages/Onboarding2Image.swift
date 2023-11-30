@@ -12,7 +12,7 @@ struct Onboarding2Image: View {
   @State var size: CGSize = .zero
 
   var body: some View {
-    Image(.onboarding21)
+    Image("Onboarding2_1")
       .resizable()
       .scaledToFit()
       .background(
@@ -24,7 +24,7 @@ struct Onboarding2Image: View {
         }
       )
       .overlay(
-        Image(.onboarding22)
+        Image("Onboarding2_2")
           .resizable()
           .scaledToFit()
           .rotationEffect(.degrees(isRotating))

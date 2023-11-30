@@ -17,28 +17,28 @@ struct CategoriesView: View {
         HStack(spacing: 8) {
           switch category {
           case .proteins:
-            Image(.meat)
+            Image("meat")
               .resizable()
               .scaledToFit()
               .frame(width: 22, height: 24)
-              .foregroundStyle(Color(.salmon))
+              .foregroundStyle(Color("Salmon"))
             Text(Str.protein)
           case .carbo:
             Image(systemName: "circle.hexagongrid")
               .frame(width: 22)
-              .foregroundStyle(Color(.maroon))
+              .foregroundStyle(Color("Maroon"))
             Text(Str.carbo)
           case .veggies:
             Image(systemName: "carrot")
               .frame(width: 22)
-              .foregroundStyle(Color(.aspargus))
+              .foregroundStyle(Color("Aspargus"))
             Text(Str.veggies)
           case .dairy:
-            Image(.dairy)
+            Image("dairy")
               .resizable()
               .scaledToFit()
               .frame(width: 22, height: 20)
-              .foregroundStyle(Color(.sky))
+              .foregroundStyle(Color("Sky"))
             Text(Str.dairy)
           case .seasonings:
             Image(systemName: "loupe")

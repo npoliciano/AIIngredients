@@ -27,7 +27,7 @@ struct MealsView: View {
               .padding(.bottom, 4)
           }
         }
-
+        //
         if meal.ingredients.count > 3, !isExpanded {
           VStack(alignment: .leading) {
             Divider()
@@ -59,25 +59,25 @@ struct MealsView: View {
           ForEach(meal.categories, id: \.self) { category in
             switch category {
             case .proteins:
-              Image(.meat)
+              Image("meat")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 22, height: 22)
-                .foregroundStyle(Color(.salmon))
+                .foregroundStyle(Color("Salmon"))
             case .carbo:
               Image(systemName: "circle.hexagongrid")
-                .foregroundStyle(Color(.maroon))
+                .foregroundStyle(Color("Maroon"))
 
             case .veggies:
               Image(systemName: "carrot")
-                .foregroundStyle(Color(.aspargus))
+                .foregroundStyle(Color("Aspargus"))
 
             case .dairy:
-              Image(.dairy)
+              Image("dairy")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 20, height: 20)
-                .foregroundStyle(Color(.sky))
+                .foregroundStyle(Color("Sky"))
 
             case .seasonings:
               Image(systemName: "loupe")
@@ -154,12 +154,12 @@ struct MealsView_Previews: PreviewProvider {
       shoppingLists: .constant(meals),
       isExpanded: false
     ) { _ in }
-    .previewDisplayName("Collapsed")
+      .previewDisplayName("Collapsed")
 
     MealsView(
       shoppingLists: .constant(meals),
       isExpanded: true
     ) { _ in }
-    .previewDisplayName("Expanded")
+      .previewDisplayName("Expanded")
   }
 }

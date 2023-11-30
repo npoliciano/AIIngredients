@@ -16,11 +16,11 @@ struct Onboarding3Image: View {
 
   var body: some View {
     ZStack {
-      Image(.onboarding31)
+      Image("Onboarding3_1")
         .resizable()
         .scaledToFit()
 
-      Image(.onboarding32)
+      Image("Onboarding3_2")
         .resizable()
         .scaledToFit()
         .opacity(isAnimating ? 1 : 0)

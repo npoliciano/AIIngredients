@@ -16,11 +16,11 @@ struct Onboarding1Image: View {
 
   var body: some View {
     ZStack {
-      Image(.onboarding11)
+      Image("Onboarding1_1")
         .resizable()
         .scaledToFit()
 
-      Image(.onboarding12)
+      Image("Onboarding1_2")
         .resizable()
         .scaledToFit()
         .scaleEffect(isAnimating ? 1.05 : 1)
