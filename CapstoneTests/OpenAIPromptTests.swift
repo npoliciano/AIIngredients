@@ -25,6 +25,7 @@ final class PromptTests: XCTestCase {
     let prompt = input.prompt(preferences: preferences)
 
     // Assert
+    // Disabling line_length rule because an one-liner prompt saves a couple of tokens
     // swiftlint:disable line_length
     XCTAssertEqual(
       prompt,
@@ -69,6 +70,7 @@ final class PromptTests: XCTestCase {
     let prompt = input.prompt(preferences: preferences)
 
     // Assert
+    // Disabling line_length rule because an one-liner prompt saves a couple of tokens
     // swiftlint:disable line_length
     XCTAssertEqual(
       prompt,

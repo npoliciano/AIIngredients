@@ -29,7 +29,7 @@ To successfully run the application on your device, follow these steps:
 
 ## Features
 
-### **Onboarding**
+### Onboarding
 
 Consists of three screens explaining app features that utilize **SwiftUI animations** such as `scaleEffect`, `opacity`, `linear`, `rotationEffect`, `speed`, `easeInOut`, and `repeatForever` animations. Following these screens, users encounter the user name and preferences screens.
 
@@ -55,11 +55,12 @@ The onboarding experience adapts based on user progression:
 
 - **Post Dietary Preference Setup:** Users who have completed both their name submission and dietary preference setup will be greeted with the home screen upon opening the app thereafter, streamlining their experience.
 
-### **Home**
+### Home
 
 Features **two tabs**: Shopping List and User Details
 
 #### Shopping List
+
 Shows compact (top 3 ingredients) or expanded **list** of ingredients for each meal. Users can strike off purchased items with **animation**. **Each meal has images** based on **dynamic information** regarding the food categories **delivered by the API.** Includes a button to add new recipes. The '**see more**' option in the compact view **navigates** to the meal detail view, which contains all the ingredients and quantities for the meal. 
 
 | Summary | All |
@@ -86,11 +87,11 @@ Displays saved user information, including name and dietary preferences set duri
 
 - Details all ingredients and quantities for a meal in a **list**, displaying food categories the meal may contain. Users can edit or delete items; a 'trash' icon enables meal deletion with a **confirmation prompt** for safety. Edits are made using a 'pen' icon and saved by clicking 'Done'. An **alert** is presented when the user attempts to delete all ingredients.
 
-| Edit mode inactive | Edit mode active | Selection | Error |
+| Edit mode inactive | Edit mode active | Selection | Alert |
 | - | - | - | - |
 | <img width="200" alt="image" src="docs/screenshots/detail-edit-mode-inactive.png"> | <img width="200" alt="image" src="docs/screenshots/detail-edit-mode-active.png"> | <img width="200" alt="image" src="docs/screenshots/detail-selection.png"> | <img width="200" alt="image" src="docs/screenshots/detail-error.png"> |
 
-### **Add a New Shopping List**
+### Add a New Shopping List
 
 - A **ScrollView** where users input meal name, portion size, and select measurement units and weekly consumption frequency. The 'Generate' button leads to the ingredient list review view. Alerts are shown for **incomplete fields** or **network/server errors**.
 
@@ -125,7 +126,6 @@ Displays the **app name** and an image generated from Midjourney
 - Swift 5.8
 - Xcode 14.3.1
 - **Swift Lint**
-    - Very low incidence of disabled rules. Most of them on Tests and Previews
 - Light & Dark Mode
 - Landscape & Portrait
 - Dynamic Type
@@ -134,7 +134,7 @@ Displays the **app name** and an image generated from Midjourney
 - Applying the HIG
 - No warnings
 
-## **Architecture:**
+## Architecture
 
 - **MVVM** Pattern
 - Vertical folder organization that groups everything related to a feature instead of layered/horizontal separation.
@@ -143,7 +143,7 @@ Displays the **app name** and an image generated from Midjourney
 - A centralized place for strings, ensuring lint rules for line length and preparing for Localization
 - Uses UITests launch argument to guarantee a deterministic test environment and prevent it from persisting inappropriately and fetching from the actual API.
 
-## **Integration with OpenAI API:**
+## Integration with OpenAI API
 
 Uses OpenAI API to generate ingredient lists and categorize meals by user input, including meal name, portion size, weekly quantity and dietary preferences. 
 
@@ -153,12 +153,19 @@ Uses OpenAI API to generate ingredient lists and categorize meals by user input,
 - **URLSession** for data fetching
 - Decoding AI-generated JSON responses
 
-## **Testing:**
+## Testing
 
 - Comprehensive **unit tests** covering all app layers, including notifications, persistency, networking, and presentation. Dependency inversion and the Strategy Pattern enabling test doubles.
 - Specific scheme for **UI testing** covering the happy path
 
+#### SwiftLint rules desabling reasons
+
+- Suppress `line_length` warnings on Previews
+- Suppress `line_length` on tests to assert the actual string messages rather than constant abstractions.
+- Suppress `line_length` on tests to assert the actual request JSONs
+
 --- 
 credits for the icons
 > <a target="_blank" href="https://icons8.com/icon/8nKPPiaJ0gho/thanksgiving">Meat</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
 > <a target="_blank" href="https://icons8.com/icon/lwK4bEASApAe/milk-bottle">Milk Bottle</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

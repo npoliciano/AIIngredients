@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Centralizing all the strings in a single place to reduce the incidence of line_length warnings
 // swiftlint:disable line_length
 enum Strings {
   enum FeaturesOnboarding {
