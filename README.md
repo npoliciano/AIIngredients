@@ -19,13 +19,22 @@
 To successfully run the application on your device, follow these steps:
 
 1. Clone this project to your local machine.
-2. Paste the `OpenAI-API-Key.plist` provided at `/Capstone` folder:
+2. This project uses OpenAI API, so you should have your own API key in order to run it.
+3. Once you get an API key, create a new plist file and name it `OpenAI-API-Key.plist`.
+4. Add this file to the `/AIIngredients` folder.
 
 <p align="center">
-    <img width="200" alt="image" src="docs/plist.png">
+    <img width="273" alt="image" src="https://github.com/npoliciano/AIIngredients/assets/119764048/a33b5ec8-d47f-42d6-a597-160dd3c7e9d8">
 </p>
 
-3. Build and run the application in Xcode
+5. Add a new row to this file as follows:
+
+<p align="center">
+    <img width="294" alt="Screenshot 2024-03-31 at 15 33 14" src="https://github.com/npoliciano/AIIngredients/assets/119764048/185fa8d8-3827-4bbc-b77b-d3dec06679b1">
+</p>
+
+6. Paste your API key on `API_KEY` field value.
+7. Build and run the application in Xcode
 
 ## Features
 
