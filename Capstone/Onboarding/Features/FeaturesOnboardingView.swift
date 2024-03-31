@@ -47,7 +47,9 @@ struct FeaturesOnboardingView: View {
       )
     }
     .tabViewStyle(.page)
-    .indexViewStyle(.page(backgroundDisplayMode: colorScheme == .light ? .always : .interactive))
+    .indexViewStyle(
+      .page(backgroundDisplayMode: colorScheme == .light ? .always : .interactive)
+    )
     .padding(.bottom, -10)
   }
 }

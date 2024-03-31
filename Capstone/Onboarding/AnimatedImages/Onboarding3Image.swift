@@ -32,7 +32,7 @@ struct Onboarding3Image: View {
   }
 }
 
-struct Onboardin3Image_Previews: PreviewProvider {
+struct Onboarding3Image_Previews: PreviewProvider {
   static var previews: some View {
     Onboarding3Image()
   }

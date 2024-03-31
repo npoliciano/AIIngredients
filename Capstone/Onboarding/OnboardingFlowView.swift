@@ -22,6 +22,7 @@ struct OnboardingFlowView: View {
         viewModel.nextStep()
         isUserNamePresented = true
       })
+      // full screen cover to prevent from going back
       .fullScreenCover(isPresented: $isUserNamePresented) {
         userNameView
       }

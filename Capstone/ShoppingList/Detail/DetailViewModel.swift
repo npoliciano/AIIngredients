@@ -10,18 +10,21 @@ import SwiftUI
 
 final class DetailViewModel: ObservableObject {
   @Published var meal: Meal {
+    // Whenever meal is set, the code updates the corresponding meal in the user defaults' shopping lists
     didSet {
       var allMeals = userDefaults.shoppingLists
 
+      // When the meal is updated, it then searches for the meal with the same id as the updated meal in the allMeals array.
       guard let index = allMeals.firstIndex(where: { $0.id == meal.id }) else {
         return
       }
 
       var storedMeal = allMeals[index]
 
+      // It iterates through each ingredient in the updated meal's ingredients list.
       for ingredient in meal.ingredients {
         storedMeal.ingredients = storedMeal.ingredients.map {
-          if $0.id == ingredient.id {
+          if $0.id == ingredient.id { // For each ingredient, it looks for a matching ingredient in the stored meal
             var storedIngredient = $0
             storedIngredient.isSelected = ingredient.isSelected
             return storedIngredient
@@ -30,6 +33,7 @@ final class DetailViewModel: ObservableObject {
         }
       }
 
+      // After iterating through all the ingredients and updating them as necessary, the modified storedMeal replaces the old one in the allMeals array at the same index.
       allMeals[index] = storedMeal
       saveAndNotify(updatedList: allMeals)
     }

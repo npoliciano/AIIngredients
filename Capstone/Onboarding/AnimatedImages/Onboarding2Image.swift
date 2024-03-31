@@ -11,11 +11,12 @@ struct Onboarding2Image: View {
   @State private var isRotating = -10.0
   @State var size: CGSize = .zero
 
-  var body: some View {
+  var body: some View { // Images have different sizes
     Image("Onboarding2_1")
       .resizable()
       .scaledToFit()
       .background(
+        // The layout is dynamically calculated based on the size of the main image
         GeometryReader { proxy in
           Color.clear
             .onAppear {

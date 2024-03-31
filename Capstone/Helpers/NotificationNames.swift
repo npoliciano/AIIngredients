@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Defines constants for notification names
 enum NotificationNames {
   static let onUpdateShoppingList = "onUpdateShoppingList"
 }

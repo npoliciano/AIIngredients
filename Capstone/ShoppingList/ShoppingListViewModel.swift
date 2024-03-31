@@ -9,7 +9,7 @@ import Foundation
 
 final class ShoppingListViewModel: ObservableObject {
   @Published var shoppingLists: [Meal] = [] {
-    didSet {
+    didSet { // It updates the userDefault whenever shoppingLists changes
       userDefaults.shoppingLists = shoppingLists.reversed()
     }
   }
@@ -26,13 +26,15 @@ final class ShoppingListViewModel: ObservableObject {
       name: .onUpdateShoppingList,
       object: nil
     )
-    loadLists()
+    loadLists() // It loads the initial data
   }
 
   deinit {
     NotificationCenter.default.removeObserver(self)
   }
 
+  // It retrieves the shopping lists from userDefaults, reverses them, and updates the shoppingLists property.
+  // Marked with @objc to allow it to be called by Objective-C APIs (NotificationCenter)
   @objc private func loadLists() {
     let allLists = userDefaults.shoppingLists
     shoppingLists = allLists.reversed()

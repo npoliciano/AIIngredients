@@ -7,14 +7,17 @@
 
 import SwiftUI
 
+// The struct is generic, taking a View type as a parameter.
 struct FeaturesOnboardingPageView<OnboardingImage: View>: View {
   typealias Str = Strings.OnboardingPage
   let image: String
   let featureTitle: String
   let featureDescription: String
+  // This is a view builder that allows injecting custom views for the onboarding image.
   @ViewBuilder let onboardingImage: () -> OnboardingImage
   let onStart: () -> Void
 
+  // This property observes the environment's vertical size class (compact or regular) to adjust the layout.
   @Environment (\.verticalSizeClass)
   private var verticalSizeClass
 

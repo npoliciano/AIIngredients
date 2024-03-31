@@ -16,6 +16,7 @@ struct Onboarding1Image: View {
 
   var body: some View {
     ZStack {
+      // Both images have the same size
       Image("Onboarding1_1")
         .resizable()
         .scaledToFit()

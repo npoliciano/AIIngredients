@@ -21,7 +21,9 @@ struct HomeView: View {
             Label(Str.user, systemImage: "person.circle.fill")
           }
       }
+      // Sets the toolbar's background color to match the system's background color (adapting to light/dark mode)
       .toolbarBackground(Color(uiColor: .systemBackground), for: .tabBar)
+      // Ensures that this background is visible
       .toolbarBackground(.visible, for: .tabBar)
     }
   }
