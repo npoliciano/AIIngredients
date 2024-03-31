@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "53D2E598-3192-4680-8B17-8B7591382348",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:AIIngredients.xcodeproj",
+        "identifier" : "A49FC9722B03C1E800A50F0E",
+        "name" : "AIIngredientsUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

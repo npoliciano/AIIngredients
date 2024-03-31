@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "C1C1D9F6-73E2-45C5-B3F7-4DD0E4BCB48E",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:AIIngredients.xcodeproj",
+      "identifier" : "A49FC9582B03C1E700A50F0E",
+      "name" : "AIIngredients"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:AIIngredients.xcodeproj",
+        "identifier" : "A49FC9682B03C1E800A50F0E",
+        "name" : "AIIngredientsTests"
+      }
+    }
+  ],
+  "version" : 1
+}
